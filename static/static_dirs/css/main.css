@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+hr {
+    color: rgb(225, 130, 130, 0.3);
+    width: 1200px;
+    text-align: center;
+    height: 1px;
+}
+
+.container {
+    width: 1300px;
+    margin: 0 auto;
+}
+
+
+.pad-20 {
+    padding: 20px;
+}
+
+.col-display {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.logo {
+    background-image: url(../images/logo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 150px;
+    height: 35px;
+}
+
+.search {
+    background-image: url(../images/search.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+}
+
+.basket {
+    background-image: url(../images/basket.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+}
+
+.login {
+    background-image: url(../images/Login.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 35px;
+}
+
+.display {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* flex-wrap: wrap; */
+}
+
+
+.display-plant {
+    display: grid;
+    /* justify-content: space-around;
+    align-items: center; */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    /* flex-wrap: wrap; */
+}
+
+.display-gap {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.card {
+    padding: 20px 20px;
+    background-color: #ffffff;
+}
+
+img {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+ul,
+li,
+a {
+    text-decoration: none;
+    font-family: Cera Pro, sans-serif;
+    color: black;
+    list-style: none;
+}
+
+p {
+    font-family: Cera Pro, sans-serif;
+    font-size: 13px;
+
+}
+
+.fixed {
+    position: fixed;
+    /* top: 0; */
+}
+
+h4 {
+    font-family: Cera Pro, sans-serif;
+    /* font-size: 13px; */
+}
+
+span {
+    color: #46A358;
+}
+
+h3 {
+    font-family: Cera Pro, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18px;
+}
+
+.big-text {
+    font-size: 70px;
+    font-family: Cera Pro, sans-serif;
+    font-weight: 900;
+    size: 70px;
+    line-height: 70px;
+}
+
+button {
+    background-color: #46A358;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.big-plant {
+    background-image: url(../images/pl.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 500px;
+    height: 500px;
+}
+
+.min-plant {
+    background-image: url(../images/pl.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 439px;
+    left: 920px;
+}
+
+.nav-media {
+    display: none;
+}
+
+.first-block {
+    background-color: rgb(243, 243, 243);
+}
+
+.forms {
+    /*border: none;*/
+    padding: 10px;
+    border: solid 0 ;
+}
+
+.forms input, select {
+    /* max-width: 500px; */
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+    /* border: none; */
+}
+
+.green {
+    color: green;
+}
+
+.paginations {
+    text-align: end;
+    padding: 20px;
+    margin: 5px;
+}
+
+.step-links a {
+    padding: 10px;
+    background-color: #46A358;
+    color: white;
+}
+
+.step-links span {
+    padding: 10px;
+    border: 1px solid gray;
+}
+
+.white {
+    color: white;
+}

@@ -1,5 +1,6 @@
 from django.db import models
 from django_resized import ResizedImageField
+from django.contrib.auth.models import User
 
 class TimeAbstract(models.Model):
     
@@ -66,6 +67,9 @@ class Description(TimeAbstract):
     dinig_room = models.TextField()
     ofice = models.TextField()
     
+    # def __str__(self):
+    #     return self.living_room
+    
     
 class Plant(TimeAbstract):
     
@@ -80,6 +84,7 @@ class Plant(TimeAbstract):
     category = models.ForeignKey('plant.Category', on_delete=models.PROTECT, related_name='plant')
     tags = models.ManyToManyField('plant.Tag', related_name='plant')
     description = models.ForeignKey('plant.Description', on_delete=models.PROTECT)
+    user =  models.ForeignKey('auth.User', on_delete=models.PROTECT, related_name='plants')
     
 
     @property
