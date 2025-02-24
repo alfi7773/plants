@@ -20,6 +20,7 @@
                 <button type="submit">Logout</button>
             </form>
             <h4>{{ user }}</h4>
+            <a href="{% url "work" %}">Workspace</a>
         {% else %}
             <a href="{% url 'login' %}">
                 <div class="login"></div>

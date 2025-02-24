@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="text-center">
+
+  <div class="col-display container">
+    <a href="{% url "create" %}">
+      <button>Create</button>
+    </a> 
+    {% for plant in plants %}
+    <a href="{% url 'detail_plant' plant.id %}">
+    <div>
+      <img class="card" src="{{ plant.image.url }}" alt="" />
+      <p>{{ plant.name }}</p>
+      <h4 class="green">${{ plant.price }}</h4>
+    </div>
+  </a>
+  <form action="{% url 'delete' plant.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+  {% endfor %}
+</div>
+</div>
+    {% endblock content %}
