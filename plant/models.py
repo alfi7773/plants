@@ -106,5 +106,17 @@ class ImagePlant(TimeAbstract):
     image = ResizedImageField(upload_to='plant_images/', quality=90, force_format='WEBP')
     
     
+class Blog(TimeAbstract):
+    
+    class Meta:
+        verbose_name_plural = 'blogs'
+        verbose_name = 'blog'
+        
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to='blog_images/')
+    
+    def __str__(self):
+        return self.name
     
 # Create your models here.

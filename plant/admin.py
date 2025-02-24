@@ -1,13 +1,14 @@
 from django.contrib import admin
 
 from django.utils.safestring import mark_safe
-from .models import Plant, Category, Tag, Size, ImagePlant, Description
+from .models import *
 
 # admin.site.register(Film)
 admin.site.register(Category)
 admin.site.register(Tag)
 admin.site.register(Size)
 admin.site.register(Description)
+admin.site.register(Blog)
 
 
 class PLntImageStackedInline(admin.TabularInline):

@@ -4,7 +4,7 @@
     </div>
     <div>
         <ul class="display-gap">
-            <li><a href="">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="">Shop</a></li>
             <li><a href="">Plant Care</a></li>
             <li><a href="">Blogs</a></li>
@@ -13,9 +13,23 @@
     <div class="display-gap">
         <div class="search"></div>
         <div class="basket"></div>
-        <a href="">
-            <div class="login"></div>
-        </a>
+        {% if user.is_authenticated %}
+            {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+            <h4>{{ user }}</h4>
+        {% else %}
+            <a href="{% url 'login' %}">
+                <div class="login"></div>
+            </a>
+            <a href="{% url 'signup' %}">
+                <button>
+                    Register
+                </button>
+            </a>
+        {% endif %}
     </div>
 
 </section>

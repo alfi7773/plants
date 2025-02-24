@@ -1,0 +1,8 @@
+{% extends 'main.html' %}
+{% block content %}
+<div>
+    <img class="card" src="{{ plant.image.url }}" alt="">
+    <p>{{ plant.name }}</p>
+    <h4 class="green">${{ plant.price }}</h4>
+  </div>
+{% endblock content %}

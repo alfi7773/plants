@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django_filters',
     
     'plant',
+    'user_profile',
+    'workspace',
 ]
 
 MIDDLEWARE = [

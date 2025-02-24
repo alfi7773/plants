@@ -131,6 +131,10 @@ h3 {
     line-height: 18px;
 }
 
+h2 {
+    font-family: Cera Pro, sans-serif;
+}
+
 .big-text {
     font-size: 70px;
     font-family: Cera Pro, sans-serif;
@@ -179,10 +183,11 @@ button {
 .forms {
     /*border: none;*/
     padding: 10px;
-    border: solid 0 ;
+    border: solid 0;
 }
 
-.forms input, select {
+.forms input,
+select {
     /* max-width: 500px; */
     width: 100%;
     padding: 10px;
@@ -218,3 +223,83 @@ button {
 .white {
     color: white;
 }
+
+.blog {
+    max-width: 200px;
+}
+
+.pad-top-20 {
+    padding-top: 20px;
+}
+
+.block-1 {
+    background-image: url(../images/s1-removebg-preview.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    top: 150px;
+    left: 80px;
+
+}
+
+
+.block-1:hover {
+    width: 350px;
+    height: 350px;
+    transition: 1s;
+}
+
+.block-2 {
+    background-image: url(../images/s2-removebg-preview.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    top: 150px;
+    left: 80px;
+}
+
+.block-2:hover {
+    width: 350px;
+    height: 350px;
+    transition: 1s;
+}
+
+.block-3 {
+    background-image: url(../images/s3-removebg-preview.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    top: 150px;
+    left: 60px;
+}
+
+.block-3:hover {
+    width: 350px;
+    height: 350px;
+    transition: 1s;
+}
+
+.footer {
+    background-color: rgb(235, 239, 241);
+    height: 100px;
+}
+
+.max-width {
+    width: 100%;
+}
+
+/* .display img:hover {
+    width: 350px;
+    height: 350px;
+    transition: 1s;
+} */
+ 

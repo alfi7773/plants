@@ -1,0 +1,8 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="pad-top-20 blog">
+    <img src="{{ blog.image.url }}" alt="">
+    <h3>{{ blog.name }}</h3>
+    <br><p>{{ blog.description }}</p>
+  </div>
+{% endblock content %}

@@ -3,8 +3,8 @@
 {% block content %}
   <section class="container">
     <div class="display first-block">
-        <div class="col-display">
-            <h3>Welcome to GreenShop</h3>
+      <div class="col-display">
+        <h3>Welcome to GreenShop</h3>
         <h1 class="big-text">
           Let’s Make a
           <br />Better <span>Planet</span>
@@ -16,27 +16,82 @@
         <a href=""><button>SHOP NOW</button></a>
       </div>
       <div class="display-gap">
-          <div class="min-plant"></div>
-          <div class="big-plant"></div>
+        <div class="min-plant"></div>
+        <div class="big-plant"></div>
       </div>
     </div>
   </section>
-<div class="display container pad-20">
-  {% include 'companents/filter.html' %}
-  {% comment %} <div class="fixed"> 
-  </div> {% endcomment %}
+  <div class="display container pad-20">
+    {% include 'companents/filter.html' %}
+    {% comment %} <div class="fixed"></div> {% endcomment %}
 
-  <div class="display-plant">
-    {% for plant in plants %}
-    <div>
-      <img class="card" src="{{ plant.image.url }}" alt="">
-      <p>{{ plant.name }}</p>
-      <h4 class="green">${{ plant.price }}</h4>
+    <div class="display-plant">
+      {% for plant in plants %}
+        <a href="{% url 'detail_plant' plant.id %}">
+          <div>
+            <img class="card" src="{{ plant.image.url }}" alt="" />
+            <p>{{ plant.name }}</p>
+            <h4 class="green">${{ plant.price }}</h4>
+          </div>
+        </a>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
-</div>
-<div class="paginations">
-  {% include 'companents/pagination.html' %}
-</div>
-{% endblock %}
+  <div class="paginations">
+    {% include 'companents/pagination.html' %}
+  </div>
+
+  <div class="container">
+    <center>
+      <h1>Our Blog Posts</h1>
+      <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
+    </center>
+    <div class="display pad-top-20">
+      {% for blog in blogs|slice:':3' %}
+        <a href="{% url 'detail_blog' blog.id %}">
+          <div class="pad-top-20 blog">
+            <img src="{{ blog.image.url }}" alt="" />
+            <h3>{{ blog.name }}</h3>
+            <br /><p>{{ blog.description }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <center>
+
+    <section class="pad-20 container">
+      <div class=" display ">
+      <div> 
+        <div class="block-1"></div>
+        <h3>Garden Care</h3>
+        <br /><p>
+          We are an online plant shop
+          <br />offering a wide range of cheap
+          <br />and trendy plants.
+        </p>
+      </div>
+      <div>
+        <div class="block-2"></div>
+        <h3>Plant Renovation</h3>
+        <br /><p>
+          We are an online plant shop
+          <br />offering a wide range of cheap
+          <br />and trendy plants.
+        </p>
+      </div>
+
+      <div>
+        <div class="block-3"></div>
+        <h3>Watering Graden</h3>
+        <br /><p>
+          We are an online plant shop
+          <br />offering a wide range of cheap
+          <br />and trendy plants.
+        </p>
+      </div>
+    </div>
+  </section>
+</center>
+  {% endblock %}

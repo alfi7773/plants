@@ -1,0 +1,52 @@
+{% block content %}
+  <div class="pad-20">
+    <div class="container footer display">
+      <div class="logo"></div>
+      <div>
+        <p>
+          70 West Buckingham Ave.
+          <br />Farmingdale, NY 11735
+        </p>
+      </div>
+      <div>
+        <p>contact@greenshop.com</p>
+      </div>
+      <div>
+        <p>+88 01911 717 490</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container pad-20 display">
+    <div class="col-display">
+      <h2>My Account</h2>
+      <a href="">My Account</a>
+      <a href="">Our stores</a>
+      <a href="">Contact us</a>
+      <a href="">Contact us</a>
+      <a href="">Specials</a>
+    </div>
+
+    <div class="col-display">
+      <h2>Help & Guide</h2>
+      <a href="">Help Center</a>
+      <a href="">How to Buy</a>
+      <a href="">Shipping & Delivery</a>
+      <a href="">Product Policy</a>
+      <a href="">How to Return</a>
+    </div>
+
+    <div class="col-display">
+      <h2>Categories</h2>
+      {% for category in categories|slice:':5' %}
+        <a href="">{{ category.name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+  <hr class="max-width">
+  <div class="pad-20">
+    <center>
+        © 2021 GreenShop. All Rights Reserved.
+    </center>
+  </div>
+{% endblock %}
