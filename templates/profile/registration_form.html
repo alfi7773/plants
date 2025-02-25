@@ -1,0 +1,9 @@
+<div id="form-container">
+    <form id="registerForm" method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <div class="forms">
+            {{ form.as_p }}
+        </div>
+        {% comment %} <button type="submit" class="btn btn-success">Зарегистрироваться</button> {% endcomment %}
+    </form>
+</div>

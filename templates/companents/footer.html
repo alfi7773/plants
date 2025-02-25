@@ -1,7 +1,7 @@
 {% block content %}
   <div class="pad-20">
-    <div class="container footer display">
-      <div class="logo"></div>
+    <div class="container footer display5 text-center-m">
+      <div class="marg-left-20 text-end logo"></div>
       <div>
         <p>
           70 West Buckingham Ave.
@@ -17,8 +17,8 @@
     </div>
   </div>
 
-  <div class="container pad-20 display">
-    <div class="col-display">
+  <div class="container pad-20 display5 text-center-m">
+    <div class="col-display-m">
       <h2>My Account</h2>
       <a href="">My Account</a>
       <a href="">Our stores</a>
@@ -27,7 +27,7 @@
       <a href="">Specials</a>
     </div>
 
-    <div class="col-display">
+    <div class="col-display-m">
       <h2>Help & Guide</h2>
       <a href="">Help Center</a>
       <a href="">How to Buy</a>
@@ -36,7 +36,7 @@
       <a href="">How to Return</a>
     </div>
 
-    <div class="col-display">
+    <div class="col-display-m">
       <h2>Categories</h2>
       {% for category in categories|slice:':5' %}
         <a href="">{{ category.name }}</a>

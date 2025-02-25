@@ -10,6 +10,18 @@ hr {
     height: 1px;
 }
 
+.text-center {
+    text-align: center;
+}
+
+.text-center p {
+    font-size: 10px;
+}
+
+.marg-left-20  {
+    margin-left: 70px;
+}
+
 .container {
     width: 1300px;
     margin: 0 auto;
@@ -21,6 +33,13 @@ hr {
 }
 
 .col-display {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.col-display-m {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -69,6 +88,33 @@ hr {
     /* flex-wrap: wrap; */
 }
 
+.display2 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* flex-wrap: wrap; */
+}
+
+.display3 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* flex-wrap: wrap; */
+}
+
+.display4 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* flex-wrap: wrap; */
+}
+
+.display5 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* flex-wrap: wrap; */
+}
 
 .display-plant {
     display: grid;
@@ -80,6 +126,13 @@ hr {
 }
 
 .display-gap {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+
+.display-gap-m {
     display: flex;
     gap: 30px;
     align-items: center;
@@ -110,9 +163,17 @@ p {
 
 }
 
+h1 {
+    font-family: Cera Pro, sans-serif;
+}
+
 .fixed {
     position: fixed;
     /* top: 0; */
+}
+
+.pad-top-100 {
+    padding-top: 100px;
 }
 
 h4 {
@@ -186,16 +247,17 @@ button {
     border: solid 0;
 }
 
-.forms input,
-select {
+.forms input, select {
     /* max-width: 500px; */
     width: 100%;
+    margin: 5px ;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
     outline: none;
     transition: border-color 0.3s;
+    /* padding: 10px; */
     /* border: none; */
 }
 
@@ -303,3 +365,49 @@ select {
     transition: 1s;
 } */
  
+.short {
+    width: 200px;
+}
+
+.forms input {
+    width: 100%;
+    padding: 20px;
+}
+
+/* Модальное окно скрыто по умолчанию */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: -20px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* полупрозрачный фон */
+  }
+  
+  /* Контент модального окна */
+  .modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+  }
+  
+  /* Кнопка закрытия */
+  .close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close-btn:hover,
+  .close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  

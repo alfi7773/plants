@@ -1,8 +1,45 @@
 {% extends 'main.html' %}
 {% block content %}
-<div>
-    <img class="card" src="{{ plant.image.url }}" alt="">
-    <p>{{ plant.name }}</p>
-    <h4 class="green">${{ plant.price }}</h4>
+  <div class="display5 media-container pad-20">
+    <img class="card" src="{{ plant.image.url }}" alt="" />
+    <div class="col-display">
+      <h4>{{ plant.name }}<h4>
+      <hr class="short" />
+      <h4 class="green">${{ plant.price }}</h4>
+      <h3>Short Description:</h3>
+      <p>{{ plant.short_description }}</p>
+      <h3>Size</h3>
+      <div class="display-gap-m">
+        {% for size in sizes %}
+          <p>{{ plant.sizes.name }}</p>
+        {% empty %}
+          <p>нет размеров</p>
+        {% endfor %}
+      </div>
+    </div>
   </div>
-{% endblock content %}
+
+  <div class="container media-container">
+    <br /><p>{{ plant.description.living_room }}</p>
+    <br /><p>{{ plant.description.dinig_room }}</p>
+    <br /><p>{{ plant.description.ofice }}</p>
+  </div>
+
+  <div class="container pad-top-100 text-center-m">
+    <h1 class="green">Releted Products</h1>
+    <hr class="" />
+    <center>
+      <div class="display-plant">
+        {% for plant in plants|slice:':3' %}
+          <a href="{% url 'detail_plant' plant.id %}">
+            <div>
+              <img class="card" src="{{ plant.image.url }}" alt="" />
+              <p>{{ plant.name }}</p>
+              <h4 class="green">${{ plant.price }}</h4>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </center>
+  </div>
+{% endblock %}

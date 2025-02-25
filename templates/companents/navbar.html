@@ -1,59 +1,101 @@
 <section class="display nav-land pad-20">
-    <div>
-        <div class="logo"></div>
-    </div>
-    <div>
-        <ul class="display-gap">
-            <li><a href="/">Home</a></li>
-            <li><a href="">Shop</a></li>
-            <li><a href="">Plant Care</a></li>
-            <li><a href="">Blogs</a></li>
-        </ul>
-    </div>
-    <div class="display-gap">
-        <div class="search"></div>
-        <div class="basket"></div>
-        {% if user.is_authenticated %}
-            {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
-            <form action="{% url 'logout' %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-            </form>
-            <h4>{{ user }}</h4>
-            <a href="{% url "work" %}">Workspace</a>
-        {% else %}
-            <a href="{% url 'login' %}">
-                <div class="login"></div>
-            </a>
-            <a href="{% url 'signup' %}">
-                <button>
-                    Register
-                </button>
-            </a>
-        {% endif %}
-    </div>
+  <div>
+    <div class="logo"></div>
+  </div>
+  <div>
+    <ul class="display-gap">
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="">Shop</a>
+      </li>
+      <li>
+        <a href="">Plant Care</a>
+      </li>
+      <li>
+        <a href="">Blogs</a>
+      </li>
+    </ul>
+  </div>
+  <div class="display-gap">
+    <div class="search"></div>
+    <div class="basket"></div>
+    {% if user.is_authenticated %}
+      {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
+      <form action="{% url 'logout' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+      </form>
+      <h4>{{ user }}</h4>
+      <a href="{% url 'work' %}">Workspace</a>
+    {% else %}
+      <a href="{% url 'login' %}"><div class="login"></div></a>
+      <button id="openModalBtn">Register</button>
 
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn">&times;</span>
+          <form method="post">
+            {% csrf_token %}
+            <div class="forms">
+                {{ form.as_p }}
+            </div>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        
+          {% comment %} {% include "profile/signup.html" %} {% endcomment %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
 </section>
 <center>
-
-    <hr class="">
+  <hr class="" />
 </center>
 
-
-
-
 <section class="nav-media">
+  <div class="display">
     <div class="search-box">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="search" placeholder="Find your plants">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="search" placeholder="Find your plants" />
     </div>
     <nav>
-        <button id="menu-toggle" class="menu-button">☰</button>
-        <div id="menu" class="menu">
-          <a href="#">Home</a>
-          <a href="#">Shop</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
+      <button id="menu-toggle" class="menu-button">☰</button>
+    </div>
+      <div id="menu" class="menu">
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      {% if user.is_authenticated %}
+      {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
+      <form action="{% url 'logout' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+      </form>
+      <h4>{{ user }}</h4>
+      <a href="{% url 'work' %}">Workspace</a>
+      {% else %}
+      <a href="{% url 'login' %}"><div class="login"></div></a>
+      <button id="openModalBtn">Register</button>
+      
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn">&times;</span>
+          <form method="post">
+            {% csrf_token %}
+            <div class="forms">
+              {{ form.as_p }}
+            </div>
+            <button type="submit">Зарегистрироваться</button>
+          </form>
+          
+          {% comment %} {% include "profile/signup.html" %} {% endcomment %}
         </div>
-      </nav>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  </nav>
 </section>

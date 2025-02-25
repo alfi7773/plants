@@ -10,8 +10,8 @@
           <br />Better <span>Planet</span>
         </h1>
         <p>
-          We are an online plant shop offering a wide range of cheap and trendy plants. Use
-          <br />our plants to create an unique Urban Jungle. Order your favorite plants!
+          We are an online plant shop offering a wide range <span>of cheap and trendy plants. Use
+          <br />our plants to create an unique Urban Jungle. Order your favorite plants!</span>
         </p>
         <a href=""><button>SHOP NOW</button></a>
       </div>
@@ -21,11 +21,11 @@
       </div>
     </div>
   </section>
-  <div class="display container pad-20">
+  <div class="display2 container pad-20">
     {% include 'companents/filter.html' %}
     {% comment %} <div class="fixed"></div> {% endcomment %}
 
-    <div class="display-plant">
+    <div class="card-plant display-plant media-container">
       {% for plant in plants %}
         <a href="{% url 'detail_plant' plant.id %}">
           <div>
@@ -46,7 +46,7 @@
       <h1>Our Blog Posts</h1>
       <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
     </center>
-    <div class="display pad-top-20">
+    <div class="display3 media-container pad-top-20">
       {% for blog in blogs|slice:':3' %}
         <a href="{% url 'detail_blog' blog.id %}">
           <div class="pad-top-20 blog">
@@ -61,8 +61,8 @@
 
   <center>
 
-    <section class="pad-20 container">
-      <div class=" display ">
+    <section class="pad-20 container hovers">
+      <div class="display4 ">
       <div> 
         <div class="block-1"></div>
         <h3>Garden Care</h3>
