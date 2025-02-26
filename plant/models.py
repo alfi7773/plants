@@ -118,5 +118,21 @@ class Blog(TimeAbstract):
     
     def __str__(self):
         return self.name
+
+class Cart(TimeAbstract):
+    user = models.OneToOneField(User, on_delete=models.PROTECT)
+    plant = models.ManyToManyField('plant.Plant', through='CartItem')
+
+    def get_total(self):
+        return sum(item.get_total() for item in self.cart_items.all())
+
+class CartItem(TimeAbstract):
+    cart = models.ForeignKey(Cart, related_name='cart_items', on_delete=models.PROTECT)
+    plant = models.ForeignKey('plant.Plant', on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def get_total(self):
+        return self.plant.price * self.quantity
+
     
 # Create your models here.

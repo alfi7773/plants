@@ -104,6 +104,10 @@
         font-size: 10px;
     }
 
+    h1 {
+        font-size: 17px;
+    }
+
     h2 {
         font-size: 15px;
     }
@@ -210,8 +214,7 @@
         padding: 10px 5px;
     }
 
-    .forms input,
-    select {
+    .forms input, select {
         height: 0;
         margin: 0;
     }

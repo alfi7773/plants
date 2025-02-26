@@ -19,6 +19,16 @@
     </div>
   </div>
 
+  <center>
+    <form method="post" action="{% url 'add_to_cart' %}">
+      {% csrf_token %}
+    <input type="hidden" name="plant_id" value="{{ plant.id }}">
+    <input type="number" name="quantity" value="1" min="1">
+    <button type="submit">Добавить в корзину</button>
+  </form>
+</center>
+
+
   <div class="container media-container">
     <br /><p>{{ plant.description.living_room }}</p>
     <br /><p>{{ plant.description.dinig_room }}</p>

@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  <h1>Корзина</h1>
+
+  {% if cart_items %}
+    <table>
+      <thead>
+        <tr>
+          <th>Продукт</th>
+          <th>Количество</th>
+          <th>Цена</th>
+          <th>Удалить</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_items %}
+          <tr>
+            <td>{{ item.product.name }}</td>
+            <td>
+              {% if item.product.image %}
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="50" />
+              {% else %}
+                <p>Нет изображения</p>
+              {% endif %}
+            </td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.item_price|floatformat:2 }}</td>
+            <td>
+              <form method="post" action="{% url 'remove_from_cart' %}">
+                {% csrf_token %}
+                <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
+                <button type="submit">Удалить</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3>Общая сумма: {{ total_price|floatformat:2 }}</h3>
+  {% else %}
+    <p>Корзина пуста.</p>
+  {% endif %}
+{% endblock %}

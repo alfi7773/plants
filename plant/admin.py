@@ -9,6 +9,8 @@ admin.site.register(Tag)
 admin.site.register(Size)
 admin.site.register(Description)
 admin.site.register(Blog)
+admin.site.register(Cart)
+admin.site.register(CartItem)
 
 
 class PLntImageStackedInline(admin.TabularInline):

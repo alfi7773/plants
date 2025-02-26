@@ -1,25 +1,44 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div class="text-center">
+  <div class="text-center">
+    <h1 class="text-center">Welcome to Workspace {{ user }}</h1>
+    <div class="display text-left">
+        <div class="profile-avatar"></div>
+        {% comment %} <div>
+            <h2>
+                {{user}}
+            </h2>
+            <h3>
+                {{user.first_name}} {{user.last_name}}
+            </h3>
+            <h3>
+                {{user.email}}
+            </h3>
+        </div> {% endcomment %}
+    <div class="col-display container">
+      <a class="text-end" href="{% url 'create' %}"><button>Create</button></a>
 
-  <div class="col-display container">
-    <a href="{% url "create" %}">
-      <button>Create</button>
-    </a> 
-    {% for plant in plants %}
-    <a href="{% url 'detail_plant' plant.id %}">
-    <div>
-      <img class="card" src="{{ plant.image.url }}" alt="" />
-      <p>{{ plant.name }}</p>
-      <h4 class="green">${{ plant.price }}</h4>
+
+      <hr>
+
+      <div class="display-plant">
+        {% for plant in plants %}
+          <div>
+            <a href="{% url 'detail_plant' plant.id %}">
+              <div>
+                <img class="card" src="{{ plant.image.url }}" alt="" />
+                <p>{{ plant.name }}</p>
+                <h4 class="green">${{ plant.price }}</h4>
+              </div>
+            </a>
+            <form action="{% url 'delete' plant.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Delete</button>
+            </form>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-  </a>
-  <form action="{% url 'delete' plant.id %}" method="post">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-  </form>
-  {% endfor %}
-</div>
-</div>
-    {% endblock content %}
+  </div>
+{% endblock %}

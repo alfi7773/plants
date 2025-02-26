@@ -29,8 +29,43 @@
       </form>
       <h4>{{ user }}</h4>
       <a href="{% url 'work' %}">Workspace</a>
+      <a href="{% url "cart" %}">Basket</a>
     {% else %}
-      <a href="{% url 'login' %}"><div class="login"></div></a>
+      {% comment %} <a href="{% url 'login' %}"><div class="login"></div></a> {% endcomment %}
+      <button id="openModalBtn1">Login</button>
+
+        <div id="modal1" class="modal1">
+          <div class="modal-content1">
+            <span class="close-btn1">&times;</span>
+            <form action="{% url "login" %}" method="post">
+              {% csrf_token %}
+              {% comment %} {% for field in form %} {% endcomment %}
+              <div class="forms">
+                <p>{{form.label}}</p>
+                {{form.username}}
+              </div>
+
+              <div class="forms">
+                {{form.label}}
+                {{form.password1}}
+              </div>
+
+              {% if form.errors %}
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+              {% comment %} {% endfor %} {% endcomment %}
+              <button type="submit">Войти</button>
+          </form>
+        </div>
+      </div>
+
       <button id="openModalBtn">Register</button>
 
       <div id="modal" class="modal">
@@ -43,10 +78,7 @@
             </div>
             <button type="submit">Зарегистрироваться</button>
         </form>
-        
-          {% comment %} {% include "profile/signup.html" %} {% endcomment %}
-        </div>
-      </div>
+
     {% endif %}
   </div>
 </section>
