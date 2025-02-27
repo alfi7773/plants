@@ -16,6 +16,12 @@
       <li>
         <a href="">Blogs</a>
       </li>
+      <li>
+        <a href="{% url "catologue" %}">Catologue</a>
+      </li>
+      <li>
+      <a href="{% url "cart" %}">Basket</a>
+      </li>
     </ul>
   </div>
   <div class="display-gap">
@@ -96,10 +102,13 @@
       <button id="menu-toggle" class="menu-button">☰</button>
     </div>
       <div id="menu" class="menu">
-        <a href="#">Home</a>
+        <a href="/">Home</a>
         <a href="#">Shop</a>
         <a href="#">About</a>
         <a href="#">Contact</a>
+      <a href="{% url "cart" %}">Basket</a>
+
+        <a href="{% url "catologue" %}">Catologue</a>
       {% if user.is_authenticated %}
       {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
       <form action="{% url 'logout' %}" method="post" style="display:inline;">
@@ -109,8 +118,8 @@
       <h4>{{ user }}</h4>
       <a href="{% url 'work' %}">Workspace</a>
       {% else %}
-      <a href="{% url 'login' %}"><div class="login"></div></a>
-      <button id="openModalBtn">Register</button>
+      <a href="{% url 'login' %}"><button>Login</button></a>
+      <a href="{% url "signup" %}"><button id="openModalBtn">Register</button></a>
       
       <div id="modal" class="modal">
         <div class="modal-content">

@@ -2,6 +2,23 @@ document.getElementById("menu-toggle").addEventListener("click", function () {
   var menu = document.getElementById("menu");
   menu.style.display = (menu.style.display === "block") ? "none" : "block";
 });
+
+
+function toggleFilter() {
+  document.querySelector(".filter-menu").classList.toggle("active");
+}
+
+// Получаем элементы кнопки и меню
+const menuToggleButton = document.getElementById('menu-toggle');
+const menu = document.getElementById('menu');
+
+// Добавляем обработчик события для кнопки
+menuToggleButton.addEventListener('click', () => {
+  // Переключаем класс 'active', чтобы показать или скрыть меню
+  menu.classList.toggle('active');
+});
+
+
 const modal = document.getElementById('modal');
 const openModalBtn = document.getElementById('openModalBtn');
 const closeBtn = document.getElementsByClassName('close-btn')[0];

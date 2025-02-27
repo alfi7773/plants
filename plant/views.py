@@ -29,6 +29,23 @@ class HomePageView(ListView):
         context['form'] = CustomUserCreationForm
         context['filter'] = self.plantfilter
         return context
+    
+class Catologue(ListView):
+    template_name = 'catologue.html'
+    context_object_name = 'plants'
+    paginate_by = 4
+    
+    def get_queryset(self):
+        plants = Plant.objects.all()
+        self.plantfilter = PlantFilter(self.request.GET, queryset=plants)
+        return self.plantfilter.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        context['filter'] = self.plantfilter
+        return context
+
 
 class CartView(View):
     def get(self, request, *args, **kwargs):

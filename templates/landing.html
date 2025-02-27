@@ -10,10 +10,12 @@
           <br />Better <span>Planet</span>
         </h1>
         <p>
-          We are an online plant shop offering a wide range <span>of cheap and trendy plants. Use
-          <br />our plants to create an unique Urban Jungle. Order your favorite plants!</span>
+          We are an online plant shop offering a wide range <span>
+            of cheap and trendy plants. Use
+            <br />our plants to create an unique Urban Jungle. Order your favorite plants!
+          </span>
         </p>
-        <a href=""><button>SHOP NOW</button></a>
+        <a href="{% url "catologue" %}"><button>SHOP NOW</button></a>
       </div>
       <div class="display-gap">
         <div class="min-plant"></div>
@@ -21,8 +23,31 @@
       </div>
     </div>
   </section>
-  <div class="display2 container pad-20">
+  
+  <div class="col-display container none-main">
+    <button class="burger-btn" onclick="toggleFilter()">☰ Фильтр</button>
+    <div class="filter-menu">
+        <form method="get">
+            <div class="for-id">
+                <div class="formss">
+                    <div class="for-label">
+                        {{ filter.form.as_p }}  
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn">Filter</button>
+            <button type="reset" class="btn">
+                <a class="white" href="/">Reset</a>
+            </button>
+        </form>
+    </div>
+</div>
+  <div class="display2 containers mi pad-20">
+
     {% include 'companents/filter.html' %}
+
+    
+
     {% comment %} <div class="fixed"></div> {% endcomment %}
 
     <div class="card-plant display-plant media-container">
@@ -36,6 +61,27 @@
         </a>
       {% endfor %}
     </div>
+
+
+{% comment %} 
+    <div class="plant-card">
+      <img src="plant1.jpg" alt="Barberton Daisy">
+      <p>Barberton Daisy</p>
+      <p>$119.00</p>
+  </div>
+  <div class="plant-card">
+      <img src="plant2.jpg" alt="Angel Wing Begonia">
+      <p>Angel Wing Begonia</p>
+      <p>$169.00</p>
+  </div>
+  <div class="plant-card">
+      <img src="plant3.jpg" alt="Discounted Plant">
+      <p>13% OFF</p>
+  </div>
+  <div class="plant-card">
+      <img src="plant4.jpg" alt="Another Plant">
+  </div> {% endcomment %}
+  
   </div>
   <div class="paginations">
     {% include 'companents/pagination.html' %}
@@ -46,7 +92,7 @@
       <h1>Our Blog Posts</h1>
       <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
     </center>
-    <div class="display3 media-container pad-top-20">
+    <div class="display3 text-center media-container pad-top-20">
       {% for blog in blogs|slice:':3' %}
         <a href="{% url 'detail_blog' blog.id %}">
           <div class="pad-top-20 blog">
@@ -60,38 +106,37 @@
   </div>
 
   <center>
-
     <section class="pad-20 container hovers">
-      <div class="display4 ">
-      <div> 
-        <div class="block-1"></div>
-        <h3>Garden Care</h3>
-        <br /><p>
-          We are an online plant shop
-          <br />offering a wide range of cheap
-          <br />and trendy plants.
-        </p>
-      </div>
-      <div>
-        <div class="block-2"></div>
-        <h3>Plant Renovation</h3>
-        <br /><p>
-          We are an online plant shop
-          <br />offering a wide range of cheap
-          <br />and trendy plants.
-        </p>
-      </div>
+      <div class="display4">
+        <div>
+          <div class="block-1"></div>
+          <h3>Garden Care</h3>
+          <br /><p>
+            We are an online plant shop
+            <br />offering a wide range of cheap
+            <br />and trendy plants.
+          </p>
+        </div>
+        <div>
+          <div class="block-2"></div>
+          <h3>Plant Renovation</h3>
+          <br /><p>
+            We are an online plant shop
+            <br />offering a wide range of cheap
+            <br />and trendy plants.
+          </p>
+        </div>
 
-      <div>
-        <div class="block-3"></div>
-        <h3>Watering Graden</h3>
-        <br /><p>
-          We are an online plant shop
-          <br />offering a wide range of cheap
-          <br />and trendy plants.
-        </p>
+        <div>
+          <div class="block-3"></div>
+          <h3>Watering Graden</h3>
+          <br /><p>
+            We are an online plant shop
+            <br />offering a wide range of cheap
+            <br />and trendy plants.
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
-</center>
-  {% endblock %}
+    </section>
+  </center>
+{% endblock %}
