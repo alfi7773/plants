@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% block content %}
-  <div class="display5 media-container pad-20">
+  <div class="display5 text-center-media media-container pad-20">
     <img class="card" src="{{ plant.image.url }}" alt="" />
     <div class="col-display">
       <h4>{{ plant.name }}<h4>
@@ -9,9 +9,9 @@
       <h3>Short Description:</h3>
       <p>{{ plant.short_description }}</p>
       <h3>Size</h3>
-      <div class="display-gap-m">
+      <div class="display-gap-m pad-20-media">
         {% for size in sizes %}
-          <p>{{ plant.sizes.name }}</p>
+          <p>{{ size.name }}</p>
         {% empty %}
           <p>нет размеров</p>
         {% endfor %}
@@ -19,17 +19,21 @@
     </div>
   </div>
 
-  <center>
-    <form method="post" action="{% url 'add_to_cart' %}">
-      {% csrf_token %}
-    <input type="hidden" name="plant_id" value="{{ plant.id }}">
-    <input type="number" name="quantity" value="1" min="1">
-    <button type="submit">Добавить в корзину</button>
-  </form>
-</center>
+  <div class="col-display-media">
+    <center>
+      <form method="post" action="{% url 'add_to_cart' %}">
+        {% csrf_token %}
+        <div>
+          <input type="hidden" name="plant_id" value="{{ plant.id }}">
+          <input type="number" name="quantity" value="1" min="1">
+        </div>
+        <button type="submit">Добавить в корзину</button>
+      </form>
+    </center>
+  </div>
 
 
-  <div class="container media-container">
+  <div class="container pad-20-media">
     <br /><p>{{ plant.description.living_room }}</p>
     <br /><p>{{ plant.description.dinig_room }}</p>
     <br /><p>{{ plant.description.ofice }}</p>

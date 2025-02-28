@@ -52,6 +52,7 @@ class CartView(View):
         cart = request.session.get('cart', {})
         cart_items = []
         total_price = 0
+        categories = Category.objects.all()
 
         for plant_id, quantity in cart.items():
             plant = Plant.objects.get(id=plant_id)
@@ -62,7 +63,11 @@ class CartView(View):
         context = {
             'cart_items': cart_items,
             'total_price': total_price,
+            'categories': categories,
         }
+        
+        
+        
         return render(request, 'cart/cart.html', context)
 
 
@@ -71,32 +76,26 @@ class AddToCartView(View):
         plant_id = request.POST.get('plant_id')
         quantity = int(request.POST.get('quantity', 1))
 
-        # Проверяем, что передан правильный ID
         plant = get_object_or_404(Plant, id=plant_id)
 
-        # Получаем корзину из сессии
         cart = request.session.get('cart', {})
 
-        # Добавляем товар в корзину или обновляем его количество
         if plant_id in cart:
             cart[plant_id] += quantity
         else:
             cart[plant_id] = quantity
 
-        # Сохраняем корзину в сессии
         request.session['cart'] = cart
 
-        return JsonResponse({'success': True, 'message': 'Товар добавлен в корзину!'})
+        return render(request, 'cart/cart.html')
 
 
 class RemoveFromCartView(View):
     def post(self, request, *args, **kwargs):
-        plant_id = request.POST.get('plant_id')  # Согласуем переменную с AddToCartView
+        plant_id = request.POST.get('plant_id')  
 
-        # Получаем корзину из сессии
         cart = request.session.get('cart', {})
 
-        # Удаляем товар из корзины, если он есть
         if plant_id in cart:
             del cart[plant_id]
             request.session['cart'] = cart
@@ -121,3 +120,8 @@ class DetailBlog(DetailView):
     model = Blog
     context_object_name = 'blog'
     template_name = 'detail_blog.html'
+    
+class AllBlogs(ListView):
+    model = Blog
+    context_object_name = 'blogs'
+    template_name = 'blogs.html'

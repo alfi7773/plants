@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 
 {% block content %}
-  <section class="container">
+  <section class="container-media">
     <div class="display first-block">
       <div class="col-display">
         <h3>Welcome to GreenShop</h3>
@@ -15,7 +15,7 @@
             <br />our plants to create an unique Urban Jungle. Order your favorite plants!
           </span>
         </p>
-        <a href="{% url "catologue" %}"><button>SHOP NOW</button></a>
+        <a href="{% url "catologue" %}"><button class="display gap-20"><p>SHOP NOW <div class="main-none"><i class="fa-solid fa-arrow-right-long"></i></div></p></button></a>
       </div>
       <div class="display-gap">
         <div class="min-plant"></div>
@@ -24,9 +24,9 @@
     </div>
   </section>
   
-  <div class="col-display container none-main">
+  <div class="col-display container container-media none-main">
     <button class="burger-btn" onclick="toggleFilter()">☰ Фильтр</button>
-    <div class="filter-menu">
+    <div class="filter-menu container-media">
         <form method="get">
             <div class="for-id">
                 <div class="formss">
@@ -62,25 +62,6 @@
       {% endfor %}
     </div>
 
-
-{% comment %} 
-    <div class="plant-card">
-      <img src="plant1.jpg" alt="Barberton Daisy">
-      <p>Barberton Daisy</p>
-      <p>$119.00</p>
-  </div>
-  <div class="plant-card">
-      <img src="plant2.jpg" alt="Angel Wing Begonia">
-      <p>Angel Wing Begonia</p>
-      <p>$169.00</p>
-  </div>
-  <div class="plant-card">
-      <img src="plant3.jpg" alt="Discounted Plant">
-      <p>13% OFF</p>
-  </div>
-  <div class="plant-card">
-      <img src="plant4.jpg" alt="Another Plant">
-  </div> {% endcomment %}
   
   </div>
   <div class="paginations">

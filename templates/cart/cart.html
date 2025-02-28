@@ -1,44 +1,38 @@
 {% extends 'main.html' %}
 
 {% block content %}
-  <h1>Корзина</h1>
+  <h1 class="text-center pad-20 pad-top-20 pad-20-media">Корзина</h1>
 
   {% if cart_items %}
-    <table>
-      <thead>
-        <tr>
-          <th>Продукт</th>
-          <th>Количество</th>
-          <th>Цена</th>
-          <th>Удалить</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in cart_items %}
-          <tr>
-            <td>{{ item.product.name }}</td>
-            <td>
-              {% if item.product.image %}
-                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="50" />
-              {% else %}
-                <p>Нет изображения</p>
-              {% endif %}
-            </td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.item_price|floatformat:2 }}</td>
-            <td>
+        <div class="col-display">
+
+          {% for item in cart_items %}
+          <div class="display media">
+          {% if item.product.image %}
+            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="50" />
+            {% else %}
+            <p>Нет изображения</p>
+            {% endif %}
+          <div>
+                <h2>{{ item.product.name }}</h2>
+              <div>{{ item.quantity }}</div>
+              <div>{{ item.item_price|floatformat:2 }}</div>
+            </div>
+            <div>
               <form method="post" action="{% url 'remove_from_cart' %}">
                 {% csrf_token %}
                 <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
                 <button type="submit">Удалить</button>
               </form>
-            </td>
-          </tr>
+            </div>
+          </div>
         {% endfor %}
-      </tbody>
-    </table>
+      </div>
 
-    <h3>Общая сумма: {{ total_price|floatformat:2 }}</h3>
+  
+    <div class="text-end">
+      <h3 class="text-center text-end container pad-20-media">Общая сумма: {{ total_price|floatformat:2 }}</h3>
+    </div>
   {% else %}
     <p>Корзина пуста.</p>
   {% endif %}

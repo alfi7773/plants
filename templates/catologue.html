@@ -2,29 +2,28 @@
 
 {% block content %}
     <div>
-        <div class="display2 container pad-20">
-            {% include 'companents/filter.html' %}
-        
-            <section class="nav-media">
-              <div class="display">
-                <div class="search-box">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                  <input type="search" placeholder="Find your plants" />
-                </div>
-                <nav>
-                  <button id="menu-toggle" class="menu1-button">☰</button>
-                  <div id="menu" class="menu1">
-                    <div id="filter-container" class="filter-container">
-                      {% include 'companents/filter.html' %}
+      <div class="pad-20-media col-display container container-media none-main">
+        <button class="burger-btn" onclick="toggleFilter()">☰ Фильтр</button>
+        <div class="filter-menu container-media">
+            <form method="get">
+                <div class="for-id">
+                    <div class="formss">
+                        <div class="for-label">
+                            {{ filter.form.as_p }}  
+                        </div>
                     </div>
-                    <a href="#">fghjk</a>
-                  </div>
-                </nav>
-              </div>
-            </section>
+                </div>
+                <button type="submit" class="btn">Filter</button>
+                <button type="reset" class="btn">
+                    <a class="white" href="/">Reset</a>
+                </button>
+            </form>
+        </div>
+      <div class="display2 container pad-20">
+
         
-            {% comment %} <div class="fixed"></div> {% endcomment %}
-        
+
+          {% include 'companents/filter.html' %}  
             <div class="card-plant display-plant media-container">
               {% for plant in plants %}
                 <a href="{% url 'detail_plant' plant.id %}">
@@ -36,29 +35,8 @@
                 </a>
               {% endfor %}
             </div>
-        {% comment %} 
-            <div class="plant-card">
-              <img src="plant1.jpg" alt="Barberton Daisy">
-              <p>Barberton Daisy</p>
-              <p>$119.00</p>
           </div>
-          <div class="plant-card">
-              <img src="plant2.jpg" alt="Angel Wing Begonia">
-              <p>Angel Wing Begonia</p>
-              <p>$169.00</p>
-          </div>
-          <div class="plant-card">
-              <img src="plant3.jpg" alt="Discounted Plant">
-              <p>13% OFF</p>
-          </div>
-          <div class="plant-card">
-              <img src="plant4.jpg" alt="Another Plant">
-          </div> {% endcomment %}
-          
-          </div>
-          <div class="paginations">
-            {% include 'companents/pagination.html' %}
-          </div>
-        
-    </div>
+            <div class="paginations">
+              {% include 'companents/pagination.html' %}
+            </div>
 {% endblock content %}

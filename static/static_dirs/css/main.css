@@ -27,6 +27,11 @@ hr {
     margin: 0 auto;
 }
 
+.container-media {
+    width: 1300px;
+    margin: 0 auto;
+}
+
 .containers {
     width: 1300px;
     margin: 0 auto;
@@ -46,11 +51,25 @@ hr {
     cursor: pointer;
 }
 
+.main-none {
+    display: none;
+}
 
+.text-end {
+    text-align: end;
+}
 
 
 .filter-menu {
     display: none;
+}
+
+.card-plant-basket {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px 30px;
+    background-color: #fff;
 }
 
 .col-display {

@@ -1,8 +1,10 @@
 {% extends 'main.html' %}
 {% block content %}
-<div class="pad-top-20 blog">
+<div class="container media-container">
+  <div class="pad-top-20 blog text-center-media">
     <img src="{{ blog.image.url }}" alt="">
     <h3>{{ blog.name }}</h3>
     <br><p>{{ blog.description }}</p>
   </div>
+</div>
 {% endblock content %}

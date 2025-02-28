@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div>
+    <div class="display3 text-center media-container pad-top-20">
+        {% for blog in blogs|slice:':3' %}
+          <a href="{% url 'detail_blog' blog.id %}">
+            <div class="pad-top-20 blog">
+              <img src="{{ blog.image.url }}" alt="" />
+              <h3>{{ blog.name }}</h3>
+              <br /><p>{{ blog.description }}</p>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+</div>
+{% endblock %}
