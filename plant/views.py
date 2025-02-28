@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.http import JsonResponse
 from .models import Plant
 from django.http import JsonResponse
@@ -87,7 +87,7 @@ class AddToCartView(View):
 
         request.session['cart'] = cart
 
-        return render(request, 'cart/cart.html')
+        return redirect('/cart/')
 
 
 class RemoveFromCartView(View):
@@ -99,7 +99,7 @@ class RemoveFromCartView(View):
         if plant_id in cart:
             del cart[plant_id]
             request.session['cart'] = cart
-            return JsonResponse({'success': True, 'message': 'Товар удалён из корзины!'})
+            return redirect('/cart/')
         else:
             return JsonResponse({'success': False, 'message': 'Товар не найден в корзине!'})
 

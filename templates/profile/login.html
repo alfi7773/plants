@@ -2,12 +2,21 @@
 
 {% block content %}
 
-<form method="post">
-    {% csrf_token %}
-    <div class="forms">
-        {{ form }}
-    </div>
-    <button type="submit">Войти</button>
-</form>
-
+<div class="body-form">
+    <form method="post">
+        {% csrf_token %}
+        {% comment %} <div class="forms"> {% endcomment %}
+        {% for form in forms %}
+        <div class="forma">
+            <p>{{form.label}}</p>
+            {{ form }}
+        </div>
+        {% endfor %}
+        {% comment %} </div> {% endcomment %}
+        <center>
+            <button class="form-button" type="submit">Войти</button>
+        </center>
+    </form>
+</div>
+    
 {% endblock content %}

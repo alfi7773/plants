@@ -72,6 +72,17 @@ hr {
     background-color: #fff;
 }
 
+.align-center {
+    align-items: center;
+}
+
+.cart-card {
+    max-width: 300px;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
 .col-display {
     display: flex;
     flex-direction: column;

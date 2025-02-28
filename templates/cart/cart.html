@@ -1,29 +1,31 @@
 {% extends 'main.html' %}
 
 {% block content %}
-  <h1 class="text-center pad-20 pad-top-20 pad-20-media">Корзина</h1>
+  <h1 class="text-center pad-top-20 pad-20-media">Корзина</h1>
 
   {% if cart_items %}
-        <div class="col-display">
+        <div class="col-display align-center">
 
           {% for item in cart_items %}
-          <div class="display media">
-          {% if item.product.image %}
-            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="50" />
-            {% else %}
-            <p>Нет изображения</p>
-            {% endif %}
-          <div>
+          <div class="display align-center card-plant-basket media">
+            <div class="cart-card align-center">
+              {% if item.product.image %}
+              <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="50" />
+              {% else %}
+              <p>Нет изображения</p>
+              {% endif %}
+              <div>
                 <h2>{{ item.product.name }}</h2>
-              <div>{{ item.quantity }}</div>
-              <div>{{ item.item_price|floatformat:2 }}</div>
-            </div>
-            <div>
-              <form method="post" action="{% url 'remove_from_cart' %}">
-                {% csrf_token %}
-                <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
-                <button type="submit">Удалить</button>
-              </form>
+                <div>{{ item.quantity }}</div>
+                <div>{{ item.item_price|floatformat:2 }}</div>
+              </div>
+              <div>
+                <form method="post" action="{% url 'remove_from_cart' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
+                  <button type="submit">Удалить</button>
+                </form>
+              </div>
             </div>
           </div>
         {% endfor %}

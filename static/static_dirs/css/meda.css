@@ -40,7 +40,34 @@
         width: 100%;
     }
 
+    .cent-size {
+        display: flex;
+        justify-content: center;
+    }
 
+    .forma {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .forma input {
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+    }
+
+    .forma p {
+        font-family: Cera Pro, sans-serif;
+        font-size: 13px;
+    }
+
+
+    .body-form {
+        padding: 10px;
+        background-color: #aaa;
+    }
 
     .menu {
         display: none;
