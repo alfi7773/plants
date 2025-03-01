@@ -1,7 +1,30 @@
-<form method="post">
-    {% csrf_token %}
-    <div class="forms">
-        {{ form.as_p }}
-    </div>
-    <button type="submit">Зарегистрироваться</button>
-</form>
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="body-form">
+    <center>
+        <div class="logo2"></div>
+        <h1 class="pad-top-20">Register</h1>
+    </center>
+    <div class="forma">
+    <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="forma">
+            {{ field.errors }}
+            {{ field }} 
+        </div>
+    {% endfor %}
+
+        
+            {% comment %} {{ form.errors }}
+            {{ form }} {% endcomment %}
+        <center>
+            <button class="form-button" type="submit">Register</button>
+        </center>
+    </form>
+</div>
+</div>
+    
+{% endblock content %}

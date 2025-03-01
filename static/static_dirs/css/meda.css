@@ -26,6 +26,8 @@
         width: 250px;
     }
 
+
+
     .search-box i {
         position: absolute;
         left: 10px;
@@ -56,6 +58,7 @@
         padding: 10px;
         border: none;
         border-radius: 10px;
+        background-color: transparent;
     }
 
     .forma p {
@@ -63,11 +66,39 @@
         font-size: 13px;
     }
 
+    .logo2 {
+        background-image: url(../images/logo1.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 200px;
+        height: 125px;
+    }
+
 
     .body-form {
         padding: 10px;
-        background-color: #aaa;
+        background-color: #ffffff;
     }
+
+    .form-button {
+        padding: 20px 118px;
+    }
+
+    .body-form input {
+        background-color: transparent; 
+        outline: none; 
+        box-shadow: none;
+        border: 1px solid #ccc; 
+    }
+    
+    .body-form input:focus {
+        background-color: transparent; 
+        outline: none;
+        box-shadow: none;
+    }
+
+    
 
     .menu {
         display: none;
@@ -433,6 +464,12 @@
         align-items: center;
     }
 
+    .end {
+        display: flex;
+        justify-content: end;
+        padding: 10px;
+    }
+
     .col-display-media {
         display: flex;
         flex-direction: column;
@@ -485,4 +522,72 @@
     .hovers {
         display: none;
     }
+
+    .filter-form {
+        display: none;
+    }
+
+    .form button {
+        padding: 10px;
+    }
+
+
+    .filter-forms {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        max-width: 300px;
+    }
+
+    .filter-forms label {
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+        color: #333;
+    }
+
+    .filter-forms input,
+    .filter-forms select,
+    .filter-forms button {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .filter-forms select[multiple] {
+        height: auto;
+    }
+
+    .filter-forms button {
+        background: #28a745;
+        color: white;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    .filter-forms button:hover {
+        background: #218838;
+    }
+
+    .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .checkbox-group label {
+        font-weight: normal;
+        display: flex;
+        align-items: center;
+    }
+
+    .checkbox-group input {
+        margin-right: 5px;
+    }
+
 }

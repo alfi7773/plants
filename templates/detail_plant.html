@@ -21,7 +21,10 @@
 
   <div class="col-display-media">
     <center>
-      <form method="post" action="{% url 'add_to_cart' %}">
+      <form class="form" style="gap: 11px;
+    flex-direction: column;
+    display: flex;
+    max-width: 201px;" method="post" action="{% url 'add_to_cart' %}">
         {% csrf_token %}
         <div>
           <input type="hidden" name="plant_id" value="{{ plant.id }}">

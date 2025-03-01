@@ -3,18 +3,24 @@
 {% block content %}
 
 <div class="body-form">
+    <center>
+        <div class="logo2"></div>
+        <h1 class="pad-top-20">Login</h1>
+    </center>
     <form method="post">
         {% csrf_token %}
         {% comment %} <div class="forms"> {% endcomment %}
         {% for form in forms %}
         <div class="forma">
-            <p>{{form.label}}</p>
+            {% comment %} <p>{{form.label}}</p> {% endcomment %}
             {{ form }}
+            {{form.errors}}
         </div>
         {% endfor %}
         {% comment %} </div> {% endcomment %}
+        <a class="end" href="">Forgot password?</a>
         <center>
-            <button class="form-button" type="submit">Войти</button>
+            <button class="form-button" type="submit">Login</button>
         </center>
     </form>
 </div>

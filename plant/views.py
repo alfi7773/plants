@@ -20,6 +20,11 @@ class HomePageView(ListView):
     def get_queryset(self):
         plants = Plant.objects.all()
         self.plantfilter = PlantFilter(self.request.GET, queryset=plants)
+        
+        query = self.request.GET.get('q')
+        if query:
+            return Plant.objects.filter(name__icontains=query)
+        
         return self.plantfilter.qs
 
     def get_context_data(self, **kwargs):
