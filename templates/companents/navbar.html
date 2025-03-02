@@ -97,7 +97,7 @@
       <div id="modal" class="modal">
         <div class="modal-content">
           <span class="close-btn">&times;</span>
-          <form method="post">
+          <form method="post" action="{% url 'signup' %}">
             {% csrf_token %}
             <div class="forms">
                 {{ form.as_p }}

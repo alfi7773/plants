@@ -42,7 +42,7 @@ const closeBtn1 = document.getElementsByClassName('close-btn1')[0];
 
 // модальное окно
 openModalBtn.onclick = function(event) {
-  event.stopPropagation(); // предотвратить всплытие события
+  event.stopPropagation(); 
   modal.style.display = "block";
 }
 

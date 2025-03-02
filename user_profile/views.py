@@ -4,7 +4,7 @@ from django.views.generic import CreateView, ListView
 from django.contrib.auth.views import LoginView
 from .forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth.views import LogoutView
-from plant.models import Plant
+from plant.models import Category, Plant
 from django.contrib.auth import login
 from django.http import JsonResponse
 
@@ -61,6 +61,26 @@ class ProfileUser(ListView):
         context = super().get_context_data(**kwargs)
         context['user'] = self.request.user
         return context
+    
+    def get(self, request, *args, **kwargs):
+        cart = request.session.get('cart', {})
+        cart_items = []
+        total_price = 0
+        categories = Category.objects.all()
+
+        for plant_id, quantity in cart.items():
+            plant = Plant.objects.get(id=plant_id)
+            item_price = plant.price * quantity
+            cart_items.append({'product': plant, 'quantity': quantity, 'item_price': item_price})
+            total_price += item_price
+
+        context = {
+            'cart_items': cart_items,
+            'total_price': total_price,
+            'categories': categories,
+        }
+        
+        return render(request, "profile/profile.html", context)
     
 
 # Create your views here.

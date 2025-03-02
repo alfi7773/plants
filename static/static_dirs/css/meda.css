@@ -12,6 +12,25 @@
         display: block;
     }
 
+    .media-none {
+        display: none;
+    }
+
+    .media-detail {
+        padding: 20px;
+        background-color: rgb(198, 194, 194);
+        border-radius: 13px 13px 0 0;
+    }
+
+    /* .detail-img {
+        padding: 20px;
+        background-color: gray;
+    } */
+
+    .card img {
+        max-width: 200px;
+    }
+
     .gap-20 {
         gap: 5px;
     }
@@ -86,19 +105,19 @@
     }
 
     .body-form input {
-        background-color: transparent; 
-        outline: none; 
+        background-color: transparent;
+        outline: none;
         box-shadow: none;
-        border: 1px solid #ccc; 
+        border: 1px solid #ccc;
     }
-    
+
     .body-form input:focus {
-        background-color: transparent; 
+        background-color: transparent;
         outline: none;
         box-shadow: none;
     }
 
-    
+
 
     .menu {
         display: none;
@@ -137,7 +156,6 @@
     .menu1 div {
         display: block;
         padding: 10px;
-        /* text-decoration: none; */
         color: black;
     }
 
@@ -157,29 +175,23 @@
     .card-plant {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        /* Две колонки */
         gap: 16px;
-        /* Отступы между карточками */
     }
 
     .card-plant a:nth-child(1) {
         transform: translateY(0);
-        /* Первая карточка на месте */
     }
 
     .card-plant a:nth-child(2) {
         transform: translateY(20px);
-        /* Вторая чуть ниже */
     }
 
     .card-plant a:nth-child(3) {
         transform: translateY(-10px);
-        /* Третья чуть выше */
     }
 
     .card-plant a:nth-child(4) {
         transform: translateY(15px);
-        /* Четвертая ниже */
     }
 
 
@@ -298,6 +310,7 @@
 
     .pad-20-media {
         padding: 20px;
+        width: 300px;
     }
 
     .col-display-m {
@@ -316,6 +329,7 @@
 
     .container {
         max-width: 320px;
+        /* width: 300px; */
     }
 
     .container-media {
@@ -588,6 +602,11 @@
 
     .checkbox-group input {
         margin-right: 5px;
+    }
+
+    .display5 img {
+        max-width: 200px;
+        margin-left: 59px;
     }
 
 }

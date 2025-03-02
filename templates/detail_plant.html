@@ -1,62 +1,127 @@
 {% extends 'main.html' %}
 {% block content %}
-  <div class="display5 text-center-media media-container pad-20">
-    <img class="card" src="{{ plant.image.url }}" alt="" />
-    <div class="col-display">
+<center>
+
+  <div class="display pad-20 media-none">
+    <img class="card detail-img" src="{{ plant.image.url }}" alt="" />
+    <div class="col-display media-detail">
       <h4>{{ plant.name }}<h4>
-      <hr class="short" />
-      <h4 class="green">${{ plant.price }}</h4>
-      <h3>Short Description:</h3>
-      <p>{{ plant.short_description }}</p>
-      <h3>Size</h3>
-      <div class="display-gap-m pad-20-media cent-size">
-        {% for size in sizes %}
+        <hr class="short media-none">
+        <h4 class="green">${{ plant.price }}</h4>
+        <h3>Short Description:</h3>
+        <p>{{ plant.short_description }}</p>
+        <h3>Size</h3>
+        <div class="display-gap-m pad-20-media cent-size">
+          {% for size in sizes %}
           <p>{{ size.name }}</p>
-        {% empty %}
+          {% empty %}
           <p>нет размеров</p>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-
-  <div class="col-display-media">
-    <center>
-      <form class="form" style="gap: 11px;
-    flex-direction: column;
-    display: flex;
-    max-width: 201px;" method="post" action="{% url 'add_to_cart' %}">
-        {% csrf_token %}
-        <div>
-          <input type="hidden" name="plant_id" value="{{ plant.id }}">
-          <input type="number" name="quantity" value="1" min="1">
+          {% endfor %}
         </div>
-        <button type="submit">Добавить в корзину</button>
-      </form>
-    </center>
-  </div>
-
-
-  <div class="container pad-20-media">
-    <br /><p>{{ plant.description.living_room }}</p>
+      
+      <div class="col-display-media">
+        <center>
+          <form class="form" style="gap: 11px;
+          flex-direction: column;
+          display: flex;
+          max-width: 201px;" method="post" action="{% url 'add_to_cart' %}">
+          {% csrf_token %}
+          <div>
+            <input type="hidden" name="plant_id" value="{{ plant.id }}">
+            <input type="number" name="quantity" value="1" min="1">
+          </div>
+          <button type="submit">Добавить в корзину</button>
+        </form>
+      </center>
+    </div>
+    
+    
+    <div class="container pad-20-media">
+      <br /><p>{{ plant.description.living_room }}</p>
     <br /><p>{{ plant.description.dinig_room }}</p>
     <br /><p>{{ plant.description.ofice }}</p>
   </div>
+</div>
+</div>
 
-  <div class="container pad-top-100 text-center-m">
+  <div class="container pad-top-100 text-center-m media-none">
     <h1 class="green">Releted Products</h1>
     <hr class="" />
     <center>
       <div class="display-plant">
         {% for plant in plants|slice:':3' %}
-          <a href="{% url 'detail_plant' plant.id %}">
+        <a href="{% url 'detail_plant' plant.id %}">
             <div>
               <img class="card" src="{{ plant.image.url }}" alt="" />
               <p>{{ plant.name }}</p>
               <h4 class="green">${{ plant.price }}</h4>
             </div>
           </a>
-        {% endfor %}
+          {% endfor %}
+        </div>
+      </center>
+    </div>
+
+
+
+
+    <div class="display5 text-center-media main-none">
+      <img class="card detail-img main-none" src="{{ plant.image.url }}" alt="" />
+      <div class="col-display1 media-detail main-none">
+        <h4>{{ plant.name }}<h4>
+          <h3 class="media-none">Short Description:</h3>
+          <p>{{ plant.short_description }}</p>
+        <hr class="short media-none">
+        <h4 class="green">${{ plant.price }}</h4>
+        <h3>Size</h3>
+        <div class="display-gap-m pad-20-media cent-size main-none">
+          {% for size in sizes %}
+            <p>{{ size.name }}</p>
+          {% empty %}
+            <p>нет размеров</p>
+          {% endfor %}
+        </div>
+        
+        <div class="col-display-media main-none">
+          <center>
+        <form class="form" style="gap: 11px;
+        flex-direction: column;
+        display: flex;
+        max-width: 201px;" method="post" action="{% url 'add_to_cart' %}">
+        {% csrf_token %}
+          <div>
+            <input type="hidden" name="plant_id" value="{{ plant.id }}">
+            <input type="number" name="quantity" value="1" min="1">
+          </div>
+          <button type="submit">Добавить в корзину</button>
+        </form>
+      </center>
+    </div>
+    
+    
+    <div class="container pad-20-media">
+      <br /><p>{{ plant.description.living_room }}</p>
+      <br /><p>{{ plant.description.dinig_room }}</p>
+      <br /><p>{{ plant.description.ofice }}</p>
+    </div>
+    </div>
+    </div>
+  
+    <div class="container pad-top-100 text-center-m main-none">
+      <h1 class="green">Releted Products</h1>
+      <hr class="" />
+      <center>
+        <div class="display-plant">
+          {% for plant in plants|slice:':3' %}
+          <a href="{% url 'detail_plant' plant.id %}">
+              <div>
+                <img class="card" src="{{ plant.image.url }}" alt="" />
+                <p>{{ plant.name }}</p>
+                <h4 class="green">${{ plant.price }}</h4>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        </center>
       </div>
-    </center>
-  </div>
 {% endblock %}
