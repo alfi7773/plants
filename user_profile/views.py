@@ -38,7 +38,7 @@ class SignUpView(CreateView):
 class Login(LoginView):
     form_class = LoginForm
     template_name = 'profile/login.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('profile')
     
     # def get_success_url(self):
     #     return '/'

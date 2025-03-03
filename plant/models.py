@@ -1,6 +1,7 @@
 from django.db import models
 from django_resized import ResizedImageField
 from django.contrib.auth.models import User
+from django.db.models import Avg
 
 class TimeAbstract(models.Model):
     
@@ -71,6 +72,22 @@ class Description(TimeAbstract):
     #     return self.living_room
     
     
+
+class Rating(TimeAbstract):
+    
+    class Meta:
+        verbose_name_plural = 'ratings'
+        verbose_name = 'rating'
+    
+    plant = models.ForeignKey('plant.Plant', on_delete=models.CASCADE, related_name='ratings')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    score = models.PositiveIntegerField(choices=[(i, i) for i in range(1, 6)])
+
+    def __str__(self):
+        return f'{self.user} - {self.plant} ({self.score})'
+
+
+    
 class Plant(TimeAbstract):
     
     class Meta:
@@ -92,6 +109,8 @@ class Plant(TimeAbstract):
         if self.images.first():
             return self.images.first().image
         return None
+    
+
     
     def __str__(self):
         return self.name

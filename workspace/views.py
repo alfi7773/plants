@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView
 from django.urls import reverse_lazy
@@ -27,14 +27,16 @@ class UpdatePlant(UpdateView):
     template_name = 'workspace/update.html'
     
     def form_valid(self, form):
-        workspace_id = self.request.session.get('plant_id')
-        if workspace_id is not None:
-            form.instance.workspace = workspace_id
+        plant_id = self.request.session.get('plant_id')
+        if plant_id is not None:
+            form.instance.workspace = get_object_or_404(Plant, id=plant_id)
         else:
-            # Если workspace_id нет в сессии, можно добавить логику для обработки этой ситуации,
-            # например, вернуть ошибку или присвоить значение по умолчанию.
-            form.instance.workspace = None  # или выбросить исключение, если требуется
+            form.instance.workspace = None
+            
         return super().form_valid(form)
+            
+    def get_success_url(self):
+        return reverse_lazy('work')
     
     
 class DeletePlant(DeleteView):

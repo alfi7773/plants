@@ -1,6 +1,6 @@
 <section class="display nav-land pad-20">
   <div>
-    <div class="logo"></div>
+    <a href="{% url "home" %}"><div class="logo"></div></a>
   </div>
   <div>
     <ul class="display-gap">
@@ -67,13 +67,14 @@
               {% csrf_token %}
               {% comment %} {% for field in form %} {% endcomment %}
               <div class="forms">
-                <p>{{form.label}}</p>
+                {{ forms }}
+                {% comment %} <p>{{form.label}}</p>
                 {{form.username}}
               </div>
 
               <div class="forms">
-                {{form.label}}
-                {{form.password1}}
+                <p>{{form.label}}</p>
+                {{form.password}} {% endcomment %}
               </div>
 
               {% if form.errors %}
@@ -87,7 +88,7 @@
             {% endif %}
 
               {% comment %} {% endfor %} {% endcomment %}
-              <button type="submit">Войти</button>
+              <button type="submit">Login</button>
           </form>
         </div>
       </div>
@@ -105,12 +106,13 @@
             <button type="submit">Зарегистрироваться</button>
         </form>
 
-    {% endif %}
-  </div>
+      </div>
+      {% endif %}
 </section>
 <center>
   <hr class="" />
 </center>
+
 
 <section class="nav-media">
   <div style="padding: 10px;

@@ -33,8 +33,10 @@ hr {
 }
 
 .containers {
-    width: 1300px;
+    max-width: 1300px;
+    width: 100%;
     margin: 0 auto;
+    padding: 0 15px;
 }
 
 .pad-20 {
@@ -151,8 +153,8 @@ hr {
 
 .display2 {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    /* align-items: center; */
+    gap: 50px;
     /* flex-wrap: wrap; */
 }
 
@@ -183,6 +185,17 @@ hr {
     align-items: center; */
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    flex: 1;
+    /* flex-wrap: wrap; */
+}
+
+.display-plant1 {
+    display: grid;
+    /* justify-content: space-around;
+    align-items: center; */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    flex: 1;
     /* flex-wrap: wrap; */
 }
 
@@ -197,6 +210,10 @@ hr {
     display: flex;
     gap: 30px;
     align-items: center;
+}
+
+.gap-20 {
+    gap: 100px;
 }
 
 .card {
@@ -317,7 +334,7 @@ button {
 
 
 .forms input,
-select {
+select, textarea {
     /* max-width: 500px; */
     width: 100%;
     margin: 5px;
@@ -527,6 +544,36 @@ select {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+
+.star {
+    font-size: 24px;
+    color: gray;
+  }
+  .filled {
+    color: gold;
+  }
+  
+
+.forma input {
+    padding: 20px 50px;
+    margin: 10px;
+    border: none;
+    background-color: #dfdada;
+    border-radius: 10px;
+}
+
+.forma input::placeholder {
+    color: rgb(16, 15, 15);
+}
+
+.body-form {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 

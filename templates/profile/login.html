@@ -10,10 +10,10 @@
     <form method="post">
         {% csrf_token %}
         {% comment %} <div class="forms"> {% endcomment %}
-        {% for form in forms %}
+        {% for forms in form %}
         <div class="forma">
             {% comment %} <p>{{form.label}}</p> {% endcomment %}
-            {{ form }}
+            {{ forms }}
             {{form.errors}}
         </div>
         {% endfor %}

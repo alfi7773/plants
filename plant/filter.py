@@ -21,7 +21,7 @@ class PlantFilter(django_filters.FilterSet):
     category = django_filters.ModelChoiceFilter(
         queryset=Category.objects.all(),
         label='Categories',
-        empty_label="Select a category"
+        empty_label="Select a category",
     )
     sizes = django_filters.ModelMultipleChoiceFilter(
         queryset=Size.objects.all(),
@@ -29,8 +29,8 @@ class PlantFilter(django_filters.FilterSet):
         widget=forms.SelectMultiple(attrs={'class': 'form-control'})
     )
     old_price_min = django_filters.NumberFilter(
-        field_name='old_price', lookup_expr='gte', label='Min Old Price'
+        field_name='price', lookup_expr='gte', label='Min Old Price'
     )
     old_price_max = django_filters.NumberFilter(
-        field_name='old_price', lookup_expr='lte', label='Max Old Price'
+        field_name='price', lookup_expr='lte', label='Max Old Price'
     )

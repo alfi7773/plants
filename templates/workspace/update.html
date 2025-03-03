@@ -1,10 +1,14 @@
 {% extends "main.html" %}
 
 {% block content %}
-  <h2>Update plant</h2>
+  <h2 class="text-center">Update plant</h2>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
+    <div class="forma forms container">
+      {{ form.as_p }}
+    </div>
+    <center>
+      <button class="text-center" type="submit">Save</button>
+    </center>
   </form>
 {% endblock %}

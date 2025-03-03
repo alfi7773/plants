@@ -11,14 +11,22 @@
         <h3>Short Description:</h3>
         <p>{{ plant.short_description }}</p>
         <h3>Size</h3>
-        <div class="display-gap-m pad-20-media cent-size">
-          {% for size in sizes %}
-          <p>{{ size.name }}</p>
-          {% empty %}
-          <p>нет размеров</p>
-          {% endfor %}
-        </div>
-      
+        <div class="cent-size">
+          {% comment %} <center> {% endcomment %}
+
+            {% for size in sizes %}
+            <p>{{ size.name }}</p>
+            {% empty %}
+            <p>нет размеров</p>
+            {% endfor %}
+          </div>
+        {% comment %} </center> {% endcomment %}
+
+
+
+
+
+       
       <div class="col-display-media">
         <center>
           <form class="form" style="gap: 11px;
@@ -44,7 +52,7 @@
 </div>
 </div>
 
-  <div class="container pad-top-100 text-center-m media-none">
+  <div class="container pad-top-100  media-none">
     <h1 class="green">Releted Products</h1>
     <hr class="" />
     <center>

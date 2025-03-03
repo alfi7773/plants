@@ -8,7 +8,8 @@ from .models import *
 from django.views.generic import TemplateView, ListView, DetailView
 from .filter import PlantFilter
 from django.core.paginator import Paginator
-from user_profile.forms import CustomUserCreationForm
+from user_profile.forms import CustomUserCreationForm, LoginForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
   
 
@@ -32,6 +33,7 @@ class HomePageView(ListView):
         context['blogs'] = Blog.objects.all()
         context['categories'] = Category.objects.all()
         context['form'] = CustomUserCreationForm
+        context['forms'] = LoginForm
         context['filter'] = self.plantfilter
         return context
     
@@ -43,7 +45,13 @@ class Catologue(ListView):
     def get_queryset(self):
         plants = Plant.objects.all()
         self.plantfilter = PlantFilter(self.request.GET, queryset=plants)
+        
+        query = self.request.GET.get('q')
+        if query:
+            return Plant.objects.filter(name__icontains=query)
+        
         return self.plantfilter.qs
+        
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -58,6 +66,7 @@ class CartView(View):
         cart_items = []
         total_price = 0
         categories = Category.objects.all()
+        plants = Plant.objects.all()
 
         for plant_id, quantity in cart.items():
             plant = Plant.objects.get(id=plant_id)
@@ -69,6 +78,7 @@ class CartView(View):
             'cart_items': cart_items,
             'total_price': total_price,
             'categories': categories,
+            'plants': plants,
         }
         
         
@@ -119,7 +129,21 @@ class DetailPlant(DetailView):
         context['sizes'] = plant.sizes.all()
         context['categories'] = Category.objects.all()
         context['plants'] = Plant.objects.all()
+        
         return context
+    
+
+class AddRating(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        plant = get_object_or_404(Plant, pk=pk)
+        score = int(request.POST.get('score', 0))
+
+        if 1 <= score <= 5:
+            Rating.objects.update_or_create(
+                user=request.user, plant=plant, defaults={'score': score}
+            )
+
+        return redirect('detail_plant', pk=plant.pk)
     
 class DetailBlog(DetailView):
     model = Blog

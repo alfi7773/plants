@@ -4,22 +4,22 @@
   <h1 class="text-center pad-top-20 pad-20-media">Корзина</h1>
 
   {% if cart_items %}
-        <div class="col-display align-center">
+        <div class="col-display gap-20">
 
           {% for item in cart_items %}
-          <div class="display align-center card-plant-basket media">
-            <div class="cart-card align-center">
+          <div class="display card-plant-basket media gap-20">
+            <div class="display align-center gap-20">
               {% if item.product.image %}
               <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="50" />
               {% else %}
               <p>Нет изображения</p>
               {% endif %}
-              <div>
+              <div class="display gap-20">
                 <h2>{{ item.product.name }}</h2>
                 <div>{{ item.quantity }}</div>
                 <div>{{ item.item_price|floatformat:2 }}</div>
               </div>
-              <div>
+              <div class="gap-20">
                 <form method="post" action="{% url 'remove_from_cart' %}">
                   {% csrf_token %}
                   <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
@@ -38,4 +38,20 @@
   {% else %}
     <p>Корзина пуста.</p>
   {% endif %}
+
+
+  <div class="container">
+    <h2 class="green">You may be interested in</h2>
+    <div class="display-plant1 container">
+      {% for plant in plants %}
+      <a href="{% url "detail_plant" plant.id %}">
+        <div >
+          <img class="card" src="{{ plant.image.url }}" alt="" />
+          <p>{{ plant.name }}</p>
+          <h4 class="green">${{ plant.price }}</h4>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}
