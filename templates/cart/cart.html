@@ -43,7 +43,7 @@
   <div class="container">
     <h2 class="green">You may be interested in</h2>
     <div class="display-plant1 container">
-      {% for plant in plants %}
+      {% for plant in plants|slice:':8' %}
       <a href="{% url "detail_plant" plant.id %}">
         <div >
           <img class="card" src="{{ plant.image.url }}" alt="" />

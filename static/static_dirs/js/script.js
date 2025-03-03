@@ -19,6 +19,31 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  let minPrice = document.getElementById("price_min");
+  let maxPrice = document.getElementById("price_max");
+  let priceDisplay = document.getElementById("price_display");
+
+  function updatePrice() {
+      priceDisplay.textContent = `$${minPrice.value} - $${maxPrice.value}`;
+  }
+
+  minPrice.addEventListener("input", updatePrice);
+  maxPrice.addEventListener("input", updatePrice);
+});
+
+
+
+document.querySelectorAll('.links a').forEach(link => {
+  link.addEventListener('click', function (event) {
+      event.preventDefault(); 
+
+      document.querySelectorAll('.links a').forEach(el => el.classList.remove('active')); // Убираем у всех
+      this.classList.add('active'); 
+  });
+});
+
+
 function toggleFilter() {
   document.querySelector(".filter-menu").classList.toggle("active");
 }

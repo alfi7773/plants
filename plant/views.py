@@ -10,13 +10,14 @@ from .filter import PlantFilter
 from django.core.paginator import Paginator
 from user_profile.forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Count
 
   
 
 class HomePageView(ListView):
     template_name = 'landing.html'
     context_object_name = 'plants'
-    paginate_by = 4
+    paginate_by = 9
     
     def get_queryset(self):
         plants = Plant.objects.all()
@@ -31,7 +32,9 @@ class HomePageView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['blogs'] = Blog.objects.all()
-        context['categories'] = Category.objects.all()
+        context['categories'] = Category.objects.annotate(plant_count=Count('plant'))
+        context['sizes'] = Size.objects.annotate(plant_count=Count('plant'))
+        context['size_objects'] = Size.SMALL, Size.MEDIUM, Size.LARGE
         context['form'] = CustomUserCreationForm
         context['forms'] = LoginForm
         context['filter'] = self.plantfilter
@@ -40,7 +43,7 @@ class HomePageView(ListView):
 class Catologue(ListView):
     template_name = 'catologue.html'
     context_object_name = 'plants'
-    paginate_by = 4
+    paginate_by = 9
     
     def get_queryset(self):
         plants = Plant.objects.all()
@@ -55,7 +58,9 @@ class Catologue(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
+        context['categories'] = Category.objects.annotate(plant_count=Count('plant'))
+        context['sizes'] = Size.objects.annotate(plant_count=Count('plant'))
+        context['size_objects'] = Size.SMALL, Size.MEDIUM, Size.LARGE
         context['filter'] = self.plantfilter
         return context
 
