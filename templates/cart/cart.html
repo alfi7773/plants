@@ -41,8 +41,8 @@
 
 
   <div class="container">
-    <h2 class="green">You may be interested in</h2>
-    <div class="display-plant1 container">
+    <h2 class="green text-center-media ">You may be interested in</h2>
+    <div class="display-plant1 container media-container">
       {% for plant in plants|slice:':8' %}
       <a href="{% url "detail_plant" plant.id %}">
         <div >

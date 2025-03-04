@@ -27,6 +27,14 @@ class HomePageView(ListView):
         if query:
             return Plant.objects.filter(name__icontains=query)
         
+        # category = self.request.GET.get('category')
+        # if category:
+        #     plants = plants.filter(category_id=category)
+        
+        sizes = self.request.GET.getlist('size')
+        if sizes:
+            plants = plants.filter(sizes__id__in=sizes)
+        
         return self.plantfilter.qs
 
     def get_context_data(self, **kwargs):
@@ -134,6 +142,7 @@ class DetailPlant(DetailView):
         context['sizes'] = plant.sizes.all()
         context['categories'] = Category.objects.all()
         context['plants'] = Plant.objects.all()
+        context['images'] = plant.images.all()
         
         return context
     

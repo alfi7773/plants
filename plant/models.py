@@ -68,8 +68,8 @@ class Description(TimeAbstract):
     dinig_room = models.TextField()
     ofice = models.TextField()
     
-    # def __str__(self):
-    #     return self.living_room
+    def __str__(self):
+        return f'{self.living_room}, {self.dinig_room}, {self.ofice}'
     
     
 

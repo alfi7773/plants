@@ -53,6 +53,14 @@ hr {
     padding: 20px;
 }
 
+.pad-200 {
+    padding: 100px;
+}
+
+.pad-200 img {
+    width: 400px;
+}
+
 .burger-btn {
     display: none;
     background: #333;
@@ -102,6 +110,11 @@ hr {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: start;
+}
+
+.start {
+    text-align: start;
 }
 
 .col-display1 {
@@ -154,6 +167,13 @@ hr {
     height: 35px;
 }
 
+.but {
+    padding: 0;
+    background-color: transparent;
+    color: black;
+}
+
+
 .display {
     display: flex;
     justify-content: space-around;
@@ -178,8 +198,12 @@ hr {
 .display4 {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: end; 
     /* flex-wrap: wrap; */
+}
+
+.mini-img img {
+    max-width: 100px;
 }
 
 .display5 {
@@ -194,7 +218,7 @@ hr {
     /* justify-content: space-around;
     align-items: center; */
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 40px;
     flex: 1;
     /* flex-wrap: wrap; */
 }
@@ -252,6 +276,26 @@ img {
 
 .pad-0 {
     padding: 0;
+}
+
+.detail-img img {
+    max-width: 900px;
+    width: 400px;
+    max-height: 900px;
+}
+
+.width-description {
+    width: 540px;
+}
+
+.circle {
+    border-radius: 20px;
+    align-items: center;
+    width: 30px;
+    height: 30px;   
+    text-align: center;
+    padding: 5px;
+    border: solid 1px rgb(128, 227, 121);
 }
 
 ul,
@@ -327,7 +371,63 @@ button {
     border: none;
     border-radius: 5px;
     color: white;
+    max-width: 200px;
 }
+
+.end button {
+    max-width: 100px;
+    padding: 10px;
+}
+
+.cart button {
+    max-width: 500px;
+    font-size: 10px;
+    padding: 80px;
+}
+
+.width {
+    width: 100px;
+}
+
+.end {
+    justify-content: end;
+    text-align: end;
+}
+
+
+.slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    /* width: 200%;  */
+  }
+  
+  .slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .prev, .next {
+    /* position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer; */
+    display: none;
+  }
+  
+  /* .prev { left: 10px; }
+  .next { right: 10px; } */
+  
 
 .big-plant {
     background-image: url(../images/pl.png);
@@ -346,8 +446,8 @@ button {
     width: 100px;
     height: 100px;
     position: absolute;
-    top: 439px;
-    left: 920px;
+    top: 359px;
+    left: 940px;
 }
 
 .nav-media {
@@ -387,8 +487,9 @@ select, textarea {
     /* border: none; */
 }
 
-.formss input,
-select {
+
+.forms input,
+select, textarea {
     /* max-width: 500px; */
     width: 100%;
     margin: 5px;
@@ -402,16 +503,38 @@ select {
     /* border: none; */
 }
 
+.modal-button button {
+    /* max-width: 500px; */
+    width: 100%;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+    /* padding: 10px; */
+    /* border: none; */
+}
+
+.forms label {
+    display: none;
+}
+
 
 .green {
     color: green;
 }
+
+
 
 .paginations {
     text-align: end;
     padding: 20px;
     margin: 5px;
 }
+
+
 
 .step-links a {
     padding: 10px;
@@ -595,11 +718,21 @@ select {
   }
   
 
+.formas input {
+    padding: 10px 10px;
+    margin: 10px;
+    border: none;
+    /* background-color: #dfdada; */
+    border: solid 1px rgb(128, 128, 128, 0.3);
+    border-radius: 10px;
+}
+
 .forma input {
     padding: 20px 50px;
     margin: 10px;
     border: none;
-    background-color: #dfdada;
+    /* background-color: #dfdada; */
+    border: solid 1px rgb(128, 128, 128, 0.3);
     border-radius: 10px;
 }
 

@@ -3,25 +3,37 @@
 <center>
 
   <div class="display pad-20 media-none">
-    <img class="card detail-img" src="{{ plant.image.url }}" alt="" />
+    {% if images %}
+    <div class="col-display mini-img">
+    {% for image in plant.images.all %}
+      <img src="{{ image.image.url }}" alt="">
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>no images</p>
+    {% endif %}
+    <div class="detail-img">
+      <img class="" src="{{ plant.image.url }}" alt="" />
+    </div>
     <div class="col-display media-detail">
-      <h4>{{ plant.name }}<h4>
-        <hr class="short media-none">
+      <h2>{{ plant.name }}<h2>
         <h4 class="green">${{ plant.price }}</h4>
-        <h3>Short Description:</h3>
-        <p>{{ plant.short_description }}</p>
+        <hr class="short media-none">
+        <h3 class="start">Short Description:</h3>
+        <p class="start width-description">{{ plant.short_description }}</p>
         <h3>Size</h3>
-        <div class="cent-size">
+        <div class="cent-size display-gap ">
           {% comment %} <center> {% endcomment %}
 
             {% for size in sizes %}
+            <div class="circle">
             <p>{{ size.name }}</p>
+          </div>
             {% empty %}
-            <p>нет размеров</p>
+              <p class="">нет размеров</p>
             {% endfor %}
           </div>
         {% comment %} </center> {% endcomment %}
-
 
 
 
@@ -34,23 +46,27 @@
           display: flex;
           max-width: 201px;" method="post" action="{% url 'add_to_cart' %}">
           {% csrf_token %}
+          <div class="display-gap cart">
           <div>
             <input type="hidden" name="plant_id" value="{{ plant.id }}">
             <input type="number" name="quantity" value="1" min="1">
           </div>
-          <button type="submit">Добавить в корзину</button>
+        </div>
+          <button type="submit">Add to Cart</button>
+          <button type="submit">Buy at now</button>
         </form>
       </center>
     </div>
     
-    
-    <div class="container pad-20-media">
-      <br /><p>{{ plant.description.living_room }}</p>
-    <br /><p>{{ plant.description.dinig_room }}</p>
-    <br /><p>{{ plant.description.ofice }}</p>
   </div>
 </div>
 </div>
+    
+    <div class="container pad-20-media start">
+      <br><p>{{ plant.description  }}</p>
+      <br /><p>{{ plant.description.living_room }}</p>
+    <br /><p>{{ plant.description.dinig_room }}</p>
+    <br /><p>{{ plant.description.ofice }}</p>
 
   <div class="container pad-top-100  media-none">
     <h1 class="green">Releted Products</h1>

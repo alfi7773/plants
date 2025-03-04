@@ -404,12 +404,46 @@
 
     .display-plant {
         flex-wrap: nowrap;
+        gap: 60px;
         /* grid-template-columns: repeat(1, 1fr); */
+    }
+
+    .display-plant1 {
+        flex-wrap: nowrap;
+        gap: 60px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .text-center-media {
+        text-align: center;
+    }
+
+    .media-container-small {
+        padding: 20px;
+    }
+
+    .but {
+        padding: 0;
+        background-color: transparent;
+        color: black;
+    }
+
+    button#openModalBtn {
+        background-color: transparent;
     }
 
     .burger-btn {
         display: block;
     }
+
+    .but button {
+        padding: 0;
+        color: #28a745;
+    }
+
+    /* label {
+        display: none;
+    } */
 
     .filter-menu {
         display: none;
@@ -458,7 +492,11 @@
     }
 
     .media-container {
-        padding: 66px;
+        padding: 50px;
+    }
+
+    .filter-form1 {
+        max-width: 290px;
     }
 
     .paginations {

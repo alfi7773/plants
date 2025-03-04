@@ -56,25 +56,19 @@
       
     
     {% else %}
-      {% comment %} <a href="{% url 'login' %}"><div class="login"></div></a> {% endcomment %}
-      <button id="openModalBtn1">Login</button>
+      {% comment %} <button id="openModalBtn1">Login</button>
 
 
         <div id="modal1" class="modal1">
           <div class="modal-content1">
             <span class="close-btn1">&times;</span>
+            <div class="text-center hrefs">
+              <button class="but" id="openModalBtn1"><a class="active" href="">Login</a></button> | <button class="but" id="openModalBtn">Register</button>
+            </div>
             <form action="{% url "login" %}" method="post">
               {% csrf_token %}
-              {% comment %} {% for field in form %} {% endcomment %}
               <div class="forms">
                 {{ forms }}
-                {% comment %} <p>{{form.label}}</p>
-                {{form.username}}
-              </div>
-
-              <div class="forms">
-                <p>{{form.label}}</p>
-                {{form.password}} {% endcomment %}
               </div>
 
               {% if form.errors %}
@@ -87,7 +81,6 @@
                 </ul>
             {% endif %}
 
-              {% comment %} {% endfor %} {% endcomment %}
               <button type="submit">Login</button>
           </form>
         </div>
@@ -98,15 +91,49 @@
       <div id="modal" class="modal">
         <div class="modal-content">
           <span class="close-btn">&times;</span>
+          <div class="text-center hrefs">
+          </div>
           <form method="post" action="{% url 'signup' %}">
             {% csrf_token %}
             <div class="forms">
                 {{ form.as_p }}
             </div>
-            <button type="submit">Зарегистрироваться</button>
+            <button type="submit">Registe</button>
         </form>
 
+      </div> {% endcomment %}
+
+<button id="openLoginModal">Login</button>
+<button id="openRegisterModal">Register</button>
+
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <form action="{% url 'login' %}" method="post">
+      <a id="openLoginModal" href=""></a>
+      {% csrf_token %}
+      <div class="forms modal-button">  
+        <p class="main-none">{{ forms.label }}</p>
+        {{ forms }}
+        <button type="submit">Login</button>
       </div>
+    </form>
+  </div>
+</div>
+
+<div id="registerModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <form action="{% url 'signup' %}" method="post">
+      {% csrf_token %}
+      <div class="forms modal-button">
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+      </div>
+    </form>
+  </div>
+</div>
+
       {% endif %}
 </section>
 <center>

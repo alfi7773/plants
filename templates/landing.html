@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 
 {% block content %}
-  <section class="container-media">
+  {% comment %} <section class="container-media   ">
     <div class="display first-block">
       <div class="col-display">
         <h3>Welcome to GreenShop</h3>
@@ -22,7 +22,61 @@
         <div class="big-plant"></div>
       </div>
     </div>
+  </section> {% endcomment %}
+
+
+  <section class="slider container">
+    <div class="slides ">
+      <div class="container-media container slide">
+        <div class="display first-block">
+          <div class="col-display">
+            <h3>Welcome to GreenShop</h3>
+            <h1 class="big-text">
+              Let’s Make a <br />Better <span>Planet</span>
+            </h1>
+            <p class="start">
+              We are an online plant shop offering a wide range <span>
+                of cheap and trendy plants. Use
+                <br />our plants to create a unique Urban Jungle.
+              </span>
+            </p>
+            <a href="{% url 'catologue' %}">
+              <button class="display"><p>SHOP NOW <i class="fa-solid fa-arrow-right-long"></i></p></button>
+            </a>
+          </div>
+          <div class="display-gap">
+            <div class="min-plant"></div>
+            <div class="big-plant"></div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="container-media slide">
+        <div class="display first-block">
+          <div class="col-display">
+            <h3>Explore Our Plants</h3>
+            <h1 class="big-text">
+              Bring Greenery <br />Into Your Home
+            </h1>
+            <p>
+              Discover our exclusive plant collections and fresh arrivals.
+            </p>
+            <a href="{% url 'catologue' %}">
+              <button class="display"><p>SHOP NOW <i class="fa-solid fa-arrow-right-long"></i></p></button>
+            </a>
+          </div>
+          <div class="display-gap">
+            <div class="min-plant"></div>
+            <div class="big-plant"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
   </section>
+  
   
   <div class="col-display container container-media none-main">
     <button class="burger-btn" onclick="toggleFilter()">☰ Фильтр</button>
@@ -74,17 +128,19 @@
   
     <button type="submit" class="">Filter</button>
     <div class="filter-categories">
-      <label for="id_name">Sizes</label>
+      <label for="">Categories</label>
       {% for size in sizes %}
-      <div class="display-cat">
-        <div>
-          <a href="?size={{ size.id }}">{{ size.name }} </a>
-        </div>
-        <div>
-          ({{ size.plant_count }})
-        </div>
-      </div>
-        {% endfor %}
+          <a href="?size={{ size.id }}" class="{% if request.GET.size == size.id|stringformat:"s" %}active{% endif %}">
+              <div class="display-cat align-center gap-200">
+                <div>
+                  {{ size.name }} 
+                </div>
+                <div>
+                  ({{ size.plant_count }})
+                </div>
+              </div>
+          </a>
+      {% endfor %}
   </div>
   
    <div class="filter-categories">
@@ -109,7 +165,7 @@
         <a href="">Sale</a>
       </div>
       
-      <div class="card-plant display-plant media-container">
+      <div class="card-plant display-plant media-container-small">
         {% for plant in plants %}
         <a href="{% url 'detail_plant' plant.id %}">
         <div>
@@ -128,13 +184,29 @@
     {% include 'companents/pagination.html' %}
   </div>
 
+
+  <div class="pad-top-20 pad-200">
+    <div class="display">
+      {% for plant in plants|slice:'1:3' %}
+      <div class="display end">
+        <img src="{{ plant.image.url }}" alt="">
+        <div class="col-display end">
+          <h2>{{ plant.name }}</h2>
+          <p class="width end">{{ plant.short_description }}</p>
+          <button><a class="white" href="">Find More</a></button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
   <div class="container">
     <center>
       <h1>Our Blog Posts</h1>
       <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
     </center>
     <div class="display3 text-center media-container pad-top-20">
-      {% for blog in blogs|slice:':3' %}
+      {% for blog in blogs|slice:':4' %}
         <a href="{% url 'detail_blog' blog.id %}">
           <div class="pad-top-20 blog">
             <img src="{{ blog.image.url }}" alt="" />
@@ -146,38 +218,5 @@
     </div>
   </div>
 
-  <center>
-    <section class="pad-20 container hovers">
-      <div class="display4">
-        <div>
-          <div class="block-1"></div>
-          <h3>Garden Care</h3>
-          <br /><p>
-            We are an online plant shop
-            <br />offering a wide range of cheap
-            <br />and trendy plants.
-          </p>
-        </div>
-        <div>
-          <div class="block-2"></div>
-          <h3>Plant Renovation</h3>
-          <br /><p>
-            We are an online plant shop
-            <br />offering a wide range of cheap
-            <br />and trendy plants.
-          </p>
-        </div>
-
-        <div>
-          <div class="block-3"></div>
-          <h3>Watering Graden</h3>
-          <br /><p>
-            We are an online plant shop
-            <br />offering a wide range of cheap
-            <br />and trendy plants.
-          </p>
-        </div>
-      </div>
-    </section>
-  </center>
+  
 {% endblock %}

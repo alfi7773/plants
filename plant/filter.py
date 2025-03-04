@@ -23,10 +23,10 @@ class PlantFilter(django_filters.FilterSet):
         label='Categories',
         empty_label="Select a category",
     )
-    sizes = django_filters.ModelMultipleChoiceFilter(
+    sizes = django_filters.ModelChoiceFilter(
         queryset=Size.objects.all(),
         label='Size',
-        widget=forms.SelectMultiple(attrs={'class': 'form-control'})
+        # widget=forms.SelectMultiple(attrs={'class': 'form-control'})
     )
     old_price_min = django_filters.NumberFilter(
         field_name='price', lookup_expr='gte', label='Min Old Price'

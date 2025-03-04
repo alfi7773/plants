@@ -3,7 +3,7 @@
 {% block content %}
 <div>
     <div class="display3 text-center media-container pad-top-20">
-        {% for blog in blogs|slice:':3' %}
+        {% for blog in blogs %}
           <a href="{% url 'detail_blog' blog.id %}">
             <div class="pad-top-20 blog">
               <img src="{{ blog.image.url }}" alt="" />
