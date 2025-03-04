@@ -71,13 +71,21 @@
 
 <div class="container pad-20-media start">
   <div class="text-center display-gap pad-top-20 links">
-    <a class="active" href="">Product Description</a>
-    <a class="" href="{% url 'review' plant.id %}">Reviews</a>
+    <a class="" href="{% url "detail_plant" plant.id%}">Product Description</a>
+    <a class="active" href="{% url 'review' plant.id %}">Reviews </a>
   </div>
-      <br><p>{{ plant.description  }}</p>
-      <br /><p>{{ plant.description.living_room }}</p>
-    <br /><p>{{ plant.description.dinig_room }}</p>
-    <br /><p>{{ plant.description.ofice }}</p>
+    
+  <div>
+    {% if images %}
+    <div class="col-display mini-img">
+      {% for image in plant.images.all %}
+        <img src="{{ image.image.url }}" alt="" onclick="changeImage(this)" class="thumbnail">
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>no images</p>
+    {% endif %}
+  </div>
 
   <div class="container pad-top-100  media-none">
     <h1 class="green">Releted Products</h1>
@@ -134,8 +142,8 @@
     </div>
     
     
-    <div class="container pad-20-media">
-      <br /><p>{{ plant.description.living_room }}</p>
+    <div class="start">
+      <p>{{ plant.description.living_room }}</p>
       <br /><p>{{ plant.description.dinig_room }}</p>
       <br /><p>{{ plant.description.ofice }}</p>
     </div>

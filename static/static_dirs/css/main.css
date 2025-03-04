@@ -99,6 +99,30 @@ hr {
     align-items: center;
 }
 
+.align-end {
+    align-items: end;
+}
+
+.display-gap2 {
+    display: flex;
+    gap: 30px;
+    align-items: end;
+}
+
+.display-gap3 {
+    display: flex;
+    gap: 10px;
+    align-items: end;
+}
+
+.gray {
+    color: gray;
+}
+
+.dark-gray {
+    color: rgb(58, 57, 57);
+}
+
 .cart-card {
     max-width: 300px;
     display: flex;
@@ -203,7 +227,10 @@ hr {
 }
 
 .mini-img img {
-    max-width: 100px;
+    max-width: 200px;
+    width: 120px;
+    max-height: 200px;
+    height: 120px;
 }
 
 .display5 {
@@ -393,6 +420,91 @@ button {
     justify-content: end;
     text-align: end;
 }
+
+
+.mini-img {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* max-width: 100px; */
+  }
+  
+  .thumbnail {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  
+  .thumbnail:hover, .selected {
+    border-color: green;
+  }
+  
+  .detail-img img {
+    width: 300px;
+    height: auto;
+  }
+  
+  .display-gap1 {
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+  }
+  
+  .circle {
+    width: 40px;
+    height: 40px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+.qty-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+  }
+  
+  .qty-btn:hover {
+    background-color: darkgreen;
+  }
+  
+  input[type="number"] {
+    width: 50px;
+    text-align: center;
+    border: none;
+    font-size: 16px;
+  }
+  
+  .selected {
+    background-color: green;
+    color: white;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: darkgreen;
+  }
 
 
 .slider {

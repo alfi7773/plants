@@ -141,6 +141,23 @@ class DetailPlant(DetailView):
         context = super().get_context_data(**kwargs)
         context['sizes'] = plant.sizes.all()
         context['categories'] = Category.objects.all()
+        context['tags'] = plant.tags.all()
+        context['plants'] = Plant.objects.all()
+        context['images'] = plant.images.all()
+        
+        return context
+    
+class Reviews(DetailView):
+    model = Plant
+    context_object_name = 'plant'
+    template_name = 'reviews.html'
+    
+    def get_context_data(self, **kwargs):
+        plant = self.get_object()
+        context = super().get_context_data(**kwargs)
+        context['sizes'] = plant.sizes.all()
+        context['categories'] = Category.objects.all()
+        context['tags'] = plant.tags.all()
         context['plants'] = Plant.objects.all()
         context['images'] = plant.images.all()
         

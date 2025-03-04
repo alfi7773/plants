@@ -62,14 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.querySelectorAll('.links a').forEach(link => {
-  link.addEventListener('click', function (event) {
-      event.preventDefault(); 
-
+  link.addEventListener('click', function () {
       document.querySelectorAll('.links a').forEach(el => el.classList.remove('active'));
-      this.classList.add('active'); 
+      this.classList.add('active');
   });
 });
-
 
 function toggleFilter() {
   document.querySelector(".filter-menu").classList.toggle("active");
@@ -154,3 +151,22 @@ document.addEventListener("DOMContentLoaded", function () {
       if (event.target === registerModal) registerModal.style.display = "none";
   });
 });
+
+
+function changeImage(element) {
+  document.getElementById('mainImage').src = element.src;
+}
+
+function selectSize(element) {
+  document.querySelectorAll('.circle').forEach(el => el.classList.remove('selected'));
+  element.classList.add('selected');
+  document.getElementById('selectedSize').value = element.innerText;
+}
+
+function changeQuantity(amount) {
+  let quantityInput = document.getElementById('quantity');
+  let currentValue = parseInt(quantityInput.value, 10);
+  if (currentValue + amount >= 1) {
+    quantityInput.value = currentValue + amount;
+  }
+}
