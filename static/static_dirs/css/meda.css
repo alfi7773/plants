@@ -18,7 +18,7 @@
 
     .media-detail {
         padding: 20px;
-        background-color: rgb(198, 194, 194);
+        background-color: rgb(225, 216, 216);
         border-radius: 13px 13px 0 0;
     }
 
@@ -145,6 +145,23 @@
     .col-display {
         gap: 0;
     }
+
+    .col-display1 {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .circle {
+        width: 20px;
+        height: 20px;
+        border: 1px solid rgb(160, 157, 157);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 50%;
+      }
 
     .menu a {
         display: block;
@@ -327,6 +344,21 @@
         align-items: center;
     }
 
+    .display-gap-m2 {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+    }
+
+    .qty-btn {
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .input-m {
+        background-color: transparent;
+    }
+
     .container {
         max-width: 320px;
         /* width: 300px; */
@@ -470,6 +502,12 @@
         /* display: flex; */
         /* justify-content: center; */
         padding-left: 50px;
+    }
+
+
+
+    .filt .burger-btn {
+        width: 100%;
     }
 
     /* .display {

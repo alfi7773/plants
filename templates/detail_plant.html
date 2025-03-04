@@ -69,7 +69,7 @@
 </div>
     
 
-<div class="container pad-20-media start">
+<div class="container pad-20-media start media-none">
   <div class="text-center display-gap pad-top-20 links">
     <a class="active" href="">Product Description</a>
     <a class="" href="{% url 'review' plant.id %}">Reviews</a>
@@ -96,24 +96,27 @@
         </div>
       </center>
     </div>
+  </div>
 
 
 
 
-    <div class="display5 text-center-media main-none">
+    <div class="display5 text-center-media main-none start">
       <img class="card detail-img main-none" src="{{ plant.image.url }}" alt="" />
-      <div class="col-display1 media-detail main-none">
+      <div class="col-display1 media-detail main-none start col-display1">
         <h4>{{ plant.name }}<h4>
           <h3 class="media-none">Short Description:</h3>
           <p>{{ plant.short_description }}</p>
         <hr class="short media-none">
         <h4 class="green">${{ plant.price }}</h4>
         <h3>Size</h3>
-        <div class="display-gap-m pad-20-media cent-size main-none">
+        <div class="display-gap-m2 main-none">
           {% for size in sizes %}
+          <div class="circle" onclick="selectSize(this)">
             <p>{{ size.name }}</p>
+          </div>
           {% empty %}
-            <p>нет размеров</p>
+          <p>нет размеров</p>
           {% endfor %}
         </div>
         
@@ -124,10 +127,15 @@
         display: flex;
         max-width: 201px;" method="post" action="{% url 'add_to_cart' %}">
         {% csrf_token %}
-          <div>
+           <div>
             <input type="hidden" name="plant_id" value="{{ plant.id }}">
             <input type="number" name="quantity" value="1" min="1">
-          </div>
+          </div> 
+          {% comment %} <div class="">
+            <button type="button" class="qty-btn" onclick="changeQuantity(-1)">-</button>
+            <input class="input-m" type="number" id="quantity" name="quantity" value="1" min="1" readonly>
+          <button type="button" class="qty-btn" onclick="changeQuantity(1)">+</button>
+        </div> {% endcomment %}
           <button type="submit">Добавить в корзину</button>
         </form>
       </center>

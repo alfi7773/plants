@@ -53,7 +53,7 @@
   
       <div class="container-media slide">
         <div class="display first-block">
-          <div class="col-display">
+          <div class="col-display start">
             <h3>Explore Our Plants</h3>
             <h1 class="big-text">
               Bring Greenery <br />Into Your Home
@@ -77,26 +77,28 @@
     <button class="next">&#10095;</button>
   </section>
   
-  
-  <div class="col-display container container-media none-main">
-    <button class="burger-btn" onclick="toggleFilter()">☰ Фильтр</button>
-    <div class="filter-menu container-media">
+  <center>
+
+    <div class="col-display filt container container-media none-main cent">
+      <button class="burger-btn" onclick="toggleFilter()">☰ Фильтр</button>
+      <div class="filter-menu container-media">
         <form method="get">
             <div class="for-id">
                 <div class="filter-forms">
-                    <div class="for-label">
+                  <div class="for-label">
                         {{ filter.form.as_p }}  
                     </div>
                 </div>
-            </div>
-            <button type="submit" class="btn">Filter</button>
-            <button type="reset" class="btn">
+              </div>
+              <button type="submit" class="btn">Filter</button>
+              <button type="reset" class="btn">
                 <a class="white" href="/">Reset</a>
-            </button>
-
-          </form>
+              </button>
+              
+            </form>
+          </div>
         </div>
-      </div>
+      </center>
 <div class="display2 containers mi pad-20">
   
     {% comment %} {% include 'companents/filter.html' %} {% endcomment %}
@@ -157,9 +159,9 @@
     
     {% comment %} <div class="fixed"></div> {% endcomment %}
     
-    <div class="col-display">
+    <div class="col-display cent">
       
-      <div class="text-center display-gap pad-top-20  links">
+      <div class="text-center display-gap1 display-gap-m pad-top-20 links">
         <a class="active" href="">All Plants</a>
         <a class="" href="">New Arrivals</a>
         <a href="">Sale</a>
@@ -185,7 +187,7 @@
   </div>
 
 
-  <div class="pad-top-20 pad-200">
+  <div class="pad-top-20 pad-200 media-none">
     <div class="display">
       {% for plant in plants|slice:'1:3' %}
       <a href="{% url 'detail_plant' plant.id %}">
