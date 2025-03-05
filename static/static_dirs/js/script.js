@@ -89,7 +89,7 @@ menuToggleButton.addEventListener('click', () => {
 // const closeBtn1 = document.getElementsByClassName('close-btn1')[0];
 
 
-// // модальное окно
+// модальное окно
 // openModalBtn.onclick = function(event) {
 //   event.stopPropagation(); 
 //   modal.style.display = "block";
@@ -129,73 +129,97 @@ menuToggleButton.addEventListener('click', () => {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {  
-  const loginModal = document.getElementById("loginModal");  
-  const registerModal = document.getElementById("registerModal");  
-  const openLoginModalBtn = document.getElementById("openLoginModal");  
-  const openRegisterFromLoginBtn = document.getElementById("openRegisterFromLogin");  
-  const closeLoginModalBtn = document.getElementById("closeLoginModal");  
-  const closeRegisterModalBtn = document.getElementById("closeRegisterModal");  
+// document.addEventListener("DOMContentLoaded", function () {  
+//   const loginModal = document.getElementById("loginModal");  
+//   const registerModal = document.getElementById("registerModal");  
+//   const openLoginModalBtn = document.getElementById("openLoginModal");  
+//   const openRegisterFromLoginBtn = document.getElementById("openRegisterFromLogin");  
+//   const closeLoginModalBtn = document.getElementById("closeLoginModal");  
+//   const closeRegisterModalBtn = document.getElementById("closeRegisterModal");  
 
-  // Открыть модальное окно логина  
-  openLoginModalBtn.addEventListener("click", () => {  
-      loginModal.style.display = "block";  
-  });  
+//   // Открыть модальное окно логина  
+//   openLoginModalBtn.addEventListener("click", () => {  
+//       loginModal.style.display = "block";  
+//   });  
 
-  // Открыть модальное окно регистрации из модального окна логина  
-  openRegisterFromLoginBtn.addEventListener("click", (event) => {  
-      event.preventDefault(); // Предотвратить переход по ссылке  
-      loginModal.style.display = "none"; // Скрыть модальное окно логина  
-      registerModal.style.display = "block"; // Показать модальное окно регистрации  
-  });  
+//   // Открыть модальное окно регистрации из модального окна логина  
+//   openRegisterFromLoginBtn.addEventListener("click", (event) => {  
+//       event.preventDefault(); // Предотвратить переход по ссылке  
+//       loginModal.style.display = "none"; // Скрыть модальное окно логина  
+//       registerModal.style.display = "block"; // Показать модальное окно регистрации  
+//   });  
 
-  // Закрыть модальное окно логина  
-  closeLoginModalBtn.addEventListener("click", () => {  
-      loginModal.style.display = "none";  
-  });  
+//   // Закрыть модальное окно логина  
+//   closeLoginModalBtn.addEventListener("click", () => {  
+//       loginModal.style.display = "none";  
+//   });  
 
-  // Закрыть модальное окно регистрации  
-  closeRegisterModalBtn.addEventListener("click", () => {  
-      registerModal.style.display = "none";  
-  });  
+//   // Закрыть модальное окно регистрации  
+//   closeRegisterModalBtn.addEventListener("click", () => {  
+//       registerModal.style.display = "none";  
+//   });  
 
-  // Закрыть модальные окна при клике вне модального окна  
-  window.addEventListener("click", (event) => {  
-      if (event.target === loginModal) {  
-          loginModal.style.display = "none";  
-      }  
-      if (event.target === registerModal) {  
-          registerModal.style.display = "none";  
-      }  
-  });  
-});  
+//   // Закрыть модальные окна при клике вне модального окна  
+//   window.addEventListener("click", (event) => {  
+//       if (event.target === loginModal) {  
+//           loginModal.style.display = "none";  
+//       }  
+//       if (event.target === registerModal) {  
+//           registerModal.style.display = "none";  
+//       }  
+//   });  
+// });  
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  const loginModal = document.getElementById("loginModal");
+  const registerModal = document.getElementById("registerModal");
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   const loginModal = document.getElementById("loginModal");
-//   const registerModal = document.getElementById("registerModal");
+  document.getElementById("openLoginModal").addEventListener("click", function () {
+      loginModal.style.display = "block";
+      registerModal.style.display = "none";
+  });
 
-//   document.getElementById("openLoginModal").addEventListener("click", function () {
-//       loginModal.style.display = "block";
-//   });
+  document.getElementById("openRegisterModal").addEventListener("click", function () {
+      registerModal.style.display = "block";
+      loginModal.style.display = "none";
+  });
 
-//   document.getElementById("openRegisterModal").addEventListener("click", function () {
-//       registerModal.style.display = "block";
-//   });
+  document.querySelectorAll('.switch-to-login').forEach(link => {
+      link.addEventListener('click', function (event) {
+          event.preventDefault();
+          loginModal.style.display = "block";
+          registerModal.style.display = "none";
+          updateActiveClass(this);
+      });
+  });
 
-//   document.querySelectorAll(".close-btn").forEach(btn => {
-//       btn.addEventListener("click", function () {
-//           loginModal.style.display = "none";
-//           registerModal.style.display = "none";
-//       });
-//   });
+  document.querySelectorAll('.switch-to-register').forEach(link => {
+      link.addEventListener('click', function (event) {
+          event.preventDefault();
+          registerModal.style.display = "block";
+          loginModal.style.display = "none";
+          updateActiveClass(this);
+      });
+  });
 
-//   window.addEventListener("click", function (event) {
-//       if (event.target === loginModal) loginModal.style.display = "none";
-//       if (event.target === registerModal) registerModal.style.display = "none";
-//   });
-// });
+  document.querySelectorAll(".close-btn").forEach(btn => {
+      btn.addEventListener("click", function () {
+          this.closest(".modal").style.display = "none";
+      });
+  });
+
+  window.addEventListener("click", function (event) {
+      if (event.target === loginModal) loginModal.style.display = "none";
+      if (event.target === registerModal) registerModal.style.display = "none";
+  });
+
+  function updateActiveClass(activeElement) {
+      document.querySelectorAll('.link a').forEach(el => el.classList.remove('active'));
+      activeElement.classList.add('active');
+  }
+});
+
 
 
 

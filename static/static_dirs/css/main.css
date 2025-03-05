@@ -342,6 +342,11 @@ a {
     list-style: none;
 }
 
+/* .form-button button {
+    width: 100%;
+    max-width: 900px;
+} */
+
 .links a {
     text-decoration: none;
     padding-bottom: 5px; 
@@ -350,6 +355,18 @@ a {
 
 .links a:hover,
 .links a.active {
+    color: #218838;
+    border-bottom: 2px solid #28a745;
+}
+
+.link a {
+    text-decoration: none;
+    padding-bottom: 5px; 
+    border-bottom: 2px solid transparent; 
+}
+
+.link a:hover,
+.link a.active {
     color: #218838;
     border-bottom: 2px solid #28a745;
 }
@@ -624,8 +641,8 @@ select, textarea {
 }
 
 .modal-button button {
-    /* max-width: 500px; */
-    width: 100%;
+    max-width: 438px;
+    width: 285%;
     margin: 5px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -654,6 +671,9 @@ select, textarea {
     margin: 5px;
 }
 
+.ends {
+    padding-left: 350px;
+}
 
 
 .step-links a {

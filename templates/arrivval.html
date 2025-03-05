@@ -1,7 +1,28 @@
 {% extends 'main.html' %}
 
 {% block content %}
-
+  {% comment %} <section class="container-media   ">
+    <div class="display first-block">
+      <div class="col-display">
+        <h3>Welcome to GreenShop</h3>
+        <h1 class="big-text">
+          Let’s Make a
+          <br />Better <span>Planet</span>
+        </h1>
+        <p>
+          We are an online plant shop offering a wide range <span>
+            of cheap and trendy plants. Use
+            <br />our plants to create an unique Urban Jungle. Order your favorite plants!
+          </span>
+        </p>
+        <a href="{% url "catologue" %}"><button class="display "><p>SHOP NOW <div class="main-none"><i class="fa-solid fa-arrow-right-long"></i></div></p></button></a>
+      </div>
+      <div class="display-gap">
+        <div class="min-plant"></div>
+        <div class="big-plant"></div>
+      </div>
+    </div>
+  </section> {% endcomment %}
 
 
   <div class="container">
@@ -144,9 +165,9 @@
     <div class="col-display cent">
       
       <div class="text-center display-gap pad-top-20 links">
-        <a class="active" href="{% url "home" %}">All Plants</a>
-        <a class="" href="{% url "arrivals" %}">New Arrivals</a>
-        <a href="{% url "home" %}">Sale</a>
+        <a class="" href="{% url "home" %}">All Plants</a>
+        <a class="active" href="{% url "arrivals" %}">New Arrivals</a>
+        <a href="">Sale</a>
       </div>
       
       <div class="card-plant display-plant media-container-small">

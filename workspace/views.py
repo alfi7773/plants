@@ -60,6 +60,8 @@ class UpdatePlant(UpdateView):
     def get_success_url(self):
         return reverse_lazy('work')
     
+
+    
     
 class DeletePlant(DeleteView):
     model = Plant

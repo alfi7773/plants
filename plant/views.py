@@ -48,6 +48,76 @@ class HomePageView(ListView):
         context['filter'] = self.plantfilter
         return context
     
+class ForLogin(ListView):
+    template_name = 'for_login.html'
+    context_object_name = 'plants'
+    paginate_by = 9
+    
+    def get_queryset(self):
+        plants = Plant.objects.all()
+        self.plantfilter = PlantFilter(self.request.GET, queryset=plants)
+        
+        query = self.request.GET.get('q')
+        if query:
+            return Plant.objects.filter(name__icontains=query)
+        
+        # category = self.request.GET.get('category')
+        # if category:
+        #     plants = plants.filter(category_id=category)
+        
+        sizes = self.request.GET.getlist('size')
+        if sizes:
+            plants = plants.filter(sizes__id__in=sizes)
+        
+        return self.plantfilter.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['blogs'] = Blog.objects.all()
+        context['categories'] = Category.objects.annotate(plant_count=Count('plant'))
+        context['sizes'] = Size.objects.annotate(plant_count=Count('plant'))
+        context['size_objects'] = Size.SMALL, Size.MEDIUM, Size.LARGE
+        context['form'] = CustomUserCreationForm
+        context['forms'] = LoginForm
+        context['filter'] = self.plantfilter
+        return context
+
+
+class NewArrivals(ListView):
+    template_name = 'arrivval.html'
+    context_object_name = 'plants'
+    paginate_by = 9
+    
+    def get_queryset(self):
+        plants = Plant.objects.filter(created_at='2025-03-05')
+        self.plantfilter = PlantFilter(self.request.GET, queryset=plants)
+        
+        query = self.request.GET.get('q')
+        if query:
+            return Plant.objects.filter(name__icontains=query)
+        
+        # category = self.request.GET.get('category')
+        # if category:
+        #     plants = plants.filter(category_id=category)
+        
+        sizes = self.request.GET.getlist('size')
+        if sizes:
+            plants = plants.filter(sizes__id__in=sizes)
+        
+        return self.plantfilter.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['blogs'] = Blog.objects.all()
+        context['categories'] = Category.objects.annotate(plant_count=Count('plant'))
+        context['sizes'] = Size.objects.annotate(plant_count=Count('plant'))
+        context['size_objects'] = Size.SMALL, Size.MEDIUM, Size.LARGE
+        context['form'] = CustomUserCreationForm
+        context['forms'] = LoginForm
+        context['filter'] = self.plantfilter
+        return context
+
+    
 class Catologue(ListView):
     template_name = 'catologue.html'
     context_object_name = 'plants'

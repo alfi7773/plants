@@ -108,37 +108,34 @@
 
 <div id="loginModal" class="modal">
   <div class="modal-content">
+    <div class="text-center pad-top-20 link">
+      <a href="" class="switch-to-login active">Login</a> | <a href="" class="switch-to-register ">Register</a>
+    </div>
     <span class="close-btn">&times;</span>
     <form action="{% url 'login' %}" method="post">
-      <a id="openLoginModal1" href="">Login</a> | <a id="openRegisterModal1" href="">Register</a>
+      <p class="text-center pad-top-20">Enter your username and password to login.</p>
       {% csrf_token %}
       <div class="forms modal-button">  
         <p class="main-none">{{ forms.label }}</p>
         {{ forms }}
-        <button type="submit">Login</button>
+        <div class="col-display form-button text-center">
+          <p class="green ends pad-top-20">Forgot Password?</p>
+          <button type="submit">Login</button>
+        </div>
       </div>
-    </form>
+    </form> 
   </div>
 </div>
 
 
-<div id="loginModal1" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <form action="{% url 'login' %}" method="post">
-      <a id="openLoginModal1" href="">Login</a> | <a id="openRegisterModal1" href="">Register</a>
-      {% csrf_token %}
-      <div class="forms modal-button">  
-        <p class="main-none">{{ forms.label }}</p>
-        {{ forms }}
-        <button type="submit">Login</button>
-      </div>
-    </form>
-  </div>
-</div>
+
 
 <div id="registerModal" class="modal">
   <div class="modal-content">
+    <div class="text-center pad-top-20 link">
+      <a href="" class="switch-to-login">Login</a> | <a href="" class="switch-to-register active">Register</a>
+    </div>
+
     <span class="close-btn">&times;</span>
     <form action="{% url 'signup' %}" method="post">
       {% csrf_token %}
@@ -151,18 +148,7 @@
 </div>
 
 
-<div id="registerModal1" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <form action="{% url 'signup' %}" method="post">
-      {% csrf_token %}
-      <div class="forms modal-button">
-        {{ form.as_p }}
-        <button type="submit">Register</button>
-      </div>
-    </form>
-  </div>
-</div>
+
 
       {% endif %}
 </section>
