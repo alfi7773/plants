@@ -299,6 +299,10 @@ img {
     padding-left: 400px;
 }
 
+.pad-left-50 {
+    padding-left: 100px;
+}
+
 .sale {
     background-image: url(../images/sale.png);
     background-position: center;
@@ -321,6 +325,11 @@ img {
 
 .width-description {
     width: 540px;
+}
+
+.login-part button {
+    color: black;
+    background-color: transparent;
 }
 
 .circle {
@@ -409,6 +418,12 @@ h2 {
     font-family: Cera Pro, sans-serif;
 }
 
+.line {
+    width: 100px;
+    height: 1px;
+    background-color: #9b9b9b;
+}
+
 .big-text {
     font-size: 70px;
     font-family: Cera Pro, sans-serif;
@@ -474,6 +489,13 @@ button {
     display: flex;
     gap: 10px;
     padding-top: 10px;
+  }
+
+  .display-gaps {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
   }
   
   .circle {
@@ -792,7 +814,7 @@ select, textarea {
 
 .modal-content {
     background-color: white;
-    margin: 10% auto;
+    margin: 6% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;

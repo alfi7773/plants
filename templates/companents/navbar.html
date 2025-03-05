@@ -108,23 +108,44 @@
 
 <div id="loginModal" class="modal">
   <div class="modal-content">
-    <div class="text-center pad-top-20 link">
+    <div class="text-center pad-top-20 link pad-20">
       <a href="" class="switch-to-login active">Login</a> | <a href="" class="switch-to-register ">Register</a>
     </div>
     <span class="close-btn">&times;</span>
     <form action="{% url 'login' %}" method="post">
-      <p class="text-center pad-top-20">Enter your username and password to login.</p>
+      <p class="start pad-20 pad-top-20">Enter your username and password to login.</p>
       {% csrf_token %}
       <div class="forms modal-button">  
         <p class="main-none">{{ forms.label }}</p>
         {{ forms }}
+        {{ forms.error }}
         <div class="col-display form-button text-center">
           <p class="green ends pad-top-20">Forgot Password?</p>
           <button type="submit">Login</button>
         </div>
       </div>
     </form> 
-  </div>
+
+      <div class="text-center display-gaps pad-top-20">
+        <div class="line"></div> <p>Or login with </h2><div class="line"></div>
+        </div>
+
+      <div class=" login-part modal-button pad-top-20">
+        <button class="align-center display-gaps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28px" height="28px">
+          <path fill="#4285F4" d="M45.12 20.22H24v7.56h12.13c-1.76 5.28-6.74 9.08-12.13 9.08-7.18 0-13-5.82-13-13s5.82-13 13-13c3.22 0 6.18 1.16 8.48 3.08l5.64-5.64C36.01 4.48 31.27 2 24 2 11.85 2 2 11.85 2 24s9.85 22 22 22c11.27 0 21-9 21-21 0-1.16-.12-2.3-.33-3.4z"/>
+          <path fill="#34A853" d="M6.34 14.7l6.22 4.56c1.68-4.1 5.7-6.98 10.11-6.98 3.22 0 6.18 1.16 8.48 3.08l5.64-5.64C36.01 4.48 31.27 2 24 2 15.72 2 8.75 7.1 6.34 14.7z"/>
+          <path fill="#FBBC05" d="M24 46c6.18 0 11.85-2.28 16.2-6.02l-6.98-5.58c-2.78 1.92-6.2 3.06-9.94 3.06-5.36 0-10.38-3.8-12.14-9.08l-6.16 4.74C7.2 38.88 15.06 46 24 46z"/>
+          <path fill="#EA4335" d="M45.12 20.22H24v7.56h12.13c-.88 2.58-2.46 4.74-4.5 6.34.02-.02.05-.04.07-.06l6.98 5.58c-.47.42-1 1-1.51 1.44 4.18-3.06 6.93-7.96 6.93-13.48 0-1.16-.12-2.3-.33-3.4z"/>
+        </svg>
+        Login with Google</button>
+      </div>
+
+      <div class=" login-part modal-button pad-top-20">
+        <button class="align-center display-gaps"><i class="fa-brands fa-facebook-f"></i>
+        Login with Facebook</button>
+      </div>
+        
+      </div>
 </div>
 
 
@@ -138,12 +159,33 @@
 
     <span class="close-btn">&times;</span>
     <form action="{% url 'signup' %}" method="post">
+      <p class="start pad-20 pad-top-20">Enter your email and password to register.</p>
       {% csrf_token %}
       <div class="forms modal-button">
         {{ form.as_p }}
         <button type="submit">Register</button>
       </div>
     </form>
+
+    <div class="text-center display-gaps pad-top-20">
+      <div class="line"></div> <p>Or register with </h2><div class="line"></div>
+      </div>
+
+    <div class=" login-part modal-button pad-top-20">
+      <button class="align-center display-gaps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28px" height="28px">
+        <path fill="#4285F4" d="M45.12 20.22H24v7.56h12.13c-1.76 5.28-6.74 9.08-12.13 9.08-7.18 0-13-5.82-13-13s5.82-13 13-13c3.22 0 6.18 1.16 8.48 3.08l5.64-5.64C36.01 4.48 31.27 2 24 2 11.85 2 2 11.85 2 24s9.85 22 22 22c11.27 0 21-9 21-21 0-1.16-.12-2.3-.33-3.4z"/>
+        <path fill="#34A853" d="M6.34 14.7l6.22 4.56c1.68-4.1 5.7-6.98 10.11-6.98 3.22 0 6.18 1.16 8.48 3.08l5.64-5.64C36.01 4.48 31.27 2 24 2 15.72 2 8.75 7.1 6.34 14.7z"/>
+        <path fill="#FBBC05" d="M24 46c6.18 0 11.85-2.28 16.2-6.02l-6.98-5.58c-2.78 1.92-6.2 3.06-9.94 3.06-5.36 0-10.38-3.8-12.14-9.08l-6.16 4.74C7.2 38.88 15.06 46 24 46z"/>
+        <path fill="#EA4335" d="M45.12 20.22H24v7.56h12.13c-.88 2.58-2.46 4.74-4.5 6.34.02-.02.05-.04.07-.06l6.98 5.58c-.47.42-1 1-1.51 1.44 4.18-3.06 6.93-7.96 6.93-13.48 0-1.16-.12-2.3-.33-3.4z"/>
+      </svg>
+      Login with Google</button>
+    </div>
+
+    <div class=" login-part modal-button pad-top-20">
+      <button class="align-center display-gaps"><i class="fa-brands fa-facebook-f"></i>
+      Login with Facebook</button>
+    </div>
+
   </div>
 </div>
 
