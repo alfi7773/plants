@@ -110,7 +110,23 @@
   <div class="modal-content">
     <span class="close-btn">&times;</span>
     <form action="{% url 'login' %}" method="post">
-      <a id="openLoginModal" href=""></a>
+      <a id="openLoginModal1" href="">Login</a> | <a id="openRegisterModal1" href="">Register</a>
+      {% csrf_token %}
+      <div class="forms modal-button">  
+        <p class="main-none">{{ forms.label }}</p>
+        {{ forms }}
+        <button type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div id="loginModal1" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <form action="{% url 'login' %}" method="post">
+      <a id="openLoginModal1" href="">Login</a> | <a id="openRegisterModal1" href="">Register</a>
       {% csrf_token %}
       <div class="forms modal-button">  
         <p class="main-none">{{ forms.label }}</p>
@@ -122,6 +138,20 @@
 </div>
 
 <div id="registerModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <form action="{% url 'signup' %}" method="post">
+      {% csrf_token %}
+      <div class="forms modal-button">
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div id="registerModal1" class="modal">
   <div class="modal-content">
     <span class="close-btn">&times;</span>
     <form action="{% url 'signup' %}" method="post">

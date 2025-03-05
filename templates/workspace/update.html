@@ -2,7 +2,7 @@
 
 {% block content %}
   <h2 class="text-center">Update plant</h2>
-  <form method="post">
+  {% comment %} <form method="post">
     {% csrf_token %}
     <div class="forma forms container">
       {{ form.as_p }}
@@ -10,5 +10,12 @@
     <center>
       <button class="text-center" type="submit">Save</button>
     </center>
-  </form>
+  </form> {% endcomment %}
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ image_form.as_p }}
+    <button type="submit">Обновить</button>
+</form>
 {% endblock %}

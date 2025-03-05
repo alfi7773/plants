@@ -12,6 +12,7 @@ class PlantForm(forms.ModelForm):
                   'category', 
                   'tags', 
                   'description', 
+                #   'image',
                   'user']
         
     widgets = {
@@ -22,5 +23,16 @@ class PlantForm(forms.ModelForm):
         'category': forms.Select(attrs={'class': ''}),
         'tags': forms.SelectMultiple(attrs={'class':''}),
         'description': forms.Textarea(attrs={'class': ''}),
+        # 'image': forms.ClearableFileInput(attrs={'class': ''}),
         'user': forms.Select()
+    }
+    
+    
+class ImagePlantForm(forms.ModelForm):
+    class Meta:
+        model = ImagePlant
+        fields = ['image']
+
+    widgets = {
+        'image': forms.ClearableFileInput(attrs={'class': ''}),
     }

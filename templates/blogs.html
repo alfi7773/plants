@@ -1,17 +1,20 @@
 {% extends "main.html" %}
 
 {% block content %}
-<div>
-    <div class="display3 text-center media-container pad-top-20">
-        {% for blog in blogs %}
-          <a href="{% url 'detail_blog' blog.id %}">
-            <div class="pad-top-20 blog">
-              <img src="{{ blog.image.url }}" alt="" />
-              <h3>{{ blog.name }}</h3>
-              <br /><p>{{ blog.description }}</p>
-            </div>
-          </a>
-        {% endfor %}
-      </div>
-</div>
+<center>
+<div class="">
+
+    <div class="display-plant container media-container pad-top-20">
+      {% for blog in blogs %}
+      <a href="{% url 'detail_blog' blog.id %}">
+        <div class="pad-top-20 blog">
+          <img src="{{ blog.image.url }}" alt="" />
+          <h3>{{ blog.name }}</h3>
+          <br /><p>{{ blog.description }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</center>
 {% endblock %}

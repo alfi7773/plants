@@ -127,30 +127,104 @@ menuToggleButton.addEventListener('click', () => {
 // }
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  const loginModal = document.getElementById("loginModal");
-  const registerModal = document.getElementById("registerModal");
 
-  document.getElementById("openLoginModal").addEventListener("click", function () {
-      loginModal.style.display = "block";
-  });
 
-  document.getElementById("openRegisterModal").addEventListener("click", function () {
-      registerModal.style.display = "block";
-  });
+document.addEventListener("DOMContentLoaded", function () {  
+  const loginModal = document.getElementById("loginModal");  
+  const registerModal = document.getElementById("registerModal");  
+  const openLoginModalBtn = document.getElementById("openLoginModal");  
+  const openRegisterFromLoginBtn = document.getElementById("openRegisterFromLogin");  
+  const closeLoginModalBtn = document.getElementById("closeLoginModal");  
+  const closeRegisterModalBtn = document.getElementById("closeRegisterModal");  
 
-  document.querySelectorAll(".close-btn").forEach(btn => {
-      btn.addEventListener("click", function () {
-          loginModal.style.display = "none";
-          registerModal.style.display = "none";
-      });
-  });
+  // Открыть модальное окно логина  
+  openLoginModalBtn.addEventListener("click", () => {  
+      loginModal.style.display = "block";  
+  });  
 
-  window.addEventListener("click", function (event) {
-      if (event.target === loginModal) loginModal.style.display = "none";
-      if (event.target === registerModal) registerModal.style.display = "none";
-  });
-});
+  // Открыть модальное окно регистрации из модального окна логина  
+  openRegisterFromLoginBtn.addEventListener("click", (event) => {  
+      event.preventDefault(); // Предотвратить переход по ссылке  
+      loginModal.style.display = "none"; // Скрыть модальное окно логина  
+      registerModal.style.display = "block"; // Показать модальное окно регистрации  
+  });  
+
+  // Закрыть модальное окно логина  
+  closeLoginModalBtn.addEventListener("click", () => {  
+      loginModal.style.display = "none";  
+  });  
+
+  // Закрыть модальное окно регистрации  
+  closeRegisterModalBtn.addEventListener("click", () => {  
+      registerModal.style.display = "none";  
+  });  
+
+  // Закрыть модальные окна при клике вне модального окна  
+  window.addEventListener("click", (event) => {  
+      if (event.target === loginModal) {  
+          loginModal.style.display = "none";  
+      }  
+      if (event.target === registerModal) {  
+          registerModal.style.display = "none";  
+      }  
+  });  
+});  
+
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const loginModal = document.getElementById("loginModal");
+//   const registerModal = document.getElementById("registerModal");
+
+//   document.getElementById("openLoginModal").addEventListener("click", function () {
+//       loginModal.style.display = "block";
+//   });
+
+//   document.getElementById("openRegisterModal").addEventListener("click", function () {
+//       registerModal.style.display = "block";
+//   });
+
+//   document.querySelectorAll(".close-btn").forEach(btn => {
+//       btn.addEventListener("click", function () {
+//           loginModal.style.display = "none";
+//           registerModal.style.display = "none";
+//       });
+//   });
+
+//   window.addEventListener("click", function (event) {
+//       if (event.target === loginModal) loginModal.style.display = "none";
+//       if (event.target === registerModal) registerModal.style.display = "none";
+//   });
+// });
+
+
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const loginModal = document.getElementById("loginModal1");
+//   const registerModal = document.getElementById("registerModal1");
+
+//   document.getElementById("openLoginModal1").addEventListener("click", function () {
+//       loginModal.style.display = "block";
+//   });
+
+//   document.getElementById("openRegisterModal1").addEventListener("click", function () {
+//       registerModal.style.display = "block";
+//   });
+
+//   document.querySelectorAll(".close-btn").forEach(btn => {
+//       btn.addEventListener("click", function () {
+//           loginModal.style.display = "none";
+//           registerModal.style.display = "none";
+//       });
+//   });
+
+//   window.addEventListener("click", function (event) {
+//       if (event.target === loginModal1) loginModal.style.display = "none";
+//       if (event.target === registerModal1) registerModal.style.display = "none";
+//   });
+// });
+
 
 
 function changeImage(element) {
