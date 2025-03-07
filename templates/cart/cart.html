@@ -46,6 +46,17 @@
     <p>Корзина пуста.</p>
 {% endif %}
 
+<h1>Your Cart</h1>
+{% for item in cart_items %}
+    <p>{{ item.product.name }} - {{ item.quantity }} pcs - ${{ item.item_price }}</p>
+{% endfor %}
+<p>Total Price: ${{ total_price }}</p>
+
+<form action="{% url 'create_order' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Proceed to Order</button>
+</form>
+
 
   <div class="container">
     <h2 class="green text-center-media ">You may be interested in</h2>

@@ -10,6 +10,7 @@ admin.site.register(Description)
 admin.site.register(Blog)
 admin.site.register(Cart)
 admin.site.register(CartItem)
+admin.site.register(Region)
 # admin.site.register(Rating)
 
 

@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="container">
+    <div class="display">
+    {% include "companents/account_part.html" %}
+    <div>
+
+        <select id="id_country" name="country">
+            <option value="">Select a country</option>
+            {% for code, name in countries %}
+            <option value="{{ code }}">{{ name }}</option>
+            {% endfor %}
+        </select>
+        
+        <form method="post">
+            {% csrf_token %}
+            <label for="id_country">Country:</label>
+            {{ form.country }}
+            
+            <label for="id_region">Region:</label>
+            <select id="id_region" name="region">
+                <option value="">Select a country first</option>
+            </select>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    </div>
+    <div>
+        
+{% endblock content %}

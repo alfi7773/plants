@@ -142,7 +142,6 @@ class Catologue(ListView):
         context['filter'] = self.plantfilter
         return context
 
-
 class CartView(View):
     def get(self, request, *args, **kwargs):
         cart = request.session.get('cart', {})
@@ -200,7 +199,6 @@ class RemoveFromCartView(View):
             return redirect('/cart/')
         else:
             return JsonResponse({'success': False, 'message': 'Товар не найден в корзине!'})
-
 class DetailPlant(DetailView):
     model = Plant
     context_object_name = 'plant'
@@ -255,3 +253,38 @@ class AllBlogs(ListView):
     model = Blog
     context_object_name = 'blogs'
     template_name = 'blogs.html'
+    
+    
+class CreateOrderView(View):
+    def post(self, request, *args, **kwargs):
+        cart = Cart.objects.get(user=request.user)
+        cart_items = CartItem.objects.filter(cart=cart)
+        
+        total_price = sum(item.get_total() for item in cart_items)
+        
+        order = Order.objects.create(
+            user=request.user,
+            total_price=total_price,
+            status='pending', 
+        )
+
+        for item in cart_items:
+            OrderItem.objects.create(
+                order=order,
+                plant=item.plant,
+                quantity=item.quantity,
+                price=item.plant.price,
+            )
+
+        cart_items.delete()
+
+        return redirect('order_detail', order_id=order.id)  
+
+class OrderDetailView(View):
+    def get(self, request, *args, **kwargs):
+        order = Order.objects.get(id=kwargs['order_id'])
+        context = {
+            'order': order,
+            'order_items': order.items.all(),
+        }
+        return render(request, 'order/order_detail.html', context)

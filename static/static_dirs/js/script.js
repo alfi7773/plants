@@ -224,6 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
 // document.addEventListener("DOMContentLoaded", function () {
 //   const loginModal = document.getElementById("loginModal1");
 //   const registerModal = document.getElementById("registerModal1");
@@ -268,3 +269,24 @@ function changeQuantity(amount) {
     quantityInput.value = currentValue + amount;
   }
 }
+
+
+document.getElementById("id_country").addEventListener("change", function() {
+  let country = this.value;
+  let regionSelect = document.getElementById("id_region");
+
+  regionSelect.innerHTML = '<option value="">Loading...</option>';
+
+  fetch(`/get_regions/?country=${country}`)
+  .then(response => response.json())
+  .then(data => {
+      regionSelect.innerHTML = '<option value="">Select a region</option>';
+      data.forEach(region => {
+          let option = new Option(region.name, region.id);
+          regionSelect.appendChild(option);
+      });
+  })
+  .catch(error => {
+      regionSelect.innerHTML = '<option value="">Error loading regions</option>';
+  });
+});

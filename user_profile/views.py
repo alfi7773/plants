@@ -17,6 +17,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import UpdateView
 from django.urls import reverse_lazy
 from .forms import UserUpdateForm
+from plant.models import Region
+from django_countries import countries
+
+
 
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
@@ -150,5 +154,25 @@ class ProfileUser(LoginRequiredMixin, View):
         return render(request, self.template_name, context)
 
 
+class RegionListView(LoginRequiredMixin, View):
+    template_name = 'profile/adress.html'
+    # model = User
+    form_class = UserUpdateForm
+    
+    def get(self, request, *args, **kwargs):
+        user_form = self.form_class(instance=request.user)
+        password_form = PasswordChangeForm(request.user)
+        context = {
+            'user_form': user_form,
+            'password_form': password_form,
+            "countries": countries,
+        }
+        return render(request, self.template_name, context)
+    
+    
+    # def get(self, request, *args, **kwargs):
+    #     country = request.GET.get("country")
+    #     regions = Region.objects.filter(country=country).values("id", "name")
+    #     return JsonResponse(list(regions), safe=False)
 
 # Create your views here.

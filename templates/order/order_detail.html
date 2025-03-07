@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>Order #{{ order.id }} - Status: {{ order.get_status_display }}</h1>
+<p>Created at: {{ order.created_at }}</p>
+<p>Total Price: {{ order.total_price }}</p>
+
+<h2>Items in the Order:</h2>
+<ul>
+    {% for item in order_items %}
+        <li>{{ item.plant.name }} - {{ item.quantity }} pcs - ${{ item.price }} each</li>
+    {% endfor %}
+</ul>
+
+<p><a href="{% url 'cart' %}">Back to cart</a></p>
+{% endblock %}

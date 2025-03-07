@@ -2,6 +2,7 @@ from django.db import models
 from django_resized import ResizedImageField
 from django.contrib.auth.models import User
 from django.db.models import Avg
+from django_countries.fields import CountryField
 
 class TimeAbstract(models.Model):
     
@@ -153,5 +154,44 @@ class CartItem(TimeAbstract):
     def get_total(self):
         return self.plant.price * self.quantity
 
+class Region(models.Model):
+    
+    first_name = models.CharField('first_name', max_length=100)
+    last_name = models.CharField('first_name', max_length=100)
+    country = CountryField()
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.name} ({self.country.name})"
+    
+
+class Order(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('paid', 'Paid'),
+        ('shipped', 'Shipped'),
+        ('delivered', 'Delivered'),
+    ]
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    total_price = models.DecimalField(decimal_places=2, max_digits=10)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Order {self.id} by {self.user.username}"
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
+    plant = models.ForeignKey(Plant, on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField(default=1)
+    price = models.DecimalField(decimal_places=2, max_digits=10)
+
+    def __str__(self):
+        return f"{self.plant.name} - {self.quantity} pcs"
+
+    def get_total(self):
+        return self.price * self.quantity
     
 # Create your models here.
