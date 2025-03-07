@@ -1,12 +1,22 @@
 from django.shortcuts import redirect, render
-from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import CreateView, ListView
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView
 from .forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth.views import LogoutView
 from plant.models import Category, Plant
 from django.contrib.auth import login
 from django.http import JsonResponse
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from .forms import UserUpdateForm
 
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
@@ -53,34 +63,92 @@ class Login(LoginView):
 class CustomLogoutView(LogoutView):
     next_page = '/' 
     
-class ProfileUser(ListView):
-    template_name = 'profile/profile.html'
-    model = Plant
+# class ProfileUser(ListView):
+#     template_name = 'profile/profile.html'
+#     model = Plant
+#     form_class = CustomUserCreationForm
+#     success_url = reverse_lazy('home')
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
-        return context
+    
+#     def form_valid(self, form):
+#         user = form.save()
+#         login(self.request, user)
+#         return redirect(self.success_url)
+    
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['user'] = self.request.user
+#         context['form'] = self.form_class()
+#         return context
+    
+#     def get(self, request, *args, **kwargs):
+#         cart = request.session.get('cart', {})
+#         cart_items = []
+#         total_price = 0
+#         categories = Category.objects.all()
+#         forms = self.form_class()
+
+#         for plant_id, quantity in cart.items():
+#             plant = Plant.objects.get(id=plant_id)
+#             item_price = plant.price * quantity
+#             cart_items.append({'product': plant, 'quantity': quantity, 'item_price': item_price})
+#             total_price += item_price
+
+#         context = {
+#             'cart_items': cart_items,
+#             'total_price': total_price,
+#             'categories': categories,
+#             'forms': forms,
+#         }
+        
+#         return render(request, "profile/profile.html", context)
+
+
+
+
+class ProfileUser(LoginRequiredMixin, View):
+    template_name = 'profile/profile.html'
+    model = User
+    form_class = UserUpdateForm
+    success_url = reverse_lazy('home')
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['user'] = self.request.user
+    #     context['user_form'] = self.form_class(instance=self.request.user)
+    #     context['password_form'] = PasswordChangeForm(self.request.user)
+    #     return context
     
     def get(self, request, *args, **kwargs):
-        cart = request.session.get('cart', {})
-        cart_items = []
-        total_price = 0
-        categories = Category.objects.all()
-
-        for plant_id, quantity in cart.items():
-            plant = Plant.objects.get(id=plant_id)
-            item_price = plant.price * quantity
-            cart_items.append({'product': plant, 'quantity': quantity, 'item_price': item_price})
-            total_price += item_price
-
+        user_form = self.form_class(instance=request.user)
+        password_form = PasswordChangeForm(request.user)
         context = {
-            'cart_items': cart_items,
-            'total_price': total_price,
-            'categories': categories,
+            'user_form': user_form,
+            'password_form': password_form
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        user_form = self.form_class(request.POST, instance=request.user)
+        password_form = PasswordChangeForm(request.user, request.POST)
+        
+        if 'user_form' in request.POST:
+            if user_form.is_valid():
+                user_form.save()
+                return redirect('profile')
+        elif 'password_form' in request.POST:
+            if password_form.is_valid():
+                password_form.save()
+                update_session_auth_hash(request, password_form.user) 
+                return redirect('profile')
+        
+        context = {
+            'user_form': user_form,
+            'password_form': password_form
         }
         
-        return render(request, "profile/profile.html", context)
-    
+        return render(request, self.template_name, context)
+
+
 
 # Create your views here.

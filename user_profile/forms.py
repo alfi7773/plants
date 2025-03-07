@@ -25,3 +25,15 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = User  
         fields = ['username', 'password']
+        
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']
+        
+        widgets = {
+            'username':forms.TextInput(attrs={'placeholder': 'username'},),
+            'email':forms.EmailInput(attrs={'placeholder': 'email'},),
+            'first_name':forms.TextInput(attrs={'placeholder': 'first_name'},),
+            'last_name':forms.TextInput(attrs={'placeholder': 'last_name'},),
+        }

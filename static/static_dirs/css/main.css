@@ -623,6 +623,14 @@ button {
     border: solid 0;
 }
 
+.forms ul {
+    display: none;
+}
+
+.helptext {
+    display: none;
+}
+
 .formss {
     /*border: none;*/
     padding: 10px;
@@ -798,7 +806,7 @@ select, textarea {
 
 .forms input {
     width: 100%;
-    padding: 20px;
+    /* padding: 20px;    */
 }
 
 .modal {
@@ -1097,3 +1105,48 @@ select, textarea {
 .cart-item button:hover {
     background-color: #45a049;
 }
+
+/* .form-group  label {
+    margin: 10px;
+} */
+
+
+.my-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .my-form input,
+  .my-form textarea,
+  .my-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.my-form input:focus,
+.my-form textarea:focus,
+.my-form select:focus {
+    border-color: #28a745;
+    outline: none;
+  }
+  
+  .my-form button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .my-form button:hover {
+    background-color: #218838;
+  }
+  
