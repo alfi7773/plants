@@ -19,6 +19,7 @@ from django.urls import reverse_lazy
 from .forms import UserUpdateForm
 from plant.models import Region
 from django_countries import countries
+from django.contrib import messages
 
 
 
@@ -126,9 +127,12 @@ class ProfileUser(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user_form = self.form_class(instance=request.user)
         password_form = PasswordChangeForm(request.user)
+        
+        
         context = {
             'user_form': user_form,
-            'password_form': password_form
+            'password_form': password_form,
+            
         }
         return render(request, self.template_name, context)
 
@@ -142,6 +146,7 @@ class ProfileUser(LoginRequiredMixin, View):
                 return redirect('profile')
         elif 'password_form' in request.POST:
             if password_form.is_valid():
+                messages.success(request, 'Success changed password')
                 password_form.save()
                 update_session_auth_hash(request, password_form.user) 
                 return redirect('profile')

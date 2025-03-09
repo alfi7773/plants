@@ -139,10 +139,12 @@ class Catologue(ListView):
         context['categories'] = Category.objects.annotate(plant_count=Count('plant'))
         context['sizes'] = Size.objects.annotate(plant_count=Count('plant'))
         context['size_objects'] = Size.SMALL, Size.MEDIUM, Size.LARGE
+        context['form'] = CustomUserCreationForm
+        context['forms'] = LoginForm
         context['filter'] = self.plantfilter
         return context
 
-class CartView(View):
+class CartView(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         cart = request.session.get('cart', {})
         cart_items = []
@@ -168,7 +170,7 @@ class CartView(View):
         return render(request, 'cart/cart.html', context)
 
 
-class AddToCartView(View):
+class AddToCartView(View, LoginRequiredMixin):
     def post(self, request, *args, **kwargs):
         plant_id = request.POST.get('plant_id')
         quantity = int(request.POST.get('quantity', 1))
@@ -212,6 +214,8 @@ class DetailPlant(DetailView):
         context['tags'] = plant.tags.all()
         context['plants'] = Plant.objects.all()
         context['images'] = plant.images.all()
+        context['form'] = CustomUserCreationForm
+        context['forms'] = LoginForm
         
         return context
     
@@ -228,6 +232,8 @@ class Reviews(DetailView):
         context['tags'] = plant.tags.all()
         context['plants'] = Plant.objects.all()
         context['images'] = plant.images.all()
+        context['form'] = CustomUserCreationForm
+        context['forms'] = LoginForm
         
         return context
     
@@ -249,15 +255,28 @@ class DetailBlog(DetailView):
     context_object_name = 'blog'
     template_name = 'detail_blog.html'
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = CustomUserCreationForm
+        context['forms'] = LoginForm
+        return context
+    
+    
 class AllBlogs(ListView):
     model = Blog
     context_object_name = 'blogs'
     template_name = 'blogs.html'
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = CustomUserCreationForm
+        context['forms'] = LoginForm
+        return context
     
-class CreateOrderView(View):
+    
+class CreateOrderView(View, LoginRequiredMixin):
     def post(self, request, *args, **kwargs):
-        cart = Cart.objects.get(user=request.user)
+        cart = Cart.objects.filter(user=request.user).first()
         cart_items = CartItem.objects.filter(cart=cart)
         
         total_price = sum(item.get_total() for item in cart_items)
@@ -280,9 +299,10 @@ class CreateOrderView(View):
 
         return redirect('order_detail', order_id=order.id)  
 
-class OrderDetailView(View):
+class OrderDetailView(View, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         order = Order.objects.get(id=kwargs['order_id'])
+        
         context = {
             'order': order,
             'order_items': order.items.all(),

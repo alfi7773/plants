@@ -14,8 +14,10 @@
 
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    {{ image_form.as_p }}
-    <button type="submit">Обновить</button>
+    <div class="forms">
+      {{ form.as_p }}
+      {{ image_form.as_p }}
+    </div>
+    <button type="submit">Save</button>
 </form>
 {% endblock %}

@@ -22,24 +22,33 @@
         </div>
       </form>
      </div>
-        <div>
-          <h2>Password Change</h2>
-          <form method="post">
-            {% csrf_token %}
-            <div class="forms">
+     <div>
+      <h2>Password Change</h2>
+      <form method="post">
+          {% csrf_token %}
+          <div class="forms">
               {{ password_form.as_p }}
+              
               {% if password_form.errors %}
-                <div class="form-errors">
-                  {% for error in password_form.errors %}
-                    <p class="error">{{ error }}</p>
-                  {% endfor %}
-                </div>
+                  <div class="form-errors">
+                      {% for field, errors in password_form.errors.items %}
+                          {% for error in errors %}
+                              <p class="error">{{ error }}</p>
+                          {% endfor %}
+                      {% endfor %}
+                  </div>
               {% endif %}
+              
+              {% if messages %}
+                  {% for message in messages %}
+                      <div class="{{ message.tags }}">{{ message }}</div>
+                  {% endfor %}
+              {% endif %}
+  
               <button type="submit" name="password_form">Change Password</button>
-            </div>
-          </form>
-        </div>
-
+          </div>
+      </form>
+  </div>
   </main>
 
   

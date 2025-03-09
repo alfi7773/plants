@@ -20,46 +20,48 @@
         <a href="{% url "catologue" %}">Catologue</a>
       </li>
       <li class="main-none">
-      <a href="{% url "cart" %}">Basket</a>
+        <a href="{% url "cart" %}">Basket</a>
       </li>
-    </ul>
-  </div>
-  <div class="display-gap">
-    {% comment %} <a href=""><div class="search"></div></a> {% endcomment %}
-    <a href="{% url "cart" %}"><svg id="cart-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-      <path fill="none" stroke="black" stroke-width="2" 
-          d="M3 3H6L8 16H18L20 6H6M8 20A1 1 0 1 1 8 18A1 1 0 0 1 8 20ZM16 20A1 1 0 1 1 16 18A1 1 0 0 1 16 20Z"/>
-  </svg>
-  
-  </a>
-    <div class="search-container">
-      <svg id="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path fill="none" stroke="black" stroke-width="2" d="M15 15L21 21M17 10A7 7 0 1 1 3 10A7 7 0 0 1 17 10Z"/>
-      </svg>
-      <form id="search-form" method="get">
-          <input type="text" name="q" id="search-input" placeholder="Поиск..." value="{{ request.GET.q }}">
-      </form>
-  </div>
-  
-    {% if user.is_authenticated %}
-      {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
-      <a href="{% url "profile" %}"><svg id="user-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <path fill="none" stroke="black" stroke-width="2" 
-        d="M12 12A5 5 0 1 1 12 2A5 5 0 0 1 12 12ZM2 22C2 17.58 5.58 14 10 14H14C18.42 14 22 17.58 22 22"/>
-      </svg></a>
+      {% if user.is_authenticated %}
       <a href="{% url 'work' %}">Workspace</a>
-      <a href="{% url "cart" %}">Basket</a>
-      <form action="{% url 'logout' %}" method="post" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-      </form>
-      
+      {% endif %}
+      <div class="search-container">
+            <svg id="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="none" stroke="black" stroke-width="2" d="M15 15L21 21M17 10A7 7 0 1 1 3 10A7 7 0 0 1 17 10Z"/>
+            </svg>
+            <form id="search-form" method="get">
+              <input type="text" name="q" id="search-input" placeholder="Поиск..." value="{{ request.GET.q }}">
+            </form>
+          </div>
+          
+          {% if user.is_authenticated %}
+          {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
+          <a href="{% url "profile" %}"><svg id="user-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="none" stroke="black" stroke-width="2" 
+            d="M12 12A5 5 0 1 1 12 2A5 5 0 0 1 12 12ZM2 22C2 17.58 5.58 14 10 14H14C18.42 14 22 17.58 22 22"/>
+          </svg></a>
+          {% comment %} <a href="{% url "cart" %}">Basket</a> {% endcomment %}
+          <div class="display-gap">
+            {% comment %} <a href=""><div class="search"></div></a> {% endcomment %}
+            <a href="{% url "cart" %}"><svg id="cart-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="none" stroke="black" stroke-width="2" 
+              d="M3 3H6L8 16H18L20 6H6M8 20A1 1 0 1 1 8 18A1 1 0 0 1 8 20ZM16 20A1 1 0 1 1 16 18A1 1 0 0 1 16 20Z"/>
+            </svg>
+          </ul>
+        </div>
+        
+      </a>
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+              {% csrf_token %}
+      <button type="submit">Logout</button>
+    </form>
+    
     
     {% else %}
-      {% comment %} <button id="openModalBtn1">Login</button>
-
-
-        <div id="modal1" class="modal1">
+    {% comment %} <button id="openModalBtn1">Login</button>
+    
+    
+    <div id="modal1" class="modal1">
           <div class="modal-content1">
             <span class="close-btn1">&times;</span>
             <div class="text-center hrefs">
@@ -103,8 +105,10 @@
 
       </div> {% endcomment %}
 
+<div>
 <button id="openLoginModal">Login</button>
 <button id="openRegisterModal">Register</button>
+</div>
 
 <div id="loginModal" class="modal">
   <div class="modal-content">

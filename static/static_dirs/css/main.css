@@ -746,7 +746,7 @@ select, textarea {
 .block-1:hover {
     width: 350px;
     height: 350px;
-    transition: 1s;
+    transform: 1s;
 }
 
 .block-2 {
@@ -764,7 +764,7 @@ select, textarea {
 .block-2:hover {
     width: 350px;
     height: 350px;
-    transition: 1s;
+    transform: 1s;
 }
 
 .block-3 {
@@ -782,7 +782,7 @@ select, textarea {
 .block-3:hover {
     width: 350px;
     height: 350px;
-    transition: 1s;
+    transform: 1s;
 }
 
 .footer {
