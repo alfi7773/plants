@@ -9,6 +9,9 @@ class ListPlant(ListView):
     model = Plant
     template_name = 'workspace/index.html'
     context_object_name = 'plants'
+    
+    def get_queryset(self):
+        return Plant.objects.filter(user=self.request.user)
 
 class ProductCreateView(CreateView):
     model = Plant

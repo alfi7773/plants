@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h1>Order #{{ order.id }} - Status: {{ order.get_status_display }}</h1>
+{% comment %} <h1>Order #{{ order.id }} - Status: {{ order.get_status_display }}</h1>
 <p>Created at: {{ order.created_at }}</p>
 <p>Total Price: {{ order.total_price }}</p>
 
@@ -12,5 +12,104 @@
     {% endfor %}
 </ul>
 
-<p><a href="{% url 'cart' %}">Back to cart</a></p>
+<p><a href="{% url 'cart' %}">Back to cart</a></p> {% endcomment %}
+
+<div class="container">
+    <form class="billing-form">
+        <h2>Billing Address</h2>
+        <div class="row">
+            <div class="column">
+                <label>First Name *</label>
+                <input type="text" required>
+            </div>
+            <div class="column">
+                <label>Last Name *</label>
+                <input type="text" required>
+            </div>
+        </div>
+
+        <label>Country / Region *</label>
+        <select required>
+            <option value="">Select a country / region</option>
+        </select>
+
+        <label>Town / City *</label>
+        <input type="text" required>
+
+        <label>Street Address *</label>
+        <input type="text" placeholder="House number and street name">
+        <input type="text" placeholder="Apartment, suite, unit, etc. (optional)">
+
+        <div class="row">
+            <div class="column">
+                <label>State *</label>
+                <select required>
+                    <option value="">Select a state</option>
+                </select>
+            </div>
+            <div class="column">
+                <label>Zip *</label>
+                <input type="text" required>
+            </div>
+        </div>
+
+        <label>Email address *</label>
+        <input type="email" required>
+
+        <label>Phone Number *</label>
+        <input type="tel" required>
+
+        <label>
+            <input type="checkbox"> Ship to a different address?
+        </label>
+
+        <label>Order notes (optional)</label>
+        <textarea></textarea>
+    </form>
+
+    <div class="order-summary">
+        <h2>Your Order</h2>
+        <div class="order-item">
+            {% comment %} <img src="plant1.jpg" alt="Plant">
+            <div>
+                <p>Barberton Daisy</p>
+                <small>SKU: 1995751877966</small>
+            </div>
+            <p class="price">$238.00</p> {% endcomment %}
+            
+        </div>
+
+        <div class="order-item">
+            <img src="plant2.jpg" alt="Plant">
+            <div>
+                <p>Blushing Bromeliad</p>
+                <small>SKU: 19957518775065</small>
+            </div>
+            <p class="price">$834.00</p>
+        </div>
+
+        <div class="order-item">
+            <img src="plant3.jpg" alt="Plant">
+            <div>
+                <p>Aluminum Plant</p>
+                <small>SKU: 1995751877786</small>
+            </div>
+            <p class="price">$1,611.00</p>
+        </div>
+
+        <hr>
+
+        <p>Subtotal: <strong>$2,683.00</strong></p>
+        <p>Shipping: <strong>$16.00</strong></p>
+        <p class="total">Total: <strong>$2,699.00</strong></p>
+
+        <h3>Payment Method</h3>
+        <label><input type="radio" name="payment" checked> PayPal</label>
+        <label><input type="radio" name="payment"> Direct bank transfer</label>
+        <label><input type="radio" name="payment"> Cash on delivery</label>
+
+        <button class="place-order">Place Order</button>
+    </div>
+</div>
+
 {% endblock %}
