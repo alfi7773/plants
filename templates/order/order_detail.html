@@ -14,8 +14,12 @@
 
 <p><a href="{% url 'cart' %}">Back to cart</a></p> {% endcomment %}
 
-<div class="container">
-    <form class="billing-form">
+<div class="pad-20">
+    <a href="{% url "home" %}">Home /</a><a href="{% url "catologue" %}">Shop /</a><a href="">Checkout</a>
+</div>
+
+<div class="container2">
+    <form class="billing-form forms">
         <h2>Billing Address</h2>
         <div class="row">
             <div class="column">
@@ -69,39 +73,20 @@
 
     <div class="order-summary">
         <h2>Your Order</h2>
+        {% for item in order_items %}
         <div class="order-item">
-            {% comment %} <img src="plant1.jpg" alt="Plant">
+            {% if item.plant.image %}
+            <img src="{{ item.plant.image.url}}" alt="">
+            {% else %}
+            <h2>no image</h2>
+            {% endif %}
+
             <div>
-                <p>Barberton Daisy</p>
-                <small>SKU: 1995751877966</small>
+                {{ item.plant.name }} - Quantity: {{ item.quantity }} - Price: {{ item.get_total }}  
             </div>
-            <p class="price">$238.00</p> {% endcomment %}
-            
         </div>
+            {% endfor %}
 
-        <div class="order-item">
-            <img src="plant2.jpg" alt="Plant">
-            <div>
-                <p>Blushing Bromeliad</p>
-                <small>SKU: 19957518775065</small>
-            </div>
-            <p class="price">$834.00</p>
-        </div>
-
-        <div class="order-item">
-            <img src="plant3.jpg" alt="Plant">
-            <div>
-                <p>Aluminum Plant</p>
-                <small>SKU: 1995751877786</small>
-            </div>
-            <p class="price">$1,611.00</p>
-        </div>
-
-        <hr>
-
-        <p>Subtotal: <strong>$2,683.00</strong></p>
-        <p>Shipping: <strong>$16.00</strong></p>
-        <p class="total">Total: <strong>$2,699.00</strong></p>
 
         <h3>Payment Method</h3>
         <label><input type="radio" name="payment" checked> PayPal</label>
@@ -111,5 +96,4 @@
         <button class="place-order">Place Order</button>
     </div>
 </div>
-
 {% endblock %}

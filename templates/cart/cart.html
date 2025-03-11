@@ -9,7 +9,7 @@
   <div class="col-display-cart  align-center">
     {% for item in cart_items %}
     <a href="{% url "detail_plant" item.product.id %}">
-    <div class="cart-item display-gap">
+    <div class="cart-item gap-10">
         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" />
         <h2>{{ item.product.name }}</h2>
         <div class="price">${{ item.product.price|floatformat:2 }}</div>
@@ -55,7 +55,7 @@
           
           {% for item in cart_items %}
           <p>{{ item.product.name }} - {{ item.quantity }} pcs - ${{ item.item_price }}</p>
-  {% endfor %}
+          {% endfor %}
   <p>Total Price: ${{ total_price }}</p>
   
   <form action="{% url 'create_order' %}" method="POST">
@@ -63,21 +63,21 @@
     <button type="submit">Proceed to Order</button>
   </form>
 </center>
-
 </div>
 
-  <div class="container">
-    <h2 class="green text-center-media ">You may be interested in</h2>
-    <div class="display-plant1 container media-container">
-      {% for plant in plants|slice:':8' %}
-      <a href="{% url "detail_plant" plant.id %}">
-        <div >
-          <img class="card" src="{{ plant.image.url }}" alt="" />
-          <p>{{ plant.name }}</p>
-          <h4 class="green">${{ plant.price }}</h4>
-        </div>
-      </a>
-      {% endfor %}
-    </div>
+
+<div class="container pad-top-20">
+  <h2 class="green text-center-media ">You may be interested in</h2>
+  <div class="display-plant1 container media-container">
+    {% for plant in plants|slice:':8' %}
+    <a href="{% url "detail_plant" plant.id %}">
+      <div >
+        <img class="card" src="{{ plant.image.url }}" alt="" />
+        <p>{{ plant.name }}</p>
+        <h4 class="green">${{ plant.price }}</h4>
+      </div>
+    </a>
+    {% endfor %}
   </div>
+</div>
 {% endblock %}

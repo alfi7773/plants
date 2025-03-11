@@ -299,12 +299,32 @@ class CreateOrderView(View, LoginRequiredMixin):
 
         return redirect('order_detail', order_id=order.id)  
 
-class OrderDetailView(View, LoginRequiredMixin):
-    def get(self, request, *args, **kwargs):
-        order = Order.objects.get(id=kwargs['order_id'])
+# class OrderDetailView(View, LoginRequiredMixin):
+#     def get(self, request, *args, **kwargs):
+#         # order = Order.objects.get(id=kwargs['order_id'])
+#         order = Order.objects.filter(user=request.user).first()
+#         order_items = OrderItem.objects.filter(order=order)
         
-        context = {
-            'order': order,
-            'order_items': order.items.all(),
-        }
-        return render(request, 'order/order_detail.html', context)
+        
+#         context = {
+#             'order': order,
+#             'order_items': order.items.all(),
+#             # 'order_items': order_items
+#         }
+#         return render(request, 'order/order_detail.html', context)
+
+
+class OrderDetailView(View, LoginRequiredMixin):  
+    def get(self, request, *args, **kwargs):  
+        # order = Order.objects.filter(user=request.user).first()
+        order = Order.objects.all()   
+        if order is None:  
+            return redirect('cart/')  
+
+        order_items = OrderItem.objects.all()  
+
+        context = {  
+            'order': order,  
+            'order_items': order_items,  
+        }  
+        return render(request, 'order/order_detail.html', context)  
