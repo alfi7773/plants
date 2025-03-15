@@ -3,6 +3,8 @@ from django_resized import ResizedImageField
 from django.contrib.auth.models import User
 from django.db.models import Avg
 from django_countries.fields import CountryField
+from django.contrib.auth.models import AbstractUser
+
 
 class TimeAbstract(models.Model):
     
@@ -88,6 +90,13 @@ class Rating(TimeAbstract):
         return f'{self.user} - {self.plant} ({self.score})'
 
 
+# class CustomUser(AbstractUser):
+#     STATUS_CHOICES = [
+#         ('salesman', 'Salesman'),
+#         ('buyer', 'Buyer')
+#     ]
+#     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='buyer')
+
     
 class Plant(TimeAbstract):
     
@@ -102,7 +111,7 @@ class Plant(TimeAbstract):
     category = models.ForeignKey('plant.Category', on_delete=models.PROTECT, related_name='plant')
     tags = models.ManyToManyField('plant.Tag', related_name='plant')
     description = models.ForeignKey('plant.Description', on_delete=models.PROTECT)
-    user =  models.ForeignKey('auth.User', on_delete=models.PROTECT, related_name='plants')
+    user =  models.ForeignKey(User, on_delete=models.PROTECT, related_name='plants', default=1)
     
 
     @property

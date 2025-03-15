@@ -74,16 +74,19 @@
     <div class="order-summary">
         <h2>Your Order</h2>
         {% for item in order_items %}
-        <div class="order-item">
-            {% if item.plant.image %}
-            <img src="{{ item.plant.image.url}}" alt="">
-            {% else %}
+        <a href="{% url "detail_plant" item.plant.id %}">
+
+            <div class="order-item">
+                {% if item.plant.image %}
+                <img src="{{ item.plant.image.url}}" alt="">
+                {% else %}
             <h2>no image</h2>
             {% endif %}
-
+            
             <div>
                 {{ item.plant.name }} - Quantity: {{ item.quantity }} - Price: {{ item.get_total }}  
             </div>
+        </a>
         </div>
             {% endfor %}
 
@@ -94,6 +97,7 @@
         <label><input type="radio" name="payment"> Cash on delivery</label>
 
         <button class="place-order">Place Order</button>
+        <p>Created at: {{ order.created_at }}</p>
     </div>
 </div>
 {% endblock %}

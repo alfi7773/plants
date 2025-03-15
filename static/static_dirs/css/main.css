@@ -217,6 +217,13 @@ hr {
     /* flex-wrap: wrap; */
 }
 
+.display-media {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* flex-wrap: wrap; */
+}
+
 .display2 {
     display: flex;
     align-items: start;
@@ -1099,10 +1106,10 @@ select, textarea {
 }
 
 .cart-item button {
-    background-color: #4CAF50;
+    background-color: #ffffff;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 0px 0px;
     font-size: 16px;
     cursor: pointer;
 }
@@ -1155,12 +1162,12 @@ select, textarea {
     background-color: #218838;
   }
 
-  body {
+  /* body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
     background-color: #f9f9f9;
-}
+} */
 
 .container2 {
     display: flex;
@@ -1252,3 +1259,79 @@ button.place-order:hover {
         flex-direction: column;
     }
 }
+
+
+.cart-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+  .cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  .cart-item img {
+    width: 80px;
+    height: auto;
+    border-radius: 8px;
+  }
+  .cart-item-info {
+    flex-grow: 1;
+    padding: 0 20px;
+  }
+
+  .cart-item-info h2 {
+    font-size: 10px;
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-quantity, .btn-remove, .btn-order {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .btn-remove {
+    background: #dc3545;
+  }
+  .cart-summary {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .recommendations {
+    margin-top: 40px;
+  }
+  .recommendations-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .cart-item {
+      /* flex-direction: column; */
+      text-align: center;
+    }
+    .cart-item-info {
+      padding: 10px 0;
+      display: flex;
+    }
+    .recommendations-container {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+  }

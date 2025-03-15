@@ -63,11 +63,12 @@
   
   <div class="col-display">
     
-    <div class="text-center display-gap pad-top-20  links">
-      <a class="active" href="">All Plants</a>
-      <a class="" href="">New Arrivals</a>
-      <a href="">Sale</a>
+    <div class="text-center display-gap pad-top-20 links">
+      <a class="active" href="{% url "home" %}">All Plants</a>
+      <a class="" href="{% url "arrivals" %}">New Arrivals</a>
+      <a href="{% url "home" %}">Sale</a>
     </div>
+
     
     <div class="card-plant display-plant media-container-small">
       {% for plant in plants %}

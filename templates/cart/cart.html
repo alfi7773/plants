@@ -1,70 +1,55 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h1 class="text-center pad-top-20 pad-20-media">Корзина</h1>
+<h1 class="cart-title">Корзина</h1>
 
-<div class="display">
-
+<div class="cart-container display-media">
   {% if cart_items %}
-  <div class="col-display-cart  align-center">
+  <div class="cart-items">
     {% for item in cart_items %}
-    <a href="{% url "detail_plant" item.product.id %}">
-    <div class="cart-item gap-10">
-        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" />
-        <h2>{{ item.product.name }}</h2>
-        <div class="price">${{ item.product.price|floatformat:2 }}</div>
+    <div class="cart-item ">
+      <a href="{% url 'detail_plant' item.product.id %}">
+        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="cart-item-image"/>
+      </a>
+      <div class="cart-item-info">
+        <div>
+          <h2 class="cart-item-name">{{ item.product.name }}</h2>
+          <div class="cart-item-price">${{ item.product.price|floatformat:2 }}</div>
+        </div>
         <form method="post" action="" class="quantity-controls">
           {% csrf_token %}
-              <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
-              <button type="submit" name="action" value="decrease">−</button>
-              <span>{{ item.quantity }}</span>
-              <button type="submit" name="action" value="increase">+</button>
-            </form>
-            
-            <div class="price">Всего: ${{ item.item_price|floatformat:2 }}</div>
-            <form method="post" action="{% url 'remove_from_cart' %}">
-              {% csrf_token %}
-              <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
-              <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 6h18"/>
-                <path d="M19 6l-1 14H6L5 6"/>
-                <path d="M10 11l4 4M14 11l-4 4"/>
-              </svg>
-            </button>
-          </form>
+          <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
+          <button type="submit" name="action" value="decrease" class="btn-quantity">−</button>
+          <span class="cart-item-quantity">{{ item.quantity }}</span>
+          <button type="submit" name="action" value="increase" class="btn-quantity">+</button>
+        </form>
+        <div class="cart-item-total media-none">Всего: ${{ item.item_price|floatformat:2 }}</div>
+        <form method="post" action="{% url 'remove_from_cart' %}" class="remove-form">
+          {% csrf_token %}
+          <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
+          <button type="submit" class="btn-remove">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 6h18"/>
+              <path d="M19 6l-1 14H6L5 6"/>
+              <path d="M10 11l4 4M14 11l-4 4"/>
+            </svg>
+          </button>
+        </form>
       </div>
-    </a>
-      {% endfor %}
-      
     </div>
-    {% comment %} 
-    <div class="text-end">
-      <h3 class="text-center text-end container pad-20-media">
-        Общая сумма: ${{ total_price|floatformat:2 }}
-        </h3>
-        </div> {% endcomment %}
-        <div class="text-end">
-          {% comment %} <a href="" class="btn btn-success">Перейти к оформлению</a> {% endcomment %}
-        </div>
-        {% comment %} {% else %}
-        <p>Корзина пуста.</p> {% endcomment %}
-        {% endif %}
-        
-        {% comment %} <h1>Your Cart</h1> {% endcomment %}
-        <center class="pad-top-20">
-          
-          {% for item in cart_items %}
-          <p>{{ item.product.name }} - {{ item.quantity }} pcs - ${{ item.item_price }}</p>
-          {% endfor %}
-  <p>Total Price: ${{ total_price }}</p>
-  
-  <form action="{% url 'create_order' %}" method="POST">
-    {% csrf_token %}
-    <button type="submit">Proceed to Order</button>
-  </form>
-</center>
+    {% endfor %}
+  </div>
+  <div class="cart-summary">
+    <h3>Общая сумма: ${{ total_price|floatformat:2 }}</h3>
+    <form action="{% url 'create_order' %}" method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn-order">Proceed to Order</button>
+    </form>
+  </div>
+  {% else %}
+  <p class="empty-cart">Корзина пуста.</p>
+  {% endif %}
 </div>
-
 
 <div class="container pad-top-20">
   <h2 class="green text-center-media ">You may be interested in</h2>

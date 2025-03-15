@@ -127,11 +127,13 @@ class ProfileUser(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user_form = self.form_class(instance=request.user)
         password_form = PasswordChangeForm(request.user)
+        status = CustomUserCreationForm.STATUS[0]
         
         
         context = {
             'user_form': user_form,
             'password_form': password_form,
+            'status': status,
             
         }
         return render(request, self.template_name, context)

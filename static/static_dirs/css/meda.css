@@ -34,7 +34,7 @@
     .cart-item {
         /* display: block; */
         padding: 10px;
-        flex-direction: column;
+        /* flex-direction: column; */
         gap: 10px;
     }
 
@@ -337,6 +337,11 @@
         width: 300px;
     }
 
+    .pad-40-media {
+        padding: 70px;
+        width: 300px;
+    }
+
     .col-display-m {
         display: flex;
         flex-direction: column;
@@ -368,7 +373,12 @@
 
     .container {
         max-width: 320px;
+        padding: 5px;
         /* width: 300px; */
+    }
+
+    .display-media {
+        display: block;
     }
 
     .container-media {

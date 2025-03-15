@@ -6,12 +6,22 @@ from django import forms
 
 class CustomUserCreationForm(UserCreationForm):
     # email = forms.EmailField(required=True)
-
+    
+    SALESMAN = 'salesman'
+    BUYER = 'buyer'
+    
+    STATUS = [
+        (SALESMAN, SALESMAN),
+        (BUYER, BUYER)
+    ]
         
+               
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'forma', 'placeholder': 'username'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': '', 'placeholder': 'email'}))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': '', 'placeholder': 'password'}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': '', 'placeholder': 'confirm password'}))
+    status = forms.ChoiceField(choices=STATUS, initial=BUYER)
+    
     
     class Meta:
         model = User
@@ -27,6 +37,17 @@ class LoginForm(AuthenticationForm):
         fields = ['username', 'password']
         
 class UserUpdateForm(forms.ModelForm):
+    
+    # SALESMAN = 'salesman'
+    # BUYER = 'buyer'
+    # STATUS = [
+    #     (SALESMAN, 'Salesman'),
+    #     (BUYER, 'Buyer')
+    # ]
+    
+    # status = forms.ChoiceField(choices=STATUS, initial=BUYER)
+   
+    
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name']
