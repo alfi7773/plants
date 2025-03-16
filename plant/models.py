@@ -97,6 +97,21 @@ class Rating(TimeAbstract):
 #     ]
 #     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='buyer')
 
+
+
+class MyProfile(models.Model):
+    STATUS_CHOICES = [
+        ('seller', 'Salesman'),
+        ('buyer', 'Buyer'),
+    ]
+    
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES)
+
+
+    def __str__(self):
+        return f"{self.user.username} - {self.get_status_display()}"
+
     
 class Plant(TimeAbstract):
     

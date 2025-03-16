@@ -5,7 +5,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView
 from .forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth.views import LogoutView
-from plant.models import Category, Plant
+from plant.models import Category, MyProfile, Plant
 from django.contrib.auth import login
 from django.http import JsonResponse
 from django.contrib.auth.forms import PasswordChangeForm
@@ -127,15 +127,17 @@ class ProfileUser(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user_form = self.form_class(instance=request.user)
         password_form = PasswordChangeForm(request.user)
-        status = CustomUserCreationForm.STATUS[0]
-        
+        profile, created = MyProfile.objects.get_or_create(user=request.user)
+        user_status = profile.status
+
         
         context = {
             'user_form': user_form,
             'password_form': password_form,
-            'status': status,
+            'status': user_status,
             
         }
+        print(f"User status: {user_status}")
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):

@@ -1,6 +1,10 @@
 
 <aside class="sidebar start col-display">
-    <h2>My Account ({{ user }} - {{ status }})</h2>
+    <h2>My Account ({{ user }} - {% if request.user.myprofile %}
+      {{ status }}
+  {% else %}
+      <p>Статус не указан</p>
+  {% endif %})</h2>
     <ul class="col-display">
       <li>
         <a href="{% url "profile" %}" class="active display-gaps">

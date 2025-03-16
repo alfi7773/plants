@@ -2,31 +2,26 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from plant.models import MyProfile
 
 
 class CustomUserCreationForm(UserCreationForm):
-    # email = forms.EmailField(required=True)
-    
-    SALESMAN = 'salesman'
-    BUYER = 'buyer'
-    
-    STATUS = [
-        (SALESMAN, SALESMAN),
-        (BUYER, BUYER)
-    ]
-        
-               
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'forma', 'placeholder': 'username'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': '', 'placeholder': 'email'}))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': '', 'placeholder': 'password'}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': '', 'placeholder': 'confirm password'}))
-    status = forms.ChoiceField(choices=STATUS, initial=BUYER)
-    
-    
+    status = forms.ChoiceField(choices=MyProfile.STATUS_CHOICES) 
+
     class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
-        
+        model = User  
+        fields = ('username', 'email', 'password1', 'password2', 'status')
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.status = self.cleaned_data['status']
+        if commit:
+            user.save()
+        return user
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'forma', 'placeholder': 'username'}))
@@ -38,14 +33,12 @@ class LoginForm(AuthenticationForm):
         
 class UserUpdateForm(forms.ModelForm):
     
-    # SALESMAN = 'salesman'
-    # BUYER = 'buyer'
-    # STATUS = [
-    #     (SALESMAN, 'Salesman'),
-    #     (BUYER, 'Buyer')
-    # ]
+    STATUS_CHOICES = [
+        ('seller', 'Salesman'),
+        ('buyer', 'Buyer'),
+    ]
     
-    # status = forms.ChoiceField(choices=STATUS, initial=BUYER)
+    status = forms.ChoiceField(choices=STATUS_CHOICES, required=True)
    
     
     class Meta:
@@ -58,3 +51,14 @@ class UserUpdateForm(forms.ModelForm):
             'first_name':forms.TextInput(attrs={'placeholder': 'first_name'},),
             'last_name':forms.TextInput(attrs={'placeholder': 'last_name'},),
         }
+        
+    
+    def save(self, *args, **kwargs):
+        user = super().save(*args, **kwargs)
+        
+        status = self.cleaned_data.get('status')
+        profile, created = MyProfile.objects.get_or_create(user=user)
+        profile.status = status
+        profile.save()
+        
+        return user
