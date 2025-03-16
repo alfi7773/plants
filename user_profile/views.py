@@ -3,7 +3,7 @@ from django.views import View
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView
-from .forms import CustomUserCreationForm, LoginForm
+from .forms import CustomPasswordChangeForm, CustomUserCreationForm, LoginForm
 from django.contrib.auth.views import LogoutView
 from plant.models import Category, MyProfile, Plant
 from django.contrib.auth import login
@@ -126,7 +126,7 @@ class ProfileUser(LoginRequiredMixin, View):
     
     def get(self, request, *args, **kwargs):
         user_form = self.form_class(instance=request.user)
-        password_form = PasswordChangeForm(request.user)
+        password_form = CustomPasswordChangeForm(request.user)
         profile, created = MyProfile.objects.get_or_create(user=request.user)
         user_status = profile.status
 
@@ -171,10 +171,13 @@ class RegionListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user_form = self.form_class(instance=request.user)
         password_form = PasswordChangeForm(request.user)
+        profile, created = MyProfile.objects.get_or_create(user=request.user)
+        user_status = profile.status
         context = {
             'user_form': user_form,
             'password_form': password_form,
             "countries": countries,
+            'status': user_status,
         }
         return render(request, self.template_name, context)
     

@@ -23,7 +23,7 @@
           <span class="cart-item-quantity">{{ item.quantity }}</span>
           <button type="submit" name="action" value="increase" class="btn-quantity">+</button>
         </form>
-        <div class="cart-item-total media-none">Всего: ${{ item.item_price|floatformat:2 }}</div>
+        <div class="cart-item-total media-none">All: ${{ item.item_price|floatformat:2 }}</div>
         <form method="post" action="{% url 'remove_from_cart' %}" class="remove-form">
           {% csrf_token %}
           <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
@@ -40,7 +40,7 @@
     {% endfor %}
   </div>
   <div class="cart-summary">
-    <h3>Общая сумма: ${{ total_price|floatformat:2 }}</h3>
+    <h3>Total price: ${{ total_price|floatformat:2 }}</h3>
     <form action="{% url 'create_order' %}" method="POST">
       {% csrf_token %}
       <button type="submit" class="btn-order">Proceed to Order</button>

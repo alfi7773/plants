@@ -217,6 +217,14 @@ hr {
     /* flex-wrap: wrap; */
 }
 
+.display-start {
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
+    padding: 20px;
+    /* flex-wrap: wrap; */
+}
+
 .display-media {
     display: flex;
     justify-content: space-around;

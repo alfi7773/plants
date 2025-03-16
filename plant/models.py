@@ -101,8 +101,8 @@ class Rating(TimeAbstract):
 
 class MyProfile(models.Model):
     STATUS_CHOICES = [
-        ('seller', 'Salesman'),
-        ('buyer', 'Buyer'),
+        ('Seller', 'Salesman'),
+        ('Buyer', 'Buyer'),
     ]
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)

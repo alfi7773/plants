@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 from plant.models import MyProfile
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -34,8 +35,8 @@ class LoginForm(AuthenticationForm):
 class UserUpdateForm(forms.ModelForm):
     
     STATUS_CHOICES = [
-        ('seller', 'Salesman'),
-        ('buyer', 'Buyer'),
+        ('Seller', 'Salesman'),
+        ('Buyer', 'Buyer'),
     ]
     
     status = forms.ChoiceField(choices=STATUS_CHOICES, required=True)
@@ -62,3 +63,10 @@ class UserUpdateForm(forms.ModelForm):
         profile.save()
         
         return user
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['old_password'].widget.attrs['placeholder'] = 'Current password'
+        self.fields['new_password1'].widget.attrs['placeholder'] = 'New password'
+        self.fields['new_password2'].widget.attrs['placeholder'] = 'Confirm password'

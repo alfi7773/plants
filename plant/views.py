@@ -153,7 +153,7 @@ class CartView(View, LoginRequiredMixin):
         plants = Plant.objects.all()
 
         for plant_id, quantity in cart.items():
-            plant = Plant.objects.get(id=plant_id)
+            plant = get_object_or_404(Plant, id=int(plant_id))
             item_price = plant.price * quantity
             cart_items.append({'product': plant, 'quantity': quantity, 'item_price': item_price})
             total_price += item_price
@@ -164,43 +164,36 @@ class CartView(View, LoginRequiredMixin):
             'categories': categories,
             'plants': plants,
         }
-        
-        
-        
         return render(request, 'cart/cart.html', context)
-
 
 class AddToCartView(View, LoginRequiredMixin):
     def post(self, request, *args, **kwargs):
         plant_id = request.POST.get('plant_id')
         quantity = int(request.POST.get('quantity', 1))
-
         plant = get_object_or_404(Plant, id=plant_id)
-
         cart = request.session.get('cart', {})
 
-        if plant_id in cart:
-            cart[plant_id] += quantity
+        if str(plant_id) in cart:
+            cart[str(plant_id)] += quantity
         else:
-            cart[plant_id] = quantity
+            cart[str(plant_id)] = quantity
 
         request.session['cart'] = cart
-
+        request.session.modified = True
         return redirect('/cart/')
-
 
 class RemoveFromCartView(View):
     def post(self, request, *args, **kwargs):
-        plant_id = request.POST.get('plant_id')  
-
+        plant_id = request.POST.get('plant_id')
         cart = request.session.get('cart', {})
 
-        if plant_id in cart:
-            del cart[plant_id]
+        if str(plant_id) in cart:
+            del cart[str(plant_id)]
             request.session['cart'] = cart
-            return redirect('/cart/')
-        else:
-            return JsonResponse({'success': False, 'message': 'Товар не найден в корзине!'})
+            request.session.modified = True
+
+        return redirect('/cart/')
+
 class DetailPlant(DetailView):
     model = Plant
     context_object_name = 'plant'
@@ -287,6 +280,7 @@ class CreateOrderView(View, LoginRequiredMixin):
             status='pending', 
         )
 
+
         for item in cart_items:
             OrderItem.objects.create(
                 order=order,
@@ -297,31 +291,21 @@ class CreateOrderView(View, LoginRequiredMixin):
 
         cart_items.delete()
 
-        return redirect('order_detail', order_id=order.id)  
 
-# class OrderDetailView(View, LoginRequiredMixin):
-#     def get(self, request, *args, **kwargs):
-#         # order = Order.objects.get(id=kwargs['order_id'])
-#         order = Order.objects.filter(user=request.user).first()
-#         order_items = OrderItem.objects.filter(order=order)
-        
-        
-#         context = {
-#             'order': order,
-#             'order_items': order.items.all(),
-#             # 'order_items': order_items
-#         }
-#         return render(request, 'order/order_detail.html', context)
+        return redirect('order_detail', order.id)  
 
 
 class OrderDetailView(View, LoginRequiredMixin):  
-    def get(self, request, *args, **kwargs):  
+    def get(self, request, *args, **kwargs): 
+        order_id = kwargs.get('order_id') 
         # order = Order.objects.filter(user=request.user).first()
-        order = Order.objects.all()   
+        order = Order.objects.filter(user=request.user, id=order_id).first()
         if order is None:  
-            return redirect('cart/')  
+            return redirect('cart')  
+        
+        print(f"Order ID: {order.id} - Total price: {order.total_price}")
 
-        order_items = OrderItem.objects.all()  
+        order_items = OrderItem.objects.filter(order=order) 
 
         context = {  
             'order': order,  
