@@ -128,10 +128,16 @@ hr {
 }
 
 .cart-card {
-    max-width: 300px;
+    /* max-width: 300px; */
     display: flex;
     gap: 20px;
-    padding: 20px;
+    padding: 40px;
+    align-items: center;
+}
+
+.cart-card img {
+    max-width: 100px;
+
 }
 
 .col-display {

@@ -1,6 +1,6 @@
 
 <aside class="sidebar start col-display">
-    <h2>My Account ({{ user }} - {% if request.user.myprofile %}
+    <h2>My Account ({% if request.user.myprofile %}
       {{ status }}
   {% else %}
       <p>Статус не указан</p>

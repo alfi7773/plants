@@ -1,55 +1,69 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h1 class="cart-title">Корзина</h1>
+<h1 class="cart-title container">Корзина</h1>
+{% comment %} <div class="display"> {% endcomment %}
+  {% if cart_items %}
+  
+<div class="display">
+
+  <table class="">
+    <thead class="">
+        <tr class="display gap-20 container">
+          <th>image</th>
+          <th>name</th>
+          <th>price</th>
+        </tr>
+      </thead>
+      <tbody class="">
+        {% for item in cart_items %}
+        <tr class="cart-card display gap-20 ">
+          <td><img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" /></td>
+          <td>{{ item.product.name }}</td>
+          <td>${{ item.product.price|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+    {% comment %} </div> {% endcomment %}
+    <div class="cart-summary">
+      <h3>Total price: ${{ total_price|floatformat:2 }}</h3>
+      <form action="{% url 'create_order' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn-order">Proceed to Order</button>
+      </form>
+    </div>
+    
+  </div>
+
 
 <div class="cart-container display-media">
-  {% if cart_items %}
-  <div class="cart-items">
-    {% for item in cart_items %}
-    <div class="cart-item ">
-      <a href="{% url 'detail_plant' item.product.id %}">
-        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="cart-item-image"/>
-      </a>
-      <div class="cart-item-info">
-        <div>
-          <h2 class="cart-item-name">{{ item.product.name }}</h2>
-          <div class="cart-item-price">${{ item.product.price|floatformat:2 }}</div>
-        </div>
-        <form method="post" action="" class="quantity-controls">
-          {% csrf_token %}
-          <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
-          <button type="submit" name="action" value="decrease" class="btn-quantity">−</button>
-          <span class="cart-item-quantity">{{ item.quantity }}</span>
-          <button type="submit" name="action" value="increase" class="btn-quantity">+</button>
-        </form>
-        <div class="cart-item-total media-none">All: ${{ item.item_price|floatformat:2 }}</div>
-        <form method="post" action="{% url 'remove_from_cart' %}" class="remove-form">
-          {% csrf_token %}
-          <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
-          <button type="submit" class="btn-remove">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 6h18"/>
-              <path d="M19 6l-1 14H6L5 6"/>
-              <path d="M10 11l4 4M14 11l-4 4"/>
-            </svg>
-          </button>
-        </form>
-      </div>
+  <div class="display">
+    {% if cart_items %}
+  <div class="align-center">
+      {% for item in cart_items %}
+        <a href="{% url "detail_plant" item.product.id %}">
+        <div class="cart-card align-center">
+          <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" />
+          <h2>{{ item.product.name }}</h2>
+          <div class="price">${{ item.product.price|floatformat:2 }}</div>
+          <form method="post" action="" class="quantity-controls">
+            {% csrf_token %}
+                <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
+                <button type="submit" name="action" value="decrease">−</button>
+                <span>{{ item.quantity }}</span>
+                <button type="submit" name="action" value="increase">+</button>
+              </form>
+            </div>
+        </a>
+        {% endfor %}
+      {% else %}
+      <p class="empty-cart">Корзина пуста.</p>
+      {% endif %}
+    <div>
+
     </div>
-    {% endfor %}
-  </div>
-  <div class="cart-summary">
-    <h3>Total price: ${{ total_price|floatformat:2 }}</h3>
-    <form action="{% url 'create_order' %}" method="POST">
-      {% csrf_token %}
-      <button type="submit" class="btn-order">Proceed to Order</button>
-    </form>
-  </div>
-  {% else %}
-  <p class="empty-cart">Корзина пуста.</p>
-  {% endif %}
-</div>
 
 <div class="container pad-top-20">
   <h2 class="green text-center-media ">You may be interested in</h2>
