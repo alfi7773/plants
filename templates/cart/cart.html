@@ -1,43 +1,109 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h1 class="cart-title container">Корзина</h1>
-{% comment %} <div class="display"> {% endcomment %}
+{% comment %} <h1 class="cart-title container">Корзина</h1> {% endcomment %}
+
+<div class="pad-20">
+  <a href="{% url "home" %}">Home /</a><a href="{% url "catologue" %}">Shop /</a><a href="">Checkout</a>
+</div>
   {% if cart_items %}
   
-<div class="display">
+<div class="just-display just-start gap-0 container pad-20">
 
-  <table class="">
+  <table class="col-display just-start pad-20">
     <thead class="">
-        <tr class="display gap-20 container">
-          <th>image</th>
-          <th>name</th>
-          <th>price</th>
+        <tr class="display gap-100 pad-20">
+          <div>
+            <th>Image</th>
+          </div>
+          <div>
+          <th>Name</th>
+        </div>
+          <div>
+          <th>Price</th>
+        </div>
+        <div>
+          <th>Quantity</th>
+        </div>
+        <div>
+        
+        </div>
         </tr>
       </thead>
-      <tbody class="">
-        {% for item in cart_items %}
-        <tr class="cart-card display gap-20 ">
-          <td><img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" /></td>
-          <td>{{ item.product.name }}</td>
-          <td>${{ item.product.price|floatformat:2 }}</td>
+      <div class="display pad-20">
+
+        <tbody class="isplay">
+          {% for item in cart_items %}
+        <tr class="cart-card">
+          <div class="col-display"> 
+            <td><a href="{% url "detail_plant" item.product.id %}"><img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" /></a></td>
+            <td>{{ item.product.name }}</td>
+            <td>${{ item.product.price|floatformat:2 }}</td>
+            
+            <td>
+              <div class="display-gap2 align-end">
+              <div class="">
+                <button type="button" class="qty-btn" onclick="changeQuantity(-1)">-</button>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" readonly>
+              <button type="button" class="qty-btn" onclick="changeQuantity(1)">+</button>
+            </div>
+            </form></td>
+            <td>
+              <div class="gap-20">
+                <form method="post" action="{% url 'remove_from_cart' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="plant_id" value="{{ item.product.id }}" />
+                  <div class="circles">
+                    <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 30 30">
+                      <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"></path>
+                      </svg>
+                    
+                </button>
+              </div>
+                </form>
+              </div>
+            </td>
+            {% endfor %}
+          </div>
+
+            <td>
+              
+            </td>
         </tr>
-        {% endfor %}
       </tbody>
     </table>
     {% endif %}
-    {% comment %} </div> {% endcomment %}
-    <div class="cart-summary">
-      <h3>Total price: ${{ total_price|floatformat:2 }}</h3>
-      <form action="{% url 'create_order' %}" method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn-order">Proceed to Order</button>
-      </form>
-    </div>
+
+    <table class="col-displays align-end pad-20">
+      <thead class="pad-20 align-end">
+        <tr class="pad-20 pad-top-20">
+          <div class="">
+            <th class="pad-left-200">Cart Totals</th>
+        </div>
+      </tr>
+
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="cart-summary ordered">
+              <h3>Total price: ${{ total_price|floatformat:2 }}</h3>
+              <form action="{% url 'create_order' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn-order">Proceed to Order</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+   
     
   </div>
+  </div>
 
-
+{% comment %} 
 <div class="cart-container display-media">
   <div class="display">
     {% if cart_items %}
@@ -64,6 +130,7 @@
     <div>
 
     </div>
+{% endcomment %}
 
 <div class="container pad-top-20">
   <h2 class="green text-center-media ">You may be interested in</h2>
@@ -78,5 +145,5 @@
     </a>
     {% endfor %}
   </div>
-</div>
+</div> 
 {% endblock %}

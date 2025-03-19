@@ -28,6 +28,15 @@ hr {
     gap: 10px;
 }
 
+.gap-100 {
+    gap: 90px;
+    padding-left: 45px;
+}
+
+.just-start {
+    justify-content: start;
+}
+
 .text-center p {
     font-size: 10px;
 }
@@ -99,8 +108,26 @@ hr {
     background-color: #fff;
 }
 
+.plant img:hover {
+    width: 320px;
+    height: 320px;
+    transform: 1s;
+}
+
 .align-center {
     align-items: center;
+}
+
+.tr {
+    display: flex;
+    gap: 18px;
+    /* justify-content: center; */
+}
+
+.ordered {
+    width: 200px;
+    height: 300px;
+    border: solid 1px black;
 }
 
 .align-end {
@@ -145,6 +172,24 @@ hr {
     flex-direction: column;
     gap: 20px;
     align-items: start;
+}
+
+.col-displays {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.circles button {
+    background-color: white;
+    padding: 0;
+    border: none;
+}
+
+.circles button svg {
+    border: none;
+    
+    /* background-color: rgb(23, 23, 23); */
 }
 
 .col-display-cart {
@@ -324,8 +369,26 @@ img {
     padding-left: 400px;
 }
 
-.pad-left-50 {
+.pad-left-200 th {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+
+}
+
+.pad-left-200 {
+    padding-left: 200px;
+
+}
+
+
+.pad-right-200 {
+    padding-right: 200px;
+
+}
+
+.pad-left-50  {
     padding-left: 100px;
+    
 }
 
 .sale {
@@ -1119,6 +1182,12 @@ select, textarea {
     gap: 5px;
 }
 
+thead {
+  border-bottom: 1px solid rgb(128, 128, 128, 0.2);
+  width: 100%;
+  padding-top: 10px;
+}
+
 .cart-item button {
     background-color: #ffffff;
     color: white;
@@ -1126,6 +1195,10 @@ select, textarea {
     padding: 0px 0px;
     font-size: 16px;
     cursor: pointer;
+}
+
+.just-display {
+    display: flex;
 }
 
 .cart-item button:hover {

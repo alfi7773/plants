@@ -154,7 +154,7 @@
       <div class="card-plant display-plant media-container-small">
         {% for plant in plants %}
         <a href="{% url 'detail_plant' plant.id %}">
-        <div>
+        <div class="plant">
           <img class="card" src="{{ plant.image.url }}" alt="" />
             <p>{{ plant.name }}</p>
             <h4 class="green">${{ plant.price }}</h4>
