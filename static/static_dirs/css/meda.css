@@ -38,6 +38,15 @@
         gap: 10px;
     }
 
+    .cart-card {
+        display: block;
+        padding: 0;
+    }
+
+    .gap-100 {
+        gap: 0;
+    }
+
     .gap-20 {
         gap: 5px;
     }
@@ -52,6 +61,20 @@
         width: 250px;
     }
 
+    .align-end {
+        align-items: center;
+    }
+
+
+    /* .pad-left-200 th {
+        padding-left: 0;
+        text-align: center;
+    } */
+
+    .pad-left-200{
+        padding-left: 110px;
+        /* text-align: center; */
+    }
 
 
     .search-box i {
@@ -434,6 +457,10 @@
     }
 
     .forms {
+        display: none;
+    }
+
+    .formses .helptext {
         display: none;
     }
 

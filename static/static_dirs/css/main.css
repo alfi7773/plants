@@ -776,11 +776,71 @@ select, textarea {
     display: none;
 }
 
+.formses label {
+    display: none;
+}
+
+.formses ul {
+    display: none;
+}
 
 .green {
     color: green;
 }
 
+
+.forms {
+    /*border: none;*/
+    padding: 10px;
+    border: solid 0;
+}
+
+.forms ul {
+    display: none;
+}
+
+.helptext {
+    display: none;
+}
+
+.formss {
+    /*border: none;*/
+    padding: 10px;
+    border: solid 0;
+}
+
+
+
+.forms input,
+select, textarea {
+    /* max-width: 500px; */
+    width: 100%;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+    /* padding: 10px; */
+    /* border: none; */
+}
+
+
+.formses input,
+select, textarea {
+    /* max-width: 500px; */
+    width: 100%;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+    /* padding: 10px; */
+    /* border: none; */
+}
 
 
 .paginations {

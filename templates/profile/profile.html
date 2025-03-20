@@ -9,7 +9,7 @@
       <h2>Personal Information</h2>
       <form method="post">
         {% csrf_token %}
-        <div class="forms">
+        <div class="formses">
           {{ user_form.as_p }}
           {% if user_form.errors %}
             <div class="form-errors">
@@ -26,7 +26,7 @@
       <h2>Password Change</h2>
       <form method="post">
           {% csrf_token %}
-          <div class="forms">
+          <div class="formses">
               {{ password_form.as_p }}
               
               {% if password_form.errors %}
