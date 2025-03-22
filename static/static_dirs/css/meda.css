@@ -76,6 +76,12 @@
         /* text-align: center; */
     }
 
+    .pad-top-20-m {
+        padding-top: 50px;
+    }
+
+    .pad-20-
+
 
     .search-box i {
         position: absolute;
@@ -97,7 +103,7 @@
     }
 
     .forma {
-        padding: 10px;
+        /* padding: 10px; */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -243,7 +249,9 @@
 
 
     .first-block {
-        background-color: rgb(243, 243, 243);
+        /* background: radial-gradient(circle at top left, rgba(200, 250, 200, 0.5), white),
+                radial-gradient(circle at bottom right, rgba(180, 240, 180, 0.3), white); */
+        background: linear-gradient(to right, #f0f8f1, #e3f4e6);
         max-width: 100%;
         width: 260px;
         height: 150px;
@@ -274,6 +282,7 @@
         /* padding: 0; */
         border: none;
         /* background-color: transparent; */
+        max-width: 100%;
     }
 
     .card-plant-basket {
@@ -470,20 +479,67 @@
 
     .formss input,
     select {
-        height: 0;
-        margin: 0;
+        /* height: 0; */
+        margin: 10px;
+        max-width: 280px;
     }
 
+ 
     .formss label {
         font-size: 10px;
+    }
+
+    .burger-btn {
+        padding: 10px 63px;
     }
 
     .display-plant {
         flex-wrap: nowrap;
         gap: 0;
-        /* gap: 60px; */
+        gap: 41px;
         /* grid-template-columns: repeat(1, 1fr); */
     }
+
+    .display-plant2 {
+        flex-wrap: nowrap;
+        gap: 0;
+        /* gap: 41px; */
+        /* grid-template-columns: repeat(1, 1fr); */
+    }
+
+    .my-fix {
+        position: fixed;
+        padding: 10px;
+        border-radius: 10px;
+        /* padding: 40px; */
+        background-color: #f5f4f4;
+        max-width: 100%;
+        width: 100%;
+        top: 550px;
+    }
+
+    .gap-170-m {
+        gap: 160px;
+    }
+
+    
+
+    .transper {
+        background-color: transparent;
+    }
+
+    .transper svg {
+        color: #333;
+    }
+
+    .display-gap-m button {
+        border-radius: 26px;
+        padding: 14px 40px;
+    }
+
+    /* .display-gap {
+        gap: 10px;
+    } */
 
     .display-plant1 {
         flex-wrap: nowrap;
@@ -663,7 +719,7 @@
     }
 
     .form button {
-        padding: 10px;
+        /* padding: 10px; */
     }
 
 

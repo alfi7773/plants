@@ -5,6 +5,32 @@
   
   {% comment %} {% include 'companents/filter.html' %} {% endcomment %}
   
+
+  <center>
+
+    <div class="pad-top-20-m col-display filt container-media none-main ">
+      <div class="cent pad-left-0">
+          <button class="burger-btn " onclick="toggleFilter()">☰ Фильтр</button>
+      </div>
+      <div class="filter-menu container-media">
+        <form method="get">
+            <div class="for-id">
+                <div class="filter-forms">
+                  <div class="for-label">
+                        {{ filter.form.as_p }}  
+                    </div>
+                </div>
+              </div>
+              <button type="submit" class="btn">Filter</button>
+              <button type="reset" class="btn">
+                <a class="white" href="/">Reset</a>
+              </button>
+              
+            </form>
+          </div>
+        </div>
+      </center>
+
   <form method="get" class="filter-form">
     <label for="id_name">Search:</label>
     {{ filter.form.name }}
@@ -63,9 +89,9 @@
   
   <div class="col-display">
     
-    <div class="text-center display-gap pad-top-20 links">
-      <a class="active" href="{% url "home" %}">All Plants</a>
-      <a class="" href="{% url "arrivals" %}">New Arrivals</a>
+    <div class="text-center display-gap-m pad-top-20 links">
+      <a class="active" href="{% url "arrivals" %}">New Arrivals</a>
+      <a class="" href="{% url "home" %}">All Plants</a>
       <a href="{% url "home" %}">Sale</a>
     </div>
 

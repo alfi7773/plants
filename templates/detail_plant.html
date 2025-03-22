@@ -35,6 +35,7 @@
         {% endfor %}
       </div>
   
+      {% if user.is_authenticated %}
       <div class="col-display-media display-gap1">
         <form class="form" method="post" action="{% url 'add_to_cart' %}">
           {% csrf_token %}
@@ -53,6 +54,7 @@
         </div>
         </form>
       </div>
+      {% endif %}
       <div class="start">
         <div class="display-gap1">
           <p class="gray">Categories: </p><p class="dark-gray">{{ plant.category.name }}</p>
@@ -122,43 +124,27 @@
         
         <div class="col-display-media main-none">
           <center>
-        <form class="form" style="gap: 11px;
-        flex-direction: column;
-        display: flex;
-        max-width: 201px;" method="post" action="{% url 'add_to_cart' %}">
-        {% csrf_token %}
-           <div>
-            <input type="hidden" name="plant_id" value="{{ plant.id }}">
-            <input type="number" name="quantity" value="1" min="1">
-          </div> 
-          {% comment %} <div class="">
-            <button type="button" class="qty-btn" onclick="changeQuantity(-1)">-</button>
-            <input class="input-m" type="number" id="quantity" name="quantity" value="1" min="1" readonly>
-          <button type="button" class="qty-btn" onclick="changeQuantity(1)">+</button>
-        </div> {% endcomment %}
-          <button type="submit">Добавить в корзину</button>
-        </form>
-      </center>
-    </div>
-    
-    
+          </center>
+        </div>
+        
+        
     <div class="container pad-20-media">
       <br /><p>{{ plant.description.living_room }}</p>
       <br /><p>{{ plant.description.dinig_room }}</p>
       <br /><p>{{ plant.description.ofice }}</p>
     </div>
-    </div>
+  </div>
     </div>
   
     <div class="container pad-top-100 text-center-m main-none">
       <h1 class="green">Releted Products</h1>
       <hr class="" />
       <center>
-        <div class="display-plant">
+        <div class="display-plant2">
           {% for plant in plants|slice:':3' %}
           <a href="{% url 'detail_plant' plant.id %}">
-              <div>
-                <img class="card" src="{{ plant.image.url }}" alt="" />
+            <div>
+              <img class="card" src="{{ plant.image.url }}" alt="" />
                 <p>{{ plant.name }}</p>
                 <h4 class="green">${{ plant.price }}</h4>
               </div>
@@ -167,4 +153,36 @@
           </div>
         </center>
       </div>
-{% endblock %}
+      {% if user.is_authenticated %}
+      <form class="form col-display my-fix" style="gap: 11px;
+      flex-direction:;
+      display: flex;" method="post" action="{% url 'add_to_cart' %}">
+      {% csrf_token %}
+      <div class=" display gap-170-m">
+        <input type="hidden" name="plant_id" value="{{ plant.id }}">
+        <div class="display">
+          <h3>Qty</h3><input type="number" name="quantity" value="1" min="1">
+          
+        </div>
+        <h4 class="green">${{ plant.price }}</h4>
+      </div> 
+      {% comment %} <div class="">
+        <button type="button" class="qty-btn" onclick="changeQuantity(-1)">-</button>
+        <input class="input-m" type="number" id="quantity" name="quantity" value="1" min="1" readonly>
+        <button type="button" class="qty-btn" onclick="changeQuantity(1)">+</button>
+        </div> {% endcomment %}
+        <div class="display-gap-m">
+          <button class="">
+            Buy Now
+          </button>
+          <button class="transper" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.5 13h13L23 6H6"/>
+          </svg>
+        </button>
+      </form>
+      {% endif %}
+    </div>
+      {% endblock %}
+      

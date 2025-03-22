@@ -338,6 +338,16 @@ hr {
     /* flex-wrap: wrap; */
 }
 
+.display-plant2 {
+    display: grid;
+    /* justify-content: space-around;
+    align-items: center; */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    flex: 1;
+    /* flex-wrap: wrap; */
+}
+
 .display-gap {
     display: flex;
     gap: 30px;
@@ -617,6 +627,7 @@ button {
     text-align: center;
     border: none;
     font-size: 16px;
+    background-color: transparent;
   }
   
   .selected {
@@ -743,7 +754,7 @@ select, textarea {
 }
 
 
-.forms input,
+.formss input,
 select, textarea {
     /* max-width: 500px; */
     width: 100%;

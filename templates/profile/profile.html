@@ -5,24 +5,27 @@
   {% include "companents/account_part.html" %}
   <div>
 
-  <main class="profile col-display my-form ">
+  <main class="profile col-display">
+    <div class="pad-top-20-m">
+      
       <h2>Personal Information</h2>
       <form method="post">
         {% csrf_token %}
         <div class="formses">
           {{ user_form.as_p }}
           {% if user_form.errors %}
-            <div class="form-errors">
-              {% for error in user_form.errors %}
-                <p class="error">{{ error }}</p>
-              {% endfor %}
-            </div>
+          <div class="form-errors">
+            {% for error in user_form.errors %}
+            <p class="error">{{ error }}</p>
+            {% endfor %}
+          </div>
           {% endif %}
           <button type="submit" name="user_form">Save Change</button>
         </div>
       </form>
-     </div>
-     <div>
+    </div>
+  </div>
+     <div class="pad-top-20-m">
       <h2>Password Change</h2>
       <form method="post">
           {% csrf_token %}
