@@ -1,27 +1,48 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<div class="body-form">
-    <center>
-        <div class="logo2"></div>
-        <h1 class="pad-top-20">Login</h1>
-    </center>
-    <form method="post">
-        {% csrf_token %}
-        {% comment %} <div class="forms"> {% endcomment %}
-        {% for forms in form %}
-        <div class="forma">
-            {% comment %} <p>{{form.label}}</p> {% endcomment %}
-            {{ forms }}
-            {{form.errors}}
-        </div>
-        {% endfor %}
-        {% comment %} </div> {% endcomment %}
-        <a class="end" href="">Forgot password?</a>
-        <center>
-            <button class="form-button" type="submit">Login</button>
-        </center>
-    </form>
-</div>
+<div class="just-display gap-200 body align-center just-stat"> 
+
+    <div class="my-plant media-none"></div>
     
+    <center>
+    <div class="body-form">
+        <center>
+        <div class="logo2"></div>
+        <h1 class="pad-top-20 white">Login</h1>
+    {% comment %} </center> {% endcomment %}
+        
+        
+        <form method="post" class="white black">
+            {% csrf_token %}
+            {% comment %} <div class="forms"> {% endcomment %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger">
+                <p class="message">{{ message }}</p>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% for field in form %}
+            <div class="forma white">
+                {{ field }}
+        {% if field.errors %}
+        <div class="error">
+            {% for error in field.errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% comment %} </div> {% endcomment %}
+    <a class="end white black" href="">Forgot password?</a>
+    <center>
+        <button class="form-button" type="submit">Login</button>
+    </center>
+</form>
+</div>
+</center>
+
+</div>
 {% endblock content %}

@@ -1,11 +1,14 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<div class="display-gap body"> 
+
+    <div class="my-plant media-none"></div>
 
 <div class="body-form">
     <center>
         <div class="logo2"></div>
-        <h1 class="pad-top-20">Register</h1>
+        <h1 class="pad-top-20 white">Register</h1>
     </center>
     <div class="forma">
     <form method="post" action="{% url 'signup' %}">
@@ -24,6 +27,7 @@
             <button class="form-button" type="submit">Register</button>
         </center>
     </form>
+</div>
 </div>
 </div>
     

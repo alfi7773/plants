@@ -55,14 +55,23 @@ class Login(LoginView):
     template_name = 'profile/login.html'
     success_url = reverse_lazy('profile')
     
-    # def get_success_url(self):
-    #     return '/'
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['forms'] = self.get_form()  
         return context
     
+    def form_invalid(self, form):
+        messages.error(self.request, "Login failed. Please check your username and password.")
+
+        if 'username' in form.errors:
+            form.add_error('username', "This user does not exist.")
+
+        if 'password' in form.errors:
+            form.add_error('password', "Invalid password.")
+            
+        return self.render_to_response(self.get_context_data(form=form))
+        
     
 
 class CustomLogoutView(LogoutView):

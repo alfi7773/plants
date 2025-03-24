@@ -449,6 +449,29 @@ a {
     list-style: none;
 }
 
+input::placeholder {
+    font-family: Cera Pro, sans-serif;
+    color: black;
+    font-size: 16px;
+}
+
+.message {
+    /* font-size: 20px; */
+    font-family: Cera Pro, sans-serif;
+
+}
+
+.my-plant {
+    background-image: url(../images/myplant.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 600px;
+    height: 600px;
+}
+
+
+
 /* .form-button button {
     width: 100%;
     max-width: 900px;
@@ -1056,13 +1079,14 @@ select, textarea {
     border-radius: 10px;
 }
 
-.forma input {
+.forma input, select {
     padding: 20px 50px;
     margin: 10px;
     border: none;
     /* background-color: #dfdada; */
     border: solid 1px rgb(128, 128, 128, 0.3);
     border-radius: 10px;
+    max-width: 250px;
 }
 
 .forma input::placeholder {
@@ -1075,6 +1099,11 @@ select, textarea {
     display: flex;
     flex-direction: column;
     gap: 30px;
+}
+
+.body {
+    background-color: #153c17;
+    
 }
 
 
@@ -1414,7 +1443,7 @@ button.place-order:hover {
 /* Адаптивность */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;
+        /* flex-direction: column; */
     }
 }
 
