@@ -124,10 +124,24 @@ hr {
     /* justify-content: center; */
 }
 
+.order {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.small-input {
+    padding: 9px 20px;
+}
+
 .ordered {
-    width: 200px;
-    height: 300px;
+    width: 360px;
+    height: 229px;
     border: solid 1px black;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .align-end {

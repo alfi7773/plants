@@ -87,10 +87,15 @@
         <tr>
           <td>
             <div class="cart-summary ordered">
-              <h3>Total price: ${{ total_price|floatformat:2 }}</h3>
-              <form action="{% url 'create_order' %}" method="POST">
+              <form class="order" action="{% url 'create_order' %}" method="POST">
                 {% csrf_token %}
+                <p>Coupon Apply</p>
+                <div class="display">
+                  <input class="small-input" type="text" placeholder="Enter coupon code here..."><button class="btn-input">Apply</button>
+                </div>
+                <h2>Total price: ${{ total_price|floatformat:2 }}</h2>
                 <button type="submit" class="btn-order">Proceed to Order</button>
+
               </form>
             </div>
           </td>
