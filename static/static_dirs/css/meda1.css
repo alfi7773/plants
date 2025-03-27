@@ -1,0 +1,144 @@
+:root {
+    --font-primary: 'Roboto', sans-serif;
+    --color-primary: #46A358;
+    --color-text: #333;
+}
+
+body {
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Шапка */
+.header {
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+.burger-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Карточки товаров */
+.products {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+}
+
+.product-info {
+    padding: 15px;
+}
+
+/* Корзина */
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.cart-item img {
+    width: 80px;
+    height: auto;
+}
+
+/* Медиа-запросы для планшетов */
+@media (min-width: 768px) {
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cart-item {
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+    }
+}
+
+/* Медиа-запросы для десктопов */
+@media (min-width: 1024px) {
+    .products {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .burger-btn {
+        display: none;
+    }
+
+    .nav {
+        display: flex;
+    }
+}
+
+/* Адаптация для очень маленьких экранов */
+@media (max-width: 480px) {
+    .header__inner {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav {
+        flex-direction: column;
+        gap: 10px;
+        display: none;
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .burger-btn {
+        display: block;
+    }
+}
