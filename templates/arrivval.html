@@ -25,11 +25,11 @@
   </section> {% endcomment %}
 
 
-  <div class="container">
+  <div class="contaier">
 
-    <section class="slider container">
+    <section class="slider containr">
       <div class="slides ">
-        <div class="container-media container slide">
+        <div class="container-media containr slide">
           <div class="display first-block">
             <div class="col-display">
               <h3>Welcome to GreenShop</h3>
@@ -104,7 +104,7 @@
         </div>
       </div>
     </center>
-<div class="display2 containers mi pad-20">
+<div class="display2 contaiers mi pad-20">
   
     {% comment %} {% include 'companents/filter.html' %} {% endcomment %}
     
@@ -215,12 +215,12 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="containe">
     <center>
       <h1>Our Blog Posts</h1>
       <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
     </center>
-    <div class="display3 text-center media-container pad-top-20">
+    <div class="display3 text-center media-container pad-top-20 pad-left-30">
       {% for blog in blogs|slice:':4' %}
         <a href="{% url 'detail_blog' blog.id %}">
           <div class="pad-top-20 blog">
