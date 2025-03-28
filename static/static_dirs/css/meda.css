@@ -431,7 +431,7 @@
     }
 
     .container-media {
-        max-width: 375px;
+        max-width: 320px;
         display: flex;
         justify-content: center;
     }
