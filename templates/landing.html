@@ -9,7 +9,7 @@
     <section class="slider container">
       <div class="slides ">
         <div class="container-media container slide">
-          <div class="display first-block">
+          <div class="display display-lap first-block">
             <div class="col-display">
               <h3>Welcome to GreenShop</h3>
               <h1 class="big-text">
@@ -33,7 +33,7 @@
       </div>
   
       <div class="container-media slide">
-        <div class="display first-block">
+        <div class="display display-lap first-block">
           <div class="col-display start">
             <h3>Explore Our Plants</h3>
             <h1 class="big-text">
@@ -145,13 +145,13 @@
     
     <div class="col-display cent">
       
-      <div class="text-center display-gap-m pad-top-20 links">
+      <div class="text-center display-gap-m pad-top-20 links ">
         <a class="active" href="{% url "home" %}">All Plants</a>
         <a class="" href="{% url "arrivals" %}">New Arrivals</a>
         <a href="{% url "home" %}">Sale</a>
       </div>
       
-      <div class="card-plant display-plant ">
+      <div class="card-plant display-plant  pad-left-30">
         {% for plant in plants %}
         <a href="{% url 'detail_plant' plant.id %}">
         <div class="plant">
@@ -193,7 +193,7 @@
       <h1>Our Blog Posts</h1>
       <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
     </center>
-    <div class="display3 text-center media-container pad-top-20">
+    <div class="display3 text-center media-container pad-top-20 pad-left-30">
       {% for blog in blogs|slice:':4' %}
         <a href="{% url 'detail_blog' blog.id %}">
           <div class="pad-top-20 blog">

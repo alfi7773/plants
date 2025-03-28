@@ -1,4 +1,5 @@
-* {
+    
+}* {
     margin: 0;
     box-sizing: border-box;
 }
@@ -1536,3 +1537,4 @@ button.place-order:hover {
       grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
   }
+
