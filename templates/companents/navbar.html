@@ -204,13 +204,32 @@
 
 
 <section class="nav-media">
+<<<<<<< HEAD
   <div class="display display-lap navka" style="">
     {% comment %} <div class="search-box"> {% endcomment %}
+=======
+  <header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <a href="/" class="logo">Plants</a>
+            <nav class="nav" id="navbar">
+                <a href="{% url 'home' %}">Главная</a>
+                <a href="{% url 'catologue' %}">Каталог</a>
+                <a href="{% url 'cart' %}">Корзина</a>
+                <button class="burger-btn" id="burgerBtn">☰</button>
+            </nav>
+        </div>
+    </div>
+</header>
+  {% comment %} <div class="display" style="padding: 10px;
+    background-color: #f1ecec;
+    max-width: 400px;
+    width: 320px;">
+>>>>>>> 4de86fd6e156f3c8765844739fcca29cdcf1044c
       <form id="search-box style" method="get">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" name="q" id="search-input" placeholder="Поиск..." value="{{ request.GET.q }}">
     </form>
-    {% comment %} </div> {% endcomment %}
     <nav>
       <button id="menu-toggle" class="menu-button">☰</button>
     </div>
@@ -224,7 +243,6 @@
         <a href="{% url "cart" %}">Basket</a>
 
         <a href="{% url "catologue" %}">Catologue</a>
-      {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
       <a href="{% url 'work' %}">Workspace</a>
       <form action="{% url 'logout' %}" method="post" style="display:inline;">
         {% csrf_token %}
@@ -246,11 +264,10 @@
             <button type="submit">Зарегистрироваться</button>
           </form>
           
-          {% comment %} {% include "profile/signup.html" %} {% endcomment %}
         </div>
       </div>
       {% endif %}
     </div>
   </div>
-  </nav>
+  </nav> {% endcomment %}
 </section>
