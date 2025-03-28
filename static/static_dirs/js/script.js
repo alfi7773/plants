@@ -271,14 +271,14 @@ function changeQuantity(amount) {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  const burgerBtn = document.getElementById('burgerBtn');
-  const navbar = document.getElementById('navbar');
+// document.addEventListener('DOMContentLoaded', () => {
+//   const burgerBtn = document.getElementById('burgerBtn');
+//   const navbar = document.getElementById('navbar');
 
-  burgerBtn.addEventListener('click', () => {
-      navbar.classList.toggle('active');
-  });
-});
+//   burgerBtn.addEventListener('click', () => {
+//       navbar.classList.toggle('active');
+//   });
+// });
 
 
 document.getElementById("id_country").addEventListener("change", function() {

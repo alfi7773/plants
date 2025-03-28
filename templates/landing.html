@@ -4,24 +4,26 @@
 
 
 
-  <div class="containe">
+  <div class="media-containe">
 
+    <center>
     <section class="slider containr">
-      <div class="slides ">
-        <div class="container-media contaner slide">
-          <div class="display display-lap first-block">
-            <div class="col-display">
-              <h3>Welcome to GreenShop</h3>
-              <h1 class="big-text">
-                Let’s Make a <br />Better <span>Planet</span>
-            </h1>
-            <p class="start">
-              We are an online plant shop offering a wide range <span>
-                of cheap and trendy plants. Use
-                <br />our plants to create a unique Urban Jungle.
-              </span>
-            </p>
-            <a href="{% url 'catologue' %}">
+
+        <div class="slides ">
+          <div class="container-media cent media-cntainer slide">
+            <div class="display display-lap first-block">
+              <div class="col-display">
+                <h3>Welcome to GreenShop</h3>
+                <h1 class="big-text">
+                  Let’s Make a <br />Better <span>Planet</span>
+                </h1>
+                <p class="start">
+                  We are an online plant shop offering a wide range <span>
+                    of cheap and trendy plants. Use
+                    <br />our plants to create a unique Urban Jungle.
+                  </span>
+                </p>
+                <a href="{% url 'catologue' %}">
               <button class="display"><p>SHOP NOW <i class="fa-solid fa-arrow-right-long"></i></p></button>
             </a>
           </div>
@@ -31,7 +33,7 @@
           </div>
         </div>
       </div>
-  
+      
       <div class="container-media slide">
         <div class="display display-lap first-block">
           <div class="col-display start">
@@ -56,14 +58,15 @@
     
     <button class="prev">&#10094;</button>
     <button class="next">&#10095;</button>
+  </center>
   </section>
 </div>
-  
-  <center>
 
-    <div class="col-display filt containe container-media none-main ">
-      <div class="cent pad-left-0">
-          <button class="burger-btn " onclick="toggleFilter()">☰ Фильтр</button>
+<center>
+  
+  <div class="col-display filt containe container-media none-main ">
+    <div class="cent pad-left-0">
+      <button class="burger-btn " onclick="toggleFilter()">☰ Фильтр</button>
       </div>
       <div class="filter-menu container-media">
         <form method="get">
@@ -151,7 +154,7 @@
         <a href="{% url "home" %}">Sale</a>
       </div>
       
-      <div class="card-plant display-plant  pad-left-30">
+      <div class="card-plant display-plant  pad-left">
         {% for plant in plants %}
         <a href="{% url 'detail_plant' plant.id %}">
         <div class="plant">
@@ -193,7 +196,7 @@
       <h1>Our Blog Posts</h1>
       <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
     </center>
-    <div class="display3 text-center media-containe pad-top-20 pad-left-30">
+    <div class="display3 text-center media-ontainer pad-top-20 pad-left-30">
       {% for blog in blogs|slice:':4' %}
         <a href="{% url 'detail_blog' blog.id %}">
           <div class="pad-top-20 blog">
