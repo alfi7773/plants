@@ -4,11 +4,11 @@
 
 
 
-  <div class="container">
+  <div class="containe">
 
-    <section class="slider container">
+    <section class="slider containr">
       <div class="slides ">
-        <div class="container-media container slide">
+        <div class="container-media contaner slide">
           <div class="display display-lap first-block">
             <div class="col-display">
               <h3>Welcome to GreenShop</h3>
@@ -61,7 +61,7 @@
   
   <center>
 
-    <div class="col-display filt container container-media none-main ">
+    <div class="col-display filt containe container-media none-main ">
       <div class="cent pad-left-0">
           <button class="burger-btn " onclick="toggleFilter()">☰ Фильтр</button>
       </div>
@@ -188,12 +188,12 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="containe">
     <center>
       <h1>Our Blog Posts</h1>
       <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
     </center>
-    <div class="display3 text-center media-container pad-top-20 pad-left-30">
+    <div class="display3 text-center media-containe pad-top-20 pad-left-30">
       {% for blog in blogs|slice:':4' %}
         <a href="{% url 'detail_blog' blog.id %}">
           <div class="pad-top-20 blog">
