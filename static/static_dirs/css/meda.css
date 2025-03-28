@@ -15,6 +15,11 @@
         width: 300px;
     }
 
+    .display-start {
+        display: flex;
+        flex-direction: column;
+    }
+
     .nav-media {
         display: block;
     }
@@ -1273,13 +1278,18 @@ hr {
 }
 
 .plant img:hover {
-    width: 320px;
-    height: 320px;
+    width: 270px;
+    height: 270px;
     transform: 1s;
 }
 
 .align-center {
     align-items: center;
+}
+
+.display-start {
+    display: flex;
+    flex-direction: column;
 }
 
 .tr {
@@ -1447,10 +1457,10 @@ hr {
 }
 
 .display-start {
-    display: flex;
+    /* display: flex;
     justify-content: space-around;
     align-items: start;
-    padding: 20px;
+    padding: 20px; */
     /* flex-wrap: wrap; */
 }
 
@@ -2121,6 +2131,23 @@ select, textarea {
 
 }
 
+.my-plant {
+    width: 1000px;
+}
+
+.media-container {
+    max-width: 1400px;
+    width: 40px;
+}
+
+.body {
+    max-width: 200vh;
+}
+
+
+.body-form {
+    max-width: 1400px;
+}
 
 .block-1:hover {
     width: 350px;
