@@ -19,7 +19,9 @@
   
     <div class="col-display media-detail">
       <h2>{{ plant.name }}</h2>
+      {% if user.is_authenticated %}
       <h4 class="green">${{ plant.price }}</h4>
+      {% endif %}
       <hr class="short media-none">
       <h3 class="start">Short Description:</h3>
       <p class="start width-description">{{ plant.short_description }}</p>
@@ -110,7 +112,9 @@
           <h3 class="media-none">Short Description:</h3>
           <p>{{ plant.short_description }}</p>
         <hr class="short media-none">
+        {% if user.is_authenticated %}
         <h4 class="green">${{ plant.price }}</h4>
+        {% endif %}
         <h3>Size</h3>
         <div class="display-gap-m2 main-none">
           {% for size in sizes %}
