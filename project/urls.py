@@ -24,7 +24,7 @@ urlpatterns = [
     path('', include('plant.urls')),
     path('profile/', include('user_profile.urls')),
     path('workspace/', include('workspace.urls')),
-    
+    path('accounts/', include('allauth.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
